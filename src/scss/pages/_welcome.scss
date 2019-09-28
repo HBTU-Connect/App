@@ -1,0 +1,127 @@
+.welcome-page{
+    width: 100%;
+    height: 200vh;
+    
+
+    .header-container{
+        background-image: linear-gradient(to right, rgba($color-primary, 0.8), rgba(86, 39, 117, 0.575)), url(../../images/ht2.jpg) ;
+       
+        background-size: cover;
+        background-position: center; 
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        display: inline-block;
+        
+        .left-floated-div{
+            float: left;
+            display: inline-block;
+            width: 60%;
+            height: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            color: $color-white;
+
+            .heading-container{
+                width: 80%;
+                height: auto;
+                margin-left: 10%;
+                margin-top: 150px;
+
+                .heading-primary{
+                    padding-top: 1rem;
+                    font-size: 8rem;
+                    display: block;
+                    font-weight: 1000;
+                    font-family: $font-family-secondary;
+                    letter-spacing: 0.3rem;
+                }
+                .heading-secondary{
+                    font-size: 3rem;
+                    display: block;
+                    font-weight: 500;
+                    font-family: $font-family-primary;
+                }
+                .heading-tertiary{
+                    font-size: 4rem;
+                    display: block;
+                    font-weight: 600;
+                    font-family: $font-family-primary;
+                    letter-spacing: 0.5rem;
+                }
+                .heading-about{
+                    width: 80%;
+                    padding-top: 4rem;
+                    font-size: 2rem;
+                    line-height: 2.8rem;
+                    display: block;
+                    font-weight: 500;
+                    color: rgb(209, 209, 209);
+                    font-family: $font-family-primary;
+                }
+                .heading-login-button{
+                    text-align: center;
+                    padding-top: 0px;
+                    margin-top: 3rem;
+                    width: 35rem;
+                    height: 6rem;
+                    font-size: 2.5rem;
+                    font-weight: 500;
+                    font-family: $font-family-primary;
+                    color: $color-white;
+                    background: $color-primary;
+                    outline: none;
+                    border: 0.1rem solid $color-white;
+                    border-radius: 5rem;
+                    box-shadow: 0 0.3rem 0.5rem $color-shadow;
+                    cursor: pointer;
+
+                    .right-arrow{
+                        font-size: 3rem;
+                        font-weight: 1000;
+                        
+                    }
+
+                    &:hover{
+                        box-shadow: 0 6px 5px rgba(0, 0, 0, 0.473);
+                        transform: translateY(-2px);
+                    }
+                    &:active{
+                        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.473);
+                        transform: translateY(-1px);
+                    }
+                }
+            }
+        }
+
+        .right-floated-div{
+            display: inline-block;
+            width: 40%;
+            height: 100%;
+            font-size: 3rem;
+
+            .signup-form-container{
+                width: 90%;
+                height: auto;
+                margin-top:80px;
+                margin-left: 5%;
+                color: $color-white;
+                text-align: center;
+
+                .form-heading-primary{
+                    display: block;
+                    font-size: 6rem;
+                    font-weight:1000;
+                    font-family: $font-family-primary;
+                    letter-spacing: 0.5rem;
+                }
+                .form-heading-secondary{
+                    display: block;
+                    font-size: 2.5rem;
+                    font-weight: 500;
+                    font-family: $font-family-primary;
+                }
+            }
+        }
+    }
+}
