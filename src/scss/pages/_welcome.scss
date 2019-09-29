@@ -1,10 +1,10 @@
 .welcome-page{
     width: 100%;
-    height: 200vh;
+    height: auto;
     
 
     .header-container{
-        background-image: linear-gradient(to right, rgba($color-primary, 0.8), rgba(86, 39, 117, 0.575)), url(../../images/ht2.jpg) ;
+        background-image: linear-gradient(to right, rgba($color-black-smooth, 0.8), rgba($color-black-smooth, 0.575)), url(../../images/ht2.jpg) ;
        
         background-size: cover;
         background-position: center; 
@@ -75,6 +75,7 @@
                     border-radius: 0.3rem;
                     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.473);
                     cursor: pointer;
+                    transition: all 0.2s ease;
 
                     .right-arrow{
                         font-size: 3rem;
@@ -203,6 +204,14 @@
                                     display: block;
                                     font-family: $font-family-primary;
                                 }
+                                
+                            }
+                            input[type=date]{
+                                &::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+                                &::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+                                &::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+                                    color: transparent;
+                                }
                             }
 
                         }
@@ -245,5 +254,233 @@
         }
 
         
+    }
+
+    .section_two{
+        width: 100%;
+        height: 100rem;
+        margin: 0;
+        padding-top: 4rem;
+        position: relative;
+        box-sizing: border-box;
+
+        .section_two-content{
+            width: 70%;
+            height: 70rem;
+            position: absolute;
+            left: 0;
+            top: 15rem;
+            display: block;
+            background: rgba($color-primary, 0.1);
+            margin: 0 auto;
+
+            img{
+                position: absolute;
+                width: 65rem;
+                top: 6rem;
+                left: 65%;
+            }
+
+            .section_two-heading{
+                width: 40rem;
+                height: auto;
+                position: absolute;
+                top: 18rem;
+                left: 10%;
+
+                &-primary{
+                    font-size: 6rem;
+                    font-weight: 600;
+                    font-family: $font-family-primary;
+                    color: $color-primary;
+                    letter-spacing: 0.4rem;
+                }
+                .divider{
+                    margin-top: 2rem;
+                    display: block;
+                    width: 10rem;
+                    height: .8rem;
+                    background: $color-primary;
+                    border-radius: 10rem;
+                }
+                &-secondary{
+                    margin-top: 2rem;
+                    font-size: 3.5rem;
+                    font-weight: 400;
+                    font-family: $font-family-primary;
+                    color: $color-black-smooth;
+                
+                }
+
+            }
+        }
+    }
+
+    .section_three{
+        width: 100%;
+        height: 75rem;
+        position: relative;
+        display: block;
+        background: rgb(255, 226, 254);
+        box-sizing: border-box;
+        padding-top: 15rem;
+
+        .cards{
+            margin: 0 auto;
+            max-width: 114rem;
+
+            @include clearfix;
+
+            .card-1-of-3{
+                width: calc((100% - 2*#{$gutter-horizontal})/3);
+                float: left;
+                height: 40rem;
+                text-align: center;
+                position: relative;
+
+                &:not(:last-child) {
+                    margin-right: $gutter-horizontal;
+                }
+
+                .card-image{
+                    width: 100%;
+                    margin: 0 auto;
+                    position: absolute;
+                    top:0;
+                    left: 0;
+                }
+
+                .card-heading{
+                    position: relative;
+                    font-family: $font-family-primary;
+                    font-size: 3rem;
+                    font-weight: 600;
+                    color: $color-primary;
+                    margin-top: 25rem;
+                }
+
+                .card-content{
+                    position: relative;
+                    font-family: $font-family-primary;
+                    font-size: 2rem;
+                    font-weight: 500;
+                    color: $color-black-smooth;
+                    margin-top: 2rem;
+                }
+
+                &:nth-child(1){
+                    img{
+                        width: 70%;
+                        margin: 0 auto;
+                    }
+                }
+
+                &:nth-child(2){
+                    img{
+                        width: 100%;
+                        }
+                }
+
+                &:last-child{
+
+                    img{
+                    width: 60%;
+                    }
+                }
+
+                
+
+                
+            }
+        }
+    }
+
+    .section_four{
+        width: 100%;
+        height:80rem;
+        position: relative;
+        overflow: hidden;
+
+        &-content{
+            width: 100%;
+            height: 100%;
+
+            img{
+                width: 60%;
+                position: absolute;
+                right: -20rem;
+                top: 10rem;
+            }
+        }
+
+        &-heading{
+            position: absolute;
+            top: 15rem;
+            left: 10%;
+            width: 30%;
+            background: rgb(218, 245, 255);
+            height: 50rem;
+            padding-left: 3rem;
+
+            &-primary{
+                position: relative;
+                font-family: $font-family-primary;
+                font-size: 4rem;
+                font-weight: 600;
+                color: $color-primary;
+                letter-spacing: 0.3rem;
+                margin-top: 3rem;
+            }
+
+            &-secondary{
+                width: 80%;
+                position: relative;
+                font-family: $font-family-primary;
+                font-size: 3rem;
+                font-weight: 500;
+                color: $color-black-smooth;
+                padding-top: 3rem;
+
+            }
+
+        }
+    }
+
+    .section_five{
+        width: 100%;
+        height: 60rem;
+        background-image: linear-gradient(to top , rgb(248, 208, 255), white);
+        position: relative;
+        img{
+            width: 70%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        &-heading{
+            padding-top: 4rem;
+            padding-left: 6rem;
+            font-size: 5rem;
+            font-family: $font-family-primary;
+            color: $color-primary;
+            font-weight: 500;
+            letter-spacing: 0.4rem;
+        
+            button{
+                margin-top: 2rem;
+                width: 15rem;
+                height: 5rem;
+                display: block;
+                border: none;
+                outline: none;
+                background: $color-primary;
+                color: $color-white;
+                font-family: $font-family-primary;
+                font-size: 2rem;
+                border-radius: 5rem;
+
+            }
+        }
     }
 }

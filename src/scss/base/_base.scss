@@ -11,4 +11,41 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: white;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar:hover {
+    width: 10px;
+  }
+
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #c0c0c0; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    width: 10px;
+}
+
+input[type=date]{
+    &::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+    &::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+    &::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+        color: transparent;
+    }
+}
+
+
