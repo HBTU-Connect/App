@@ -6,11 +6,12 @@ import SignUpFormSecondPage from './signUpFormSecondPage';
 
 class SignUpForm extends React.Component{
     state = {
-        page: 1
+        page: 1,
+        width: '33%'
     }
 
     nextPage = () => {
-        this.setState({ page: this.state.page + 1 });
+        this.setState({ page: this.state.page + 1, width: '66%' });
     }
 
     previousPage = () => {
@@ -18,6 +19,7 @@ class SignUpForm extends React.Component{
     }
 
     onSubmitForm = (formValues) => {
+        this.setState({ width: '100%'})
         console.log(formValues);
     }
 
@@ -38,6 +40,9 @@ class SignUpForm extends React.Component{
                         </div>
                     </div>
                     <div className='right-floated'>
+                        <div className='progress-bar'>
+                            <div className='progress' style={{ width: this.state.width }}></div>
+                        </div>
                         { page === 1 && <SignUpFormFirstPage onSubmit={this.nextPage} />}
                         {page === 2 && (
                             <SignUpFormSecondPage

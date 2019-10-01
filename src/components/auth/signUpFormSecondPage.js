@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 
 
 import validate from '../validate';
-import renderField from './renderField';
+import {renderField} from './renderField';
 
 
 
@@ -20,7 +20,7 @@ const SignUpFormSecondPage = props => {
             <form onSubmit={handleSubmit}>
             <Field name="userName" type="text" component={renderField} label="User Name" />
 
-            <Field name='createPassword' type='password' component={renderField} label='Password' />
+            <Field name='password' type='password' component={renderField} label='Password' />
             <Field name='confirmPassword' type='password' component={renderField} label='Confirm Password' />
             
             
