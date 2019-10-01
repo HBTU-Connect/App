@@ -1,6 +1,9 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
+import eyeOpenImage from '../../images/eye-open.png';
+import eyeClosedImage from '../../images/eye-closed.png';
+
 export const renderField = ({ input, label, type, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) => (
     <div className='input-field'>
         
@@ -20,6 +23,32 @@ export const renderField = ({ input, label, type, input: { value }, meta: {prist
         </label>
     </div>
 );
+
+export const userField = ({ input, id, showPassword, label, type, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) =>{
+  
+  
+  return (
+  <div className='user-field'>
+    {id === 'password' && (type === 'password'?
+     <div className='password-show' ><img onClick={showPassword} src={eyeOpenImage} alt='show'/></div>:
+    <div className='password-show' ><img onClick={showPassword} src={eyeClosedImage} alt='show'/></div>) }
+      
+    <div >
+      <input 
+          className={ value || dirty || active ? (valid ? 'user-field--value touched' : 'user-field--value error') : 'user-field--value'}
+          {...input} 
+          type={type}
+          disabled={value && pristine ? true : false }
+          
+      />
+      {touched && error && <span className='user-field--value-error'>{error}</span>}
+    </div>
+    <label className={ value || dirty || active ? 'user-field--label touched' : 'user-field--label'}>
+          {label}
+      </label>
+  </div>
+);
+}
 
 export const renderRadioButton = ({ meta: {value, dirty, active, touched, error } }) =>{
   return(

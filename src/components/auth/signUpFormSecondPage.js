@@ -3,39 +3,54 @@ import { Field, reduxForm } from 'redux-form';
 
 
 import validate from '../validate';
-import {renderField} from './renderField';
+import { userField } from './renderField';
 
 
 
 
-const SignUpFormSecondPage = props => {
-  const { handleSubmit, previousPage } = props
-  return (
-      <div className='form-container'>
-          <div className='form-heading'>
-              Create Account
-              <div className='divider'></div>
-          </div>
-          
-            <form onSubmit={handleSubmit}>
-            <Field name="userName" type="text" component={renderField} label="User Name" />
+class SignUpFormSecondPage extends React.Component {
 
-            <Field name='password' type='password' component={renderField} label='Password' />
-            <Field name='confirmPassword' type='password' component={renderField} label='Confirm Password' />
-            
-            
-            <div className='form-button'>
-                <button type="button" className="previous" onClick={previousPage}>
-                Previous
-                </button>
-                <button type="submit" className='submit' >
-                Submit
-                </button>
+    state = {
+        type: 'password'
+    }
+
+    showPassword = (e) => {
+        e.preventDefault();
+        console.log('clicked');
+        if(this.state.type === 'password'){
+          this.setState({ type :'text'});
+        }else{ this.setState({ type :'password'});}
+      }
+
+    render(){
+        const { handleSubmit, previousPage } = this.props
+        return (
+            <div className='form-container'>
+                <div className='form-heading'>
+                    Create Account
+                    <div className='divider'></div>
+                </div>
+                
+                    <form onSubmit={handleSubmit}>
+                    <Field name="userName" type="text" component={userField} label="User Name" />
+
+                    <Field id='password' name='password' type={this.state.type} component={userField} label='Password' showPassword={this.showPassword} />
+                    <Field id='password' name='confirmPassword' type={this.state.type} component={userField} label='Confirm Password' showPassword={this.showPassword} />
+                    
+                    
+                    <div className='form-button'>
+                        <button type="button" className="previous" onClick={previousPage}>
+                        Previous
+                        </button>
+                        <button type="submit" className='submit' >
+                        Submit
+                        </button>
+                    </div>
+                    </form>
             </div>
-            </form>
-      </div>
     
-  )
+        )
+    }
 }
 
 export default reduxForm({
