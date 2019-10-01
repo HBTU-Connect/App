@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './header';
 import WelcomePage from './welcome/welcome';
+import SignUpForm from './auth/signUpForm';
 
 
 const App = () =>{
@@ -13,6 +14,7 @@ const App = () =>{
                     <Header />
                     <Switch>
                     <Route path='/' exact component={WelcomePage} />
+                    <Route path='/signup' exact component={SignUpForm} />
                     {/* <Route path='/feeds' exact render={props => <div><Feeds/><Clubs/></div>}/>
                     <Route path='/notification' exact render={props => <div><Feeds/><Notification/></div>} /> */}
                     </Switch>
