@@ -71,6 +71,10 @@
                 width: 80%;
                 margin-left: 10%;
 
+                .disabled-field{
+                    background: red;
+                }
+
                 .form-heading{
                     padding-top: 3rem;
                     font-size: 2rem;
