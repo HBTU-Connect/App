@@ -1,7 +1,7 @@
 
 .signup-page{
     width: 100%;
-    height: 95vh;
+    height: 100vh;
     background: rgba($color-primary, 0.1);
     position: relative;
 
@@ -11,7 +11,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 50%;
-        height:50rem;
+        height:60rem;
 
         .left-floated{
             width: 45%;
@@ -42,7 +42,7 @@
             .page-footer{
                 position: absolute;
                 left: 50%;
-                bottom: 5rem;
+                bottom: 3rem;
                 transform: translateX(-50%);
                 width: 100%;
                 text-align: center;
@@ -52,7 +52,10 @@
                     text-decoration: underline;
                     letter-spacing: 0.2rem;
                     font-size: 1.4rem;
+                    line-height: 1.8rem;
                     font-family: $font-family-primary;
+                    display: block;
+                    padding-bottom: 1rem;
                 }
             }
 
@@ -145,6 +148,28 @@
 
                     }
 
+                    &.checkbox{
+                        font-size: 1.5rem;
+                        font-family: $font-family-primary;
+                        position: relative;
+                        color: $color-black-smooth;
+                        cursor: pointer;
+                        padding-left:3rem;
+                        
+                    }
+
+                    &--checkbox,
+                    input[type="checkbox"]{
+                        position: absolute;
+                        left: 0;
+                        top: 0.2rem;
+                        z-index: 100;
+                        width: 2rem;
+                        height: 2rem;
+                        cursor: pointer;
+
+                    }
+
                     &--value,
                     input{
                         width: 100%;
@@ -225,6 +250,16 @@
                                     height: 8px;
                                     border-radius: 50%;
                                     background: white;
+                                }
+
+                                &.male{
+                                    color: rgb(43, 184, 43);
+                                }
+                                &.female{
+                                    color: rgb(43, 184, 43);
+                                }
+                                &.other{
+                                    color: rgb(43, 184, 43);
                                 }
 
                         }
