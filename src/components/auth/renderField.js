@@ -50,21 +50,21 @@ export const userField = ({ input, id, showPassword, label, type, input: { value
 );
 }
 
-export const renderRadioButton = ({ meta: {value, dirty, active, touched, error } }) =>{
+export const renderRadioButton = ({ input: { value }, meta: {pristine, dirty, active, touched, error } }) =>{
   return(
       <div className='input-field--radio'>
       <label className={  dirty || active ? ( value=== 'male' ? 'input-field--radio--label touched male': 'input-field--radio--label' ) : 'input-field--radio--label'}>
-          <Field name="sex" component='input' type="radio" value="male" />{' '}
+          <Field name="sex" component='input' type="radio" value="male" disabled={value && pristine ? true : false } />{' '}
           Male
           <span className="checkmark"></span>
       </label>
-      <label className={ dirty || active ? 'input-field--radio--label touched' : 'input-field--radio--label'}>
-          <Field name="sex" component='input' type="radio" value="female" />{' '}
+      <label className={ dirty || active ? ( value=== 'female' ? 'input-field--radio--label touched female': 'input-field--radio--label' ) : 'input-field--radio--label'}>
+          <Field name="sex" component='input' type="radio" value="female" disabled={value && pristine ? true : false } />{' '}
           Female
           <span className="checkmark"></span>
       </label>
-      <label className={ dirty || active ? 'input-field--radio--label touched' : 'input-field--radio--label'}>
-          <Field name="sex" component='input' type="radio" value="other" />{' '}
+      <label className={ dirty || active ? ( value=== 'other' ? 'input-field--radio--label touched other': 'input-field--radio--label' ) : 'input-field--radio--label'}>
+          <Field name="sex" component='input' type="radio" value="other" disabled={value && pristine ? true : false } />{' '}
           Other
           <span className="checkmark"></span>
       </label>
@@ -75,18 +75,20 @@ export const renderRadioButton = ({ meta: {value, dirty, active, touched, error 
 
 
 
-export const renderYearSelector = ({ input, label, meta: {valid, dirty, active, touched, error } }) =>{
+export const renderYearSelector = ({ input, label, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) =>{
   
   const years = ['First', 'Second', 'Third', 'Final'];
 
   return(
   <div className='input-field'>
-      <label className={ dirty || active ? 'input-field--label touched' : 'input-field--label'}>
+      <label className={value || dirty || active ? 'input-field--label touched' : 'input-field--label'}>
           {label}
       </label>
     <select
      {...input}
-     className={ dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
+     className={value || dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
+
+     disabled={value && pristine ? true : false }
       >
       <option value=""> </option>
       {years.map(val => (
@@ -100,22 +102,25 @@ export const renderYearSelector = ({ input, label, meta: {valid, dirty, active, 
   );
 }
 
-export const renderBranchSelector = ({ input, label, meta: {valid, dirty, active, touched, error } }) =>{
+export const renderBranchSelector = ({ input, label, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) =>{
   
-  const branch = ['BioChemical Engg.', 'Computer Sc. & Engg.', 'Civil Engg.', 'Chemical Engg.'];
+  const branch = ['BioChemical Engg.','Computer Sc. & Engg.', 'Chemical Engg.', 'Civil Engg.', 'Electrical Engg.', 'Electronics Engg.']
+  const branchCode = ['BE', 'CSE', 'CHE', 'CE', 'EE', 'ET', 'ME', 'LT', 'PT', 'FT', 'PL'];
 
   return(
   <div className='input-field'>
-      <label className={ dirty || active ? 'input-field--label touched' : 'input-field--label'}>
+      <label className={value || dirty || active ? 'input-field--label touched' : 'input-field--label'}>
           {label}
       </label>
       <select
        {...input}
-       className={ dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
+       className={value || dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
+
+       disabled={value && pristine ? true : false }
       >
           <option value=""> </option>
-          {branch.map(val => (
-          <option value={val} key={val}>
+          {branch.map((val, index) => (
+          <option value={branchCode[index]} key={val}>
               {val}
           </option>
           ))}
@@ -123,5 +128,25 @@ export const renderBranchSelector = ({ input, label, meta: {valid, dirty, active
       {touched && error && <span className='input-field--value-error'>{error}</span>}
   </div>
   );
+}
+
+export const checkBox = ({ input, label, type, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) => {
+    return(
+          <div className='input-field checkbox'>
+            <label htmlFor="declare">
+              I hereby declare that all the details maintioned above belongs to me.
+            </label>
+            <div className='input-field--checkbox'>
+              <input
+                  name="declare"
+                  id="declare"
+                  type="checkbox"
+                  {...input}
+              />
+              
+            </div>
+            {touched && error && <span className='input-field--value-error'>{error}</span>}
+          </div>
+    );
 }
   

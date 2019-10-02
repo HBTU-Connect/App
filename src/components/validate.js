@@ -10,35 +10,40 @@ const validate = values => {
       errors.dob = 'Required'
     }
 
-    // if (!values.firstName){
-    //   errors.firstName = 'Required'
-    // }
+    if (!values.firstName){
+      errors.firstName = 'Required'
+    }
 
-    // if( !values.email){
-    //   errors.email = 'Required'
-    // }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    //   errors.email = 'Invalid email address'
-    // }
+    if( !values.email){
+      errors.email = 'Required'
+    }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid email address'
+    }
 
-    // if( !values.phone){
-    //   errors.phone = 'Required'
-    // }else if (isNaN(Number(values.phone))) {
-    //   errors.phone = 'Must be a number'
-    // }else if( values.phone.length < 10){
-    //   errors.phone = 'Phone No. must have 10 characters'
-    // }
+    if( !values.phone){
+      errors.phone = 'Required'
+    }else if (isNaN(Number(values.phone))) {
+      errors.phone = 'Must be a number'
+    }else if( values.phone.length < 10){
+      errors.phone = 'Phone No. must have 10 characters'
+    }
 
-    // if( !values.branch){
-    //   errors.branch = 'Required'
-    // }
+    if( !values.branch){
+      errors.branch = 'Required'
+    }
 
-    // if( !values.year){
-    //   errors.year = 'Required'
-    // }
+    if( !values.year){
+      errors.year = 'Required'
+    }
 
-    // if( !values.sex){
-    //   errors.sex = 'Required'
-    // }   
+    if( !values.sex){
+      errors.sex = 'Required'
+    }   
+
+
+    if( values.declare !== true){
+      errors.declare = 'Please Confirm your Details'
+    }
 
     if( !values.userName){
       errors.userName='Required'
@@ -54,7 +59,7 @@ const validate = values => {
       errors.password='Password must contain an Alphabate'
     }else if( !/(?=.*[0-9])/i.test(values.password)){
       errors.password= 'Password Must contain a Number'
-    }else if( !/(?=.[!@#\$%\^&])/i.test(values.password)){
+    }else if( !/(?=.[!@#$%^&])/i.test(values.password)){
       errors.password= 'Password Must contain a symbol'
     }else if( !/(?=.*[A-Z])/i.test(values.password)){
        errors.password= 'Password Must contain a capital letter'
