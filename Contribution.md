@@ -2,3 +2,5 @@
 
 <h3> Fork the repo and clone it </h3>
 <h3> Please use the development branch for pull requests <h3/>
+  Do not create requests for master branch directly.
+  
