@@ -2,7 +2,12 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { renderField, renderRadioButton, renderBranchSelector, renderYearSelector } from './renderField';
+import { 
+    renderField,
+    renderRadioButton, 
+    renderBranchSelector, 
+    renderYearSelector,
+    checkBox } from './renderField';
 import validate from '../validate';
 
 
@@ -54,7 +59,15 @@ class SignUpFormFirstPage extends React.Component{
                     />
                             
                     <Field name="sex" component={renderRadioButton} />
+
                     
+                    <Field
+                            name="declare"
+                            id="declare"
+                            component={checkBox}
+                            type="checkbox"
+                        />
+
                     <div className='form-button'>
                     <button type="submit" className="next">
                         Next 
@@ -75,8 +88,8 @@ class SignUpFormFirstPage extends React.Component{
     validate
   })(SignUpFormFirstPage);
 
-  const mapStateToProps = () => {
-        return { initialValues: { /* default values of input fields */}}
+  const mapStateToProps = (state) => {
+        return { initialValues: state.userData.data}
   }
 
   export default connect(mapStateToProps)(formWrapper);

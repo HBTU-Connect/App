@@ -37,6 +37,9 @@ class SignUpForm extends React.Component{
                             <Link to='/terms' className='terms-link'>
                                 Terms and Policies
                             </Link>
+                            <Link to='/help' className='terms-link'>
+                                Help
+                            </Link>
                         </div>
                     </div>
                     <div className='right-floated'>

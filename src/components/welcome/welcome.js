@@ -1,14 +1,30 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 //components
 import validate from '../validate';
 import Footer from './footer';
 import PageHTML from './pageHTML';
 
+import { getData } from '../../actions';
+
 
 
 class WelcomePage extends React.Component{
+    state= {
+        loading: false
+    }
+
+    componentDidUpdate(){
+        if(this.state.loading === true){
+            if(this.props.userData.data  || this.props.userData.error){
+                this.setState({ loading: false});
+            }
+        }
+        
+    }
 
     renderField = ({ input, label, type, meta: { valid, dirty, active, touched, error } }) => (
         <div className='input-field'>
@@ -27,10 +43,16 @@ class WelcomePage extends React.Component{
     );
 
     onFormSubmit = (formValues) => {
-        console.log(formValues);
+        this.setState({ loading: true })
+        this.props.getData(formValues);
+
     }
 
     render(){
+        if(this.props.userData.data){
+            return <Redirect to='/signup' />
+        }
+        
         return(
             <div className='welcome-page'>
                 <div className='header-container'>
@@ -60,6 +82,7 @@ class WelcomePage extends React.Component{
                                     <Field name='dob' type='date' component={this.renderField} label='DOB' />
                                     <button> Join </button>
                                 </form>
+                                { this.state.loading  && <div className='loader'><div className='loader-animation'></div></div> }
                             </div>
                         </div>
                     </div>
@@ -72,9 +95,19 @@ class WelcomePage extends React.Component{
     }
 }
 
-export default reduxForm({
+const formWrapper = reduxForm({
     form: 'join', // <------ same form name
     destroyOnUnmount: false, // <------ preserve form data
     forceUnregisterOnUnmount: true,
     validate
 })(WelcomePage);
+
+const mapStateToProps = (state) => {
+    return {
+        userData: state.userData
+    }
+}
+
+export default connect(mapStateToProps, {
+    getData
+})(formWrapper);
