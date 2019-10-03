@@ -11,16 +11,23 @@ import { userField } from './renderField';
 class SignUpFormSecondPage extends React.Component {
 
     state = {
-        type: 'password'
+        typePassword: 'password',
+        typeConfirmPassword: 'password'
     }
 
     showPassword = (e) => {
         e.preventDefault();
-        console.log('clicked');
-        if(this.state.type === 'password'){
-          this.setState({ type :'text'});
-        }else{ this.setState({ type :'password'});}
-      }
+        if(this.state.typePassword === 'password' ){
+          this.setState({ typePassword :'text'});
+        }else{ this.setState({ typePassword :'password'});}
+    }
+
+    showConfirmPassword = (e) => {
+        e.preventDefault();
+        if(this.state.typeConfirmPassword === 'password' ){
+          this.setState({ typeConfirmPassword :'text'});
+        }else{ this.setState({ typeConfirmPassword :'password'});}
+    }
 
     render(){
         const { handleSubmit, previousPage } = this.props
@@ -34,8 +41,8 @@ class SignUpFormSecondPage extends React.Component {
                     <form onSubmit={handleSubmit}>
                     <Field name="userName" type="text" component={userField} label="User Name" />
 
-                    <Field id='password' name='password' type={this.state.type} component={userField} label='Password' showPassword={this.showPassword} />
-                    <Field id='password' name='confirmPassword' type={this.state.type} component={userField} label='Confirm Password' showPassword={this.showPassword} />
+                    <Field id='password' name='password' type={this.state.typePassword} component={userField} label='Password' showPassword={this.showPassword} />
+                    <Field id='password' name='confirmPassword' type={this.state.typeConfirmPassword} component={userField} label='Confirm Password' showPassword={this.showConfirmPassword} />
                     
                     
                     <div className='form-button'>
