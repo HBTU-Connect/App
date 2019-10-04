@@ -2,3 +2,11 @@
     50% { left: 70% }
     100% { left: 0 }
 }
+
+@keyframes text{
+    0%{ transform: translateY(3rem); opacity: 0;}
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
