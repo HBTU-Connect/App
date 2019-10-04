@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
+//images
 import eyeOpenImage from '../../images/eye-open.png';
 import eyeClosedImage from '../../images/eye-closed.png';
 
