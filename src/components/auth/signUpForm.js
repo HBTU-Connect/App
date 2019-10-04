@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import SignUpFormFirstPage from './signUpFormFirstPage';
 import SignUpFormSecondPage from './signUpFormSecondPage';
 
+import { getData } from '../../actions';
+
 //images
 import signUpImage1 from "../../images/signup.png";
 // import signUpImage2 from "../../images/signup-img2.png";
@@ -14,6 +16,18 @@ class SignUpForm extends React.Component{
         page: 1,
         width: '33%'
     }
+      
+    componentDidMount() {
+        window.onbeforeunload = function() {
+            this.onUnload();
+            return "";
+        }.bind(this);
+    }
+
+    onUnload(event) { 
+        alert('page Refreshed')
+    };
+
 
     nextPage = () => {
         this.setState({ page: this.state.page + 1, width: '66%' });
@@ -87,8 +101,11 @@ class SignUpForm extends React.Component{
 
 const mapStateToProps = (store) => {
     return {
-        userData: store.userData
+        userData: store.userData,
+        joinForm: store.form.join
     }
 }
 
-export default connect(mapStateToProps)(SignUpForm);
+export default connect(mapStateToProps,{
+    getData
+})(SignUpForm);
