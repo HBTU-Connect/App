@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 //components
 import validate from '../validate';
@@ -16,6 +16,7 @@ class WelcomePage extends React.Component{
     state= {
         loading: false
     }
+
 
     componentDidUpdate(){
         if(this.state.loading === true){
@@ -44,6 +45,7 @@ class WelcomePage extends React.Component{
 
     onFormSubmit = (formValues) => {
         this.setState({ loading: true })
+        window.localStorage.setItem('rollNumber', formValues.rollNumber);
         this.props.getData(formValues);
 
     }
@@ -104,10 +106,13 @@ const formWrapper = reduxForm({
 
 const mapStateToProps = (state) => {
     return {
-        userData: state.userData
+        userData: state.userData,
+        initialValues: { rollNumber: window.localStorage.getItem('rollNumber')}
     }
 }
 
-export default connect(mapStateToProps, {
+const connectProps =  connect(mapStateToProps, {
     getData
 })(formWrapper);
+
+export default withRouter(connectProps);
