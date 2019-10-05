@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+//components
 import SignUpFormFirstPage from './signUpFormFirstPage';
 import SignUpFormSecondPage from './signUpFormSecondPage';
 
+//actions
 import { getData } from '../../actions';
 
 //images

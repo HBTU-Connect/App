@@ -8,6 +8,7 @@ import validate from '../validate';
 import Footer from './footer';
 import PageHTML from './pageHTML';
 
+//actions
 import { getData } from '../../actions';
 
 
