@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
+import { store } from 'react-notifications-component';
 
 //components
 import validate from '../validate';
@@ -15,27 +16,47 @@ import { getData } from '../../actions';
 
 class WelcomePage extends React.Component{
     state= {
-        loading: false
+        loading: false,
+        error: false
     }
 
 
     componentDidUpdate(){
         if(this.state.loading === true){
-            if(this.props.userData.data  || this.props.userData.error){
+            if(this.props.userData.data  || this.props.userData.err){
                 this.setState({ loading: false});
             }
         }
+        setTimeout(() => {
+        if(this.props.userData.err && this.state.error && !this.props.userData.data && !this.state.loading){
+            store.addNotification({
+                title: this.props.userData.err.title,
+                message: this.props.userData.err.msg,
+                type: "danger",
+                insert: "bottom",
+                container: "bottom-left",
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 5000,
+                onScreen: true
+                }
+            });
+            this.setState({ error: false});
+            this.props.change("dob", null);
+        }
+        },100);
         
     }
 
-    renderField = ({ input, label, type, meta: { valid, dirty, active, touched, error } }) => (
+    renderField = ({ input, label, type,input: { value }, meta: { valid, dirty, active, touched, error } }) => (
         <div className='input-field'>
-            <label className={ dirty || active ? 'input-field--label touched' : 'input-field--label'}>
+            <label className={value || dirty || active ? 'input-field--label touched' : 'input-field--label'}>
                 {label}
             </label>
           <div >
             <input 
-                className={ dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
+                className={ value || dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
                 {...input} 
                 type={type}
             />
@@ -45,7 +66,7 @@ class WelcomePage extends React.Component{
     );
 
     onFormSubmit = (formValues) => {
-        this.setState({ loading: true })
+        this.setState({ loading: true, error: true })
         window.localStorage.setItem('rollNumber', formValues.rollNumber);
         this.props.getData(formValues);
 
@@ -85,6 +106,7 @@ class WelcomePage extends React.Component{
                                     <Field name='dob' type='date' component={this.renderField} label='DOB' />
                                     <button> Join </button>
                                 </form>
+                                {/* { this.props.userData.err && fbd} */}
                                 { this.state.loading  && <div className='loader'><div className='loader-animation'></div></div> }
                             </div>
                         </div>
