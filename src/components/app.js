@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 
 
 import Header from './header';
@@ -17,7 +19,7 @@ class App extends React.Component {
         const HeaderWithRouter = withRouter(Header);
         return(
             <div>
-                
+                <ReactNotification />
                 <BrowserRouter>
                     <div>
                     <HeaderWithRouter />

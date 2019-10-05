@@ -19,7 +19,7 @@ export const getData = formValues => async dispatch =>  {
     }else{
         dispatch({
             type: 'ERROR',
-            payload: { msg: "Authorization Failed"}
+            payload: {title: "Authorization Failed", msg: "Incorrect DOB. Please enter correct DOB"}
         })
     }
 }
