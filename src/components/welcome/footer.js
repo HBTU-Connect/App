@@ -8,6 +8,13 @@ const Footer = () => {
                         <div className='footer-logo'>
                             HBTU Connect
                         </div>
+                        <div className='footer-social-links'>
+                            <a href="https://facebook.com" target='_blank' rel="noopener noreferrer" className="fa fa-facebook"></a>
+                            <a href="https://twitter.com/" target='_blank' rel="noopener noreferrer" className="fa fa-twitter"></a>
+                            <a href="https://www.linkedin.com" target='_blank' rel="noopener noreferrer" className="fa fa-linkedin"></a>
+                            <a href="https://youtube.com" target='_blank' rel="noopener noreferrer" className="fa fa-youtube"></a>
+                            <a href="https://instagram.com" target='_blank' rel="noopener noreferrer" className="fa fa-instagram"></a>
+                        </div>
                         <div className='footer-developer'>
                             Developed By @yv-official
                         </div>
@@ -60,12 +67,7 @@ const Footer = () => {
                             <span className='footer-social-icons-heading'>
                                 Connect with Us
                             </span>
-                            {/* <a href="#" target='blank' className="fa fa-facebook"></a>
-                            <a href="#" target='blank' className="fa fa-twitter"></a>
-                            <a href="#" target='blank' className="fa fa-linkedin"></a>
-                            <a href="#" target='blank' className="fa fa-youtube"></a>
-                            <a href="#" target='blank' className="fa fa-instagram"></a>
-                            <a href="#" target='blank' className="fa fa-snapchat-ghost"></a> */}
+                            
                         </div>
                     </div>
 

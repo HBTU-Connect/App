@@ -3,7 +3,7 @@ export const authReducer = (state={}, action) => {
         case 'ADD_DATA':
             return state ={ data: action.payload, hadFilledForm: true };
         case 'ERROR':
-            return state={ error: action.payload};
+            return state={ err: action.payload};
         default:
             return state;
     }
