@@ -132,17 +132,16 @@ export const renderBranchSelector = ({ input, label, input: { value }, meta: {pr
   );
 }
 
-export const checkBox = ({ input, label, type, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) => {
+export const checkBox = ({ input, label, id, classname, type, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) => {
     return(
           <div className='input-field checkbox'>
-            <label htmlFor="declare">
-              I hereby declare that all the details maintioned above belongs to me.
-            </label>
+            <label htmlFor={ value ? `${id} checked` : id } className={ value ? `${classname} checked` : classname}>
+              <span></span>
+            </label>{label}
             <div className='input-field--checkbox'>
               <input
-                  name="declare"
-                  id="declare"
-                  type="checkbox"
+                  id={ value ? `${id} checked` : id  }
+                  type={type}
                   {...input}
               />
               

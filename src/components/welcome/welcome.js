@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter, Link } from 'react-router-dom';
 import { store } from 'react-notifications-component';
 
 //components
-import validate from '../validate';
+import validate from '../utils/validate';
 import Footer from './footer';
 import PageHTML from './pageHTML';
 
@@ -90,7 +90,9 @@ class WelcomePage extends React.Component{
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
                                 dolore magna aliqua.
                             </p>
+                            <Link to='/login'>
                             <button className='heading-login-button'>Log into your Account <span className='right-arrow'>&rarr;</span></button>
+                            </Link>
                         </div>
                     </div>
                     <div className='right-floated-div'>

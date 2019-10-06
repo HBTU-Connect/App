@@ -52,7 +52,7 @@ class Header extends React.Component {
 
     render(){
         return (
-            <div className={ window.location.pathname === '/' ? `${this.state.addClassName}` : 'header' } ref='target'>
+            <div className={ window.location.pathname !== '/login' ?( window.location.pathname === '/' ? `${this.state.addClassName}` : 'header') : 'header hide' } ref='target'>
                 <div className='header-main'>
                     <div className='header-main--logo'>
                         {/* <img src={logo} alt='HBTU_Connect' /> */}

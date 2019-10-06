@@ -8,6 +8,7 @@ import 'react-notifications-component/dist/theme.css';
 import Header from './header';
 import WelcomePage from './welcome/welcome';
 import SignUpForm from './auth/signUpForm';
+import LoginForm from './auth/loginForm';
 
 import { PrivateRoute } from './utils/protectedRoutes';
 
@@ -24,6 +25,7 @@ class App extends React.Component {
                     <div>
                     <HeaderWithRouter />
                         <Route path='/' exact component={WelcomePage} />
+                        <Route path='/login' exact component={LoginForm} />
                         {/* <Route path='/signup' exact component={SignUpForm} /> */}
                         <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={this.props.hadFilledForm} />
                         {/* <Route path='/feeds' exact render={props => <div><Feeds/><Clubs/></div>}/>
