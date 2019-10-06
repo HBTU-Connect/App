@@ -2,8 +2,8 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 //components
-import validate from '../validate';
-import { userField } from './renderField';
+import validate from '../utils/validate';
+import { userField } from '../utils/renderField';
 
 
 
@@ -39,10 +39,29 @@ class SignUpFormSecondPage extends React.Component {
                 </div>
                 
                     <form onSubmit={handleSubmit}>
-                    <Field name="userName" type="text" component={userField} label="User Name" />
+                    <Field 
+                        name="userName" 
+                        type="text" 
+                        component={userField} 
+                        label="User Name" 
+                    />
 
-                    <Field id='password' name='password' type={this.state.typePassword} component={userField} label='Password' showPassword={this.showPassword} />
-                    <Field id='password' name='confirmPassword' type={this.state.typeConfirmPassword} component={userField} label='Confirm Password' showPassword={this.showConfirmPassword} />
+                    <Field 
+                        id='password' 
+                        name='password' 
+                        type={this.state.typePassword} 
+                        component={userField} 
+                        label='Password' 
+                        showPassword={this.showPassword} 
+                    />
+                    <Field 
+                        id='password' 
+                        name='confirmPassword' 
+                        type={this.state.typeConfirmPassword} 
+                        component={userField} 
+                        label='Confirm Password' 
+                        showPassword={this.showConfirmPassword} 
+                    />
                     
                     
                     <div className='form-button'>
