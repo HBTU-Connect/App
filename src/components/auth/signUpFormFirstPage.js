@@ -9,8 +9,8 @@ import {
     renderRadioButton, 
     renderBranchSelector, 
     renderYearSelector,
-    checkBox } from './renderField';
-import validate from '../validate';
+    checkBox } from '../utils/renderField';
+import validate from '../utils/validate';
 
 
 
@@ -64,11 +64,12 @@ class SignUpFormFirstPage extends React.Component{
 
                     
                     <Field
-                            name="declare"
-                            id="declare"
-                            component={checkBox}
-                            type="checkbox"
-                        />
+                        name="declare"
+                        id="declare"
+                        component={checkBox}
+                        type="checkbox" 
+                        label='I hereby declare that all the details maintioned above belongs to me.'
+                    />
 
                     <div className='form-button'>
                     <button type="submit" className="next">
