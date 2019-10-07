@@ -9,6 +9,12 @@ export const getData = formValues => async dispatch =>  {
             rollNumber: rollNumber
         }
     });
+    if(!response){
+        dispatch({
+            type: 'ERROR',
+            payload: {title: "Authorization Failed", msg: "Incorrect DOB. Please enter correct DOB"}
+        })
+    }
     const date = formValues.dob.split('-');
     const formatedDOB = `${date[2]}/${date[1]}/${date[0]}`;
     if(response.data.dob === formatedDOB){

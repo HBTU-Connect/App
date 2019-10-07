@@ -40,7 +40,8 @@ export const userField = ({ input, id, showPassword, label, type, input: { value
           className={ value || dirty || active ? (valid ? 'user-field--value touched' : 'user-field--value error') : 'user-field--value'}
           {...input} 
           type={type}
-          disabled={value && pristine ? true : false }
+          disabled={value && pristine ? true : false } 
+          spellCheck="false"
           
       />
       {touched && error && <span className='user-field--value-error'>{error}</span>}
