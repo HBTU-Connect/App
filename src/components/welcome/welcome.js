@@ -22,30 +22,25 @@ class WelcomePage extends React.Component{
 
 
     componentDidUpdate(){
-        if(this.state.loading === true){
-            if(this.props.userData.data  || this.props.userData.err){
-                this.setState({ loading: false});
-            }
-        }
-        setTimeout(() => {
-        if(this.props.userData.err && this.state.error && !this.props.userData.data && !this.state.loading){
+        const { userData } = this.props;
+        if( userData.error && this.state.error  && !this.state.loading){
             store.addNotification({
-                title: this.props.userData.err.title,
-                message: this.props.userData.err.msg,
+                title:  userData.error.title,
+                message:  userData.error.msg,
                 type: "danger",
                 insert: "bottom",
+                width: 300,
                 container: "bottom-left",
                 animationIn: ["animated", "fadeIn"],
                 animationOut: ["animated", "fadeOut"],
                 dismiss: {
-                duration: 5000,
+                duration: 4000,
                 onScreen: true
                 }
             });
             this.setState({ error: false});
             this.props.change("dob", null);
         }
-        },100);
         
     }
 
@@ -65,15 +60,17 @@ class WelcomePage extends React.Component{
         </div>
     );
 
-    onFormSubmit = (formValues) => {
-        this.setState({ loading: true, error: true })
+    onFormSubmit = async (formValues) => {
+        this.setState({ loading: true, error: true });
         window.localStorage.setItem('rollNumber', formValues.rollNumber);
-        this.props.getData(formValues);
-
+        const response = await this.props.getData(formValues);
+        if(response){
+            this.setState({ loading: false});
+        };
     }
 
     render(){
-        if(this.props.userData.data){
+        if(this.props.userData.data && !this.state.loading){
             return <Redirect to='/signup' />
         }
         
@@ -108,8 +105,9 @@ class WelcomePage extends React.Component{
                                     <Field name='dob' type='date' component={this.renderField} label='DOB' />
                                     <button> Join </button>
                                 </form>
-                                {/* { this.props.userData.err && fbd} */}
-                                { this.state.loading  && <div className='loader'><div className='loader-animation'></div></div> }
+                                {/* { this.props.userData.error && fbd} */}
+                                {/* { this.state.loading  && <div className='loader'><div className='loader-animation'></div></div> } */}
+                                {this.state.loading && <div className='loader'> <div className="lds-css ng-scope"><div  className="lds-magnify"><div><div><div></div><div></div></div></div></div></div></div>}
                             </div>
                         </div>
                     </div>
