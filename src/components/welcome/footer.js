@@ -9,10 +9,15 @@ const Footer = () => {
                             HBTU Connect
                         </div>
                         <div className='footer-social-links'>
+                             { /*eslint-disable-next-line*/ }  
                             <a href="https://facebook.com" target='_blank' rel="noopener noreferrer" className="fa fa-facebook"></a>
+                            { /*eslint-disable-next-line*/ } 
                             <a href="https://twitter.com/" target='_blank' rel="noopener noreferrer" className="fa fa-twitter"></a>
+                            { /*eslint-disable-next-line*/ } 
                             <a href="https://www.linkedin.com" target='_blank' rel="noopener noreferrer" className="fa fa-linkedin"></a>
+                            { /*eslint-disable-next-line*/ } 
                             <a href="https://youtube.com" target='_blank' rel="noopener noreferrer" className="fa fa-youtube"></a>
+                            { /*eslint-disable-next-line*/ } 
                             <a href="https://instagram.com" target='_blank' rel="noopener noreferrer" className="fa fa-instagram"></a>
                         </div>
                         <div className='footer-developer'>
