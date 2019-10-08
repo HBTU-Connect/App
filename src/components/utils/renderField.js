@@ -31,7 +31,7 @@ export const userField = ({ input, id, showPassword, label, type, input: { value
   
   return (
   <div className='user-field'>
-    { (active || touched ) && id === 'password' && (type === 'password'?
+    { (value || active || touched ) && id === 'password' && (type === 'password'?
      <div className='password-show' ><img className='password' onClick={showPassword} src={eyeOpenImage} alt='show'/></div>:
     <div className='password-show' ><img className='password' onClick={showPassword} src={eyeClosedImage} alt='show'/></div>) }
       

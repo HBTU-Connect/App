@@ -260,24 +260,25 @@
 
                     .loader{
                         position: absolute;
-                        bottom: 0;
+                        top: 30%;
                         left: 0;
                         width: 100%;
-                        height: 0.7rem;
-                        transition: all 3s ease-in;
+                        height: 50%;
+                        background: rgba(255, 255, 255, 0.514);
+                        transition: all 0.5s ease;
 
-                        &-animation{
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            width: 30%;
-                            height: 100%;
-                            border-radius: 5rem;
-                            background: $color-primary;
-                            transition: all 1s ease;
+                        // &-animation{
+                        //     position: absolute;
+                        //     left: 0;
+                        //     top: 0;
+                        //     width: 30%;
+                        //     height: 100%;
+                        //     border-radius: 5rem;
+                        //     background: $color-primary;
+                        //     transition: all 1s ease;
 
-                            animation: loading 1s infinite  ease;
-                        }
+                        //     animation: loading 1s infinite  ease;
+                        // }
                     }
                         
                 }
