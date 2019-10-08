@@ -4,39 +4,78 @@
     width: 100%;
     height: 100vh;
     position: relative;
-    background: rgba($color-primary, 0.1);
+    background: rgba($color-primary, 0.05);
     text-align: center;
+    overflow: hidden;
 
     
 
-    .image-container{
-        width: 50%;
-        height: 80vh;
+    .heading-container{
+        position: absolute;
+        top: 8rem;
+        left: 3%;
+        width: 50rem;
+        height: 50rem;
         position: relative;
-        padding-top: 10vh;
+        padding-top: 5rem;
+        text-align: center;
+        background: rgba($color-primary, 0.02);
+        border-radius: 50%;
+        box-sizing: border-box;
+        z-index: -1;
 
-        &-heading{
+        &-primary{
             width: 100%;
-            height: 15vh;
-            font-size: 6rem;
+            height: auto;
+            font-size: 2rem;
             font-weight: 600;
-            text-align: center;
+            font-family: $font-family-secondary;
             color: $color-primary;
             letter-spacing: 0.2rem;
         }
 
-        &-image{
-            position: absolute;
-            right: -53.5rem;
-            bottom: 19.2rem;
+        &-secondary{
+            margin-top: 4rem;
             width: 100%;
-            height: 60vh;
-            
+            height: auto;
+            font-size: 5rem;
+            letter-spacing: 0.2rem;
+            font-weight: 600;
+        }
 
-            img{
-                width: 121%;
-                //height: 90vh;
-            }
+        &-content{
+            margin: 0 auto;
+            margin-top: 4rem;
+            width: 60%;
+            height: auto;
+            font-size: 2.5rem;
+            line-height: 3.5rem;
+            word-spacing: 0.2rem;
+
+        }
+
+        &-greeting{
+            margin: 0 auto;
+            margin-top: 4rem;
+            width: 60%;
+            height: auto;
+            font-size: 3rem;
+            line-height: 3.5rem;
+            word-spacing: 0.2rem;
+        }
+        
+    }
+
+    &-image{
+        position: absolute;
+        right: 0%;
+        bottom: 5rem;
+        width: 61%;
+        
+
+        img{
+            width: 100%;
+            height: 90vh;
         }
     }
 
