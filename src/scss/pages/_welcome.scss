@@ -1,6 +1,7 @@
 .welcome-page{
     width: 100%;
     height: auto;
+    overflow: hidden;
     
 
     .header-container{
@@ -120,6 +121,8 @@
                     padding-top: 12rem;
                     border-radius: 1rem;
                     box-shadow: 0 0.5rem 0.5rem $color-shadow;
+
+                    transition: all 3s ease-in;
 
                     .form-heading{
                         width: 90%;
@@ -243,6 +246,39 @@
 
                         }
                         
+                    }
+                    .auth-error{
+                        position: relative;
+                        width: 100%;
+                        height: 2rem;
+                        text-align: center;
+                        font-size: 1.4rem;
+                        font-family: $font-family-primary;
+                        padding-top: 1.5rem;
+                        color: rgb(255, 0, 0);
+                    }
+
+                    .loader{
+                        position: absolute;
+                        top: 30%;
+                        left: 0;
+                        width: 100%;
+                        height: 50%;
+                        background: rgba(255, 255, 255, 0.514);
+                        transition: all 0.5s ease;
+
+                        // &-animation{
+                        //     position: absolute;
+                        //     left: 0;
+                        //     top: 0;
+                        //     width: 30%;
+                        //     height: 100%;
+                        //     border-radius: 5rem;
+                        //     background: $color-primary;
+                        //     transition: all 1s ease;
+
+                        //     animation: loading 1s infinite  ease;
+                        // }
                     }
                         
                 }
@@ -483,140 +519,5 @@
         }
     }
 
-    .footer{
-        width: 100%;
-        height: 30rem;
-        background: rgb(255, 205, 213);
-
-        @include clearfix;
-
-        &-col{
-            width: calc((100%)/3);
-            float: left;
-            height: 100%;
-            padding-top: 3rem;
-            padding-left: 2rem;
-            box-sizing: border-box;  
-        }
-
-        &-logo{
-            margin-left: 10%;
-            width: 80%;
-            font-size: 5rem;
-            color: $color-primary;
-            font-family: $font-family-secondary;
-            font-weight: 1000;
-            display: block;
-        }
-        &-developer{
-            margin-top: 7rem;
-            margin-left: 10%;
-            width: 80%;
-            font-size: 2rem;
-            font-family: $font-family-primary;
-            display: block;
-        }
-        &-copyright{
-            margin-left: 10%;
-            margin-top: 1rem;
-            width: 80%;
-            font-size: 1.2rem;
-            font-family: $font-family-primary;
-            display: block;
-        }
-        &-links{
-            margin-left: 10%;
-            width: 80%;
-            
-            &-link{
-                text-decoration: none;
-                font-size: 1.5rem;
-                color: $color-font;
-                font-family: $font-family-secondary;
-                font-weight: 600;
-                padding-top: 1rem;
-            }
-            &-link:hover{
-                color: $color-primary;
-            }
-            ul{
-                list-style: none;
-
-                li{
-                    text-decoration: none;
-                    font-family: $font-family-secondary;
-                    font-weight: 600;
-                    padding-top: 1rem; 
-                    &:nth-child(1){
-                        font-size: 1.8rem;
-                        color: $color-black-smooth;
-                        padding-bottom: 1rem;
-                    }
-                }
-                
-            }
-        }
-
-        &-social-icons{
-            width:80%;
-            margin-left: 10%;
-            text-align: center;
-
-            &-heading{
-                font-size: 1.8rem;
-                color: $color-black-smooth;
-                padding-bottom: 1rem;
-                font-family: $font-family-secondary;
-                font-weight: 600;
-                padding-top: 1rem;
-                display: block;
-            }
-
-            .fa {
-                margin-top: 2rem;
-                padding: 1rem;
-                font-size: 30px;
-                width: 50px;
-                height:5rem;
-                text-align: center;
-                text-decoration: none;
-                border-radius: 1rem;
-                box-sizing: border-box;
-                display: inline-block;
-                margin-right: 2rem;
-
-                &:hover {
-                    opacity: 0.7;
-                }
-
-                &-facebook {
-                    background: #3B5998;
-                    color: white;
-                }
-                &-linkedin {
-                    background: #007bb5;
-                    color: white;
-                }
-                  
-                &-youtube {
-                    background: #bb0000;
-                    color: white;
-                }
-                  
-                &-instagram {
-                    background: #3f729b;
-                    color: white;
-                }
-                &-twitter {
-                    background: #55ACEE;
-                    color: white;
-                }
-                &-snapchat-ghost {
-                    background: #fffc00;
-                    color: white;
-                    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-                }
-            }
-        }
-    }
+    
 }

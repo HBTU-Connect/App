@@ -1,9 +1,27 @@
 
 .signup-page{
     width: 100%;
-    height: 95vh;
+    height: 100vh;
     background: rgba($color-primary, 0.1);
     position: relative;
+    overflow: hidden;
+
+    img.signup-icon{
+
+        &:nth-child(1){
+            position: absolute;
+            bottom: -6rem;
+            right: -7rem;
+            width: 40rem;
+        }
+        &:nth-child(2){
+            position: absolute;
+            bottom: -6rem;
+            left: -7rem;
+            width: 40rem;
+        }
+        
+    }
 
     .form{
         position: absolute;
@@ -11,7 +29,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 50%;
-        height:50rem;
+        height:60rem;
 
         .left-floated{
             width: 45%;
@@ -39,10 +57,58 @@
                 width: 8rem;
             }
 
+            .page-content{
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 2rem;
+
+                &--heading{
+                    color: $color-white;
+                    font-size: 2.5rem;
+                    font-family: $font-family-primary;
+                    
+                    animation: text .6s ease-in;
+                    animation-delay: 0.4s;
+                    animation-fill-mode: backwards;
+                }
+
+                &--details{
+                    width: 100%;
+                    height: auto;
+                    margin-top: 2rem;
+                    ul{
+                        padding-left: 2rem;
+
+                        li{
+                            color: $color-white;
+                            font-family: $font-family-primary;
+                            font-size: 1.5rem;
+                            padding-top: 1rem;
+                            animation: text .6s ease-in;
+                            animation-fill-mode: backwards;
+
+                            &:nth-child(1){
+                                animation-delay: 0.8s;
+                            }
+                            &:nth-child(2){
+                                animation-delay: 1.2s;
+                            }
+                            &:nth-child(3){
+                                animation-delay: 1.6s;
+                            }
+                            &:nth-child(4){
+                                animation-delay: 2s;
+                            }
+                        }
+                    }
+                }
+            }
+
             .page-footer{
                 position: absolute;
                 left: 50%;
-                bottom: 5rem;
+                bottom: 3rem;
                 transform: translateX(-50%);
                 width: 100%;
                 text-align: center;
@@ -52,7 +118,10 @@
                     text-decoration: underline;
                     letter-spacing: 0.2rem;
                     font-size: 1.4rem;
+                    line-height: 1.8rem;
                     font-family: $font-family-primary;
+                    display: block;
+                    padding-bottom: 1rem;
                 }
             }
 
@@ -145,6 +214,28 @@
 
                     }
 
+                    &.checkbox{
+                        font-size: 1.5rem;
+                        font-family: $font-family-primary;
+                        position: relative;
+                        color: $color-black-smooth;
+                        cursor: pointer;
+                        padding-left:3rem;
+                        
+                    }
+
+                    &--checkbox,
+                    input[type="checkbox"]{
+                        position: absolute;
+                        left: 0;
+                        top: 0.2rem;
+                        z-index: 100;
+                        width: 2rem;
+                        height: 2rem;
+                        cursor: pointer;
+
+                    }
+
                     &--value,
                     input{
                         width: 100%;
@@ -227,6 +318,16 @@
                                     background: white;
                                 }
 
+                                &.male{
+                                    color: rgb(43, 184, 43);
+                                }
+                                &.female{
+                                    color: rgb(43, 184, 43);
+                                }
+                                &.other{
+                                    color: rgb(43, 184, 43);
+                                }
+
                         }
                     }
                     
@@ -251,6 +352,7 @@
 
                         img{
                             width: 3rem;
+                            position: relative;
                         }
 
                     }
@@ -299,6 +401,7 @@
                 
                         &-error{
                             position: absolute;
+                            right: 0;
                             color: red;
                             font-size: 1.2rem;
                             display: block;
