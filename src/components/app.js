@@ -9,6 +9,7 @@ import Header from './header';
 import WelcomePage from './welcome/welcome';
 import SignUpForm from './auth/signUpForm';
 import LoginForm from './auth/loginForm';
+import JoinUsPage from './auth/joinUsPage';
 
 import { PrivateRoute } from './utils/protectedRoutes';
 
@@ -26,6 +27,7 @@ class App extends React.Component {
                     <HeaderWithRouter />
                         <Route path='/' exact component={WelcomePage} />
                         <Route path='/login' exact component={LoginForm} />
+                        <Route path='/joinus' exact component={JoinUsPage} />
                         {/* <Route path='/signup' exact component={SignUpForm} /> */}
                         <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={this.props.hadFilledForm} />
                         {/* <Route path='/feeds' exact render={props => <div><Feeds/><Clubs/></div>}/>

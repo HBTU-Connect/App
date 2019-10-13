@@ -15,7 +15,7 @@
         
         .left-floated-div{
             float: left;
-            display: inline-block;
+            display: block;
             width: 60%;
             height: 100%;
             overflow: hidden;
@@ -101,189 +101,189 @@
             height: 100%;
             font-size: 3rem;
 
-            .signup-form-container{
-                width: 90%;
-                height: auto;
-                margin-top: 20rem;
-                margin-left: 5%;
-                color: $color-white;
-                text-align: center;
-                text-align: center;
+            // .signup-form-container{
+            //     width: 90%;
+            //     height: auto;
+            //     margin-top: 20rem;
+            //     margin-left: 5%;
+            //     color: $color-white;
+            //     text-align: center;
+            //     text-align: center;
 
                 
 
-                .form-container{
-                    width: 70%;
-                    height: 40rem;
-                    background: $color-white;
-                    position: relative;
-                    box-sizing: border-box;
-                    padding-top: 12rem;
-                    border-radius: 1rem;
-                    box-shadow: 0 0.5rem 0.5rem $color-shadow;
+            //     .form-container{
+            //         width: 70%;
+            //         height: 40rem;
+            //         background: $color-white;
+            //         position: relative;
+            //         box-sizing: border-box;
+            //         padding-top: 12rem;
+            //         border-radius: 1rem;
+            //         box-shadow: 0 0.5rem 0.5rem $color-shadow;
 
-                    transition: all 3s ease-in;
+            //         transition: all 3s ease-in;
 
-                    .form-heading{
-                        width: 90%;
-                        height: 15rem;
-                        background: $color-primary;
-                        padding-top: 2rem;
-                        position: absolute;
-                        left: 50%;
-                        top: -5rem;
-                        transform: translateX(-50%);
-                        border-radius: 0.5rem;
-                        box-sizing: border-box;
-                        box-shadow: 0 0.3rem 0.5rem rgba(73, 0, 82, 0.377);
+            //         .form-heading{
+            //             width: 90%;
+            //             height: 15rem;
+            //             background: $color-primary;
+            //             padding-top: 2rem;
+            //             position: absolute;
+            //             left: 50%;
+            //             top: -5rem;
+            //             transform: translateX(-50%);
+            //             border-radius: 0.5rem;
+            //             box-sizing: border-box;
+            //             box-shadow: 0 0.3rem 0.5rem rgba(73, 0, 82, 0.377);
     
-                        &-primary{
-                            display: block;
-                            font-size: 4rem;
-                            font-weight:1000;
-                            font-family: $font-family-primary;
-                            letter-spacing: 0.5rem;
-                        }
-                        &-secondary{
-                            display: block;
-                            padding-top: 1rem;
-                            font-size: 1.5rem;
-                            font-weight: 500;
-                            font-family: $font-family-primary;
-                        }
+            //             &-primary{
+            //                 display: block;
+            //                 font-size: 4rem;
+            //                 font-weight:1000;
+            //                 font-family: $font-family-primary;
+            //                 letter-spacing: 0.5rem;
+            //             }
+            //             &-secondary{
+            //                 display: block;
+            //                 padding-top: 1rem;
+            //                 font-size: 1.5rem;
+            //                 font-weight: 500;
+            //                 font-family: $font-family-primary;
+            //             }
 
                         
-                    }
+            //         }
 
-                    .join-us{
-                        width: 100%;
-                        height: auto;
-                        text-align: center;
+            //         .join-us{
+            //             width: 100%;
+            //             height: auto;
+            //             text-align: center;
 
-                        .input-field{
-                            width: 80%;
-                            height: 9rem;
-                            text-align: left;
-                            margin: 0 auto;
-                            display: block;
+            //             .input-field{
+            //                 width: 80%;
+            //                 height: 9rem;
+            //                 text-align: left;
+            //                 margin: 0 auto;
+            //                 display: block;
 
-                            &--label{
-                                color: $color-font;
-                                text-align: left;
-                                font-size: 2rem;
-                                font-family: $font-family-primary;
-                                display: block;
-                                &.touched{
-                                    color: $color-primary;
-                                }
-                            }
+            //                 &--label{
+            //                     color: $color-font;
+            //                     text-align: left;
+            //                     font-size: 2rem;
+            //                     font-family: $font-family-primary;
+            //                     display: block;
+            //                     &.touched{
+            //                         color: $color-primary;
+            //                     }
+            //                 }
 
 
                             
-                            &--value,
-                            input{
-                                width: 100%;
-                                height: 3rem;
-                                border: 0.1rem solid rgb(105, 105, 105);
-                                border-radius: 0.2rem;
-                                outline: none;
-                                font-size: 1.6rem;
-                                font-family: $font-family-primary;
-                                padding-left: 0.5rem;
-                                color: $color-font;
+            //                 &--value,
+            //                 input{
+            //                     width: 100%;
+            //                     height: 3rem;
+            //                     border: 0.1rem solid rgb(105, 105, 105);
+            //                     border-radius: 0.2rem;
+            //                     outline: none;
+            //                     font-size: 1.6rem;
+            //                     font-family: $font-family-primary;
+            //                     padding-left: 0.5rem;
+            //                     color: $color-font;
 
-                                &.touched{
-                                    border-color: $color-primary;
-                                }
+            //                     &.touched{
+            //                         border-color: $color-primary;
+            //                     }
 
-                                &.error{
-                                    border-color: red;
-                                }
+            //                     &.error{
+            //                         border-color: red;
+            //                     }
 
-                                &-error{
-                                    color: red;
-                                    font-size: 1.5rem;
-                                    display: block;
-                                    font-family: $font-family-primary;
-                                }
+            //                     &-error{
+            //                         color: red;
+            //                         font-size: 1.5rem;
+            //                         display: block;
+            //                         font-family: $font-family-primary;
+            //                     }
                                 
-                            }
-                            input[type=date]{
-                                &::-webkit-datetime-edit-year-field:not([aria-valuenow]),
-                                &::-webkit-datetime-edit-month-field:not([aria-valuenow]),
-                                &::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
-                                    color: transparent;
-                                }
-                            }
+            //                 }
+            //                 input[type=date]{
+            //                     &::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+            //                     &::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+            //                     &::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+            //                         color: transparent;
+            //                     }
+            //                 }
 
-                        }
-                        button{
-                            margin-top: 2rem;
-                            width: 40%;
-                            height: 4rem;
-                            background: $color-white;
-                            color: $color-primary;
-                            border: 0.1rem solid $color-primary;
-                            outline: none;
-                            font-size: 2.4rem;
-                            font-family: $font-family-primary;
-                            font-weight: 500;
-                            letter-spacing: 0.2rem;
-                            cursor: pointer;
-                            border-radius: 5rem;
-                            transition: all 0.3s ease;
+            //             }
+            //             button{
+            //                 margin-top: 2rem;
+            //                 width: 40%;
+            //                 height: 4rem;
+            //                 background: $color-white;
+            //                 color: $color-primary;
+            //                 border: 0.1rem solid $color-primary;
+            //                 outline: none;
+            //                 font-size: 2.4rem;
+            //                 font-family: $font-family-primary;
+            //                 font-weight: 500;
+            //                 letter-spacing: 0.2rem;
+            //                 cursor: pointer;
+            //                 border-radius: 5rem;
+            //                 transition: all 0.3s ease;
 
-                            &:hover{
-                                background: $color-primary;
-                                color: $color-white;
-                                transform: translateY(-0.2rem);
-                                box-shadow: 0 0.2rem 0.5rem rgba(73, 0, 82, 0.377);
+            //                 &:hover{
+            //                     background: $color-primary;
+            //                     color: $color-white;
+            //                     transform: translateY(-0.2rem);
+            //                     box-shadow: 0 0.2rem 0.5rem rgba(73, 0, 82, 0.377);
 
-                            }
-                            &:active{
-                                transform: translateY(-0.1rem);
-                            }
+            //                 }
+            //                 &:active{
+            //                     transform: translateY(-0.1rem);
+            //                 }
 
-                        }
+            //             }
                         
-                    }
-                    .auth-error{
-                        position: relative;
-                        width: 100%;
-                        height: 2rem;
-                        text-align: center;
-                        font-size: 1.4rem;
-                        font-family: $font-family-primary;
-                        padding-top: 1.5rem;
-                        color: rgb(255, 0, 0);
-                    }
+            //         }
+            //         .auth-error{
+            //             position: relative;
+            //             width: 100%;
+            //             height: 2rem;
+            //             text-align: center;
+            //             font-size: 1.4rem;
+            //             font-family: $font-family-primary;
+            //             padding-top: 1.5rem;
+            //             color: rgb(255, 0, 0);
+            //         }
 
-                    .loader{
-                        position: absolute;
-                        top: 30%;
-                        left: 0;
-                        width: 100%;
-                        height: 50%;
-                        background: rgba(255, 255, 255, 0.514);
-                        transition: all 0.5s ease;
+            //         .loader{
+            //             position: absolute;
+            //             top: 30%;
+            //             left: 0;
+            //             width: 100%;
+            //             height: 50%;
+            //             background: rgba(255, 255, 255, 0.514);
+            //             transition: all 0.5s ease;
 
-                        // &-animation{
-                        //     position: absolute;
-                        //     left: 0;
-                        //     top: 0;
-                        //     width: 30%;
-                        //     height: 100%;
-                        //     border-radius: 5rem;
-                        //     background: $color-primary;
-                        //     transition: all 1s ease;
+            //             // &-animation{
+            //             //     position: absolute;
+            //             //     left: 0;
+            //             //     top: 0;
+            //             //     width: 30%;
+            //             //     height: 100%;
+            //             //     border-radius: 5rem;
+            //             //     background: $color-primary;
+            //             //     transition: all 1s ease;
 
-                        //     animation: loading 1s infinite  ease;
-                        // }
-                    }
+            //             //     animation: loading 1s infinite  ease;
+            //             // }
+            //         }
                         
-                }
+            //     }
 
-            }
+            // }
 
                 
         }
@@ -514,6 +514,7 @@
                 font-family: $font-family-primary;
                 font-size: 2rem;
                 border-radius: 5rem;
+                cursor: pointer;
 
             }
         }

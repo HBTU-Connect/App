@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //images
 import studentsImage from '../../images/students.png';
@@ -89,7 +90,7 @@ const PageHTML = () => {
                     <img src={joinImage} alt='join' />
                     <div className='section_five-heading'>
                         Dive into the World of HBTU Connect.
-                        <button> Join Now </button>
+                        <Link to='/joinus' className='link'><button> Join Now </button></Link>
                     </div>
                 </div> 
 

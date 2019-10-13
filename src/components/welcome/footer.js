@@ -33,8 +33,8 @@ const Footer = () => {
                             <ul>
                                 <li>Quick Links</li>
                                 <li>
-                                <Link className="footer-links-link" to='/'>
-                                    Sign Up
+                                <Link className="footer-links-link" to='/joinus'>
+                                    Join Us
                                 </Link>
                                 </li>
                                 <li>
