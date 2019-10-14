@@ -1,0 +1,273 @@
+.sidebar-container{
+    width: 25%;
+    height: 93vh;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    position: relative;
+    padding: 2.5rem;
+    padding-top: 3rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 2rem;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        display: none;
+      }
+
+    .profile-section{
+        width: 100%;
+        height: auto;
+        text-align: center;
+
+        &--cover{
+            margin: 0 auto;
+            width: 90%;
+            height: 10rem;
+            border-radius: 1rem;
+            background-position: center;
+            position: relative;
+            background-size: cover;
+
+
+            &-profile-picture{
+                width: 30%;
+                position: absolute;
+                bottom: -3.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                
+                img{
+                    width: 100%;
+                    height: width;
+                    border-radius: 50%;
+                }
+            }
+
+        }
+
+        &--username{
+            width: 100%;
+            height: auto;
+            padding-top: 5rem;
+
+            &-name{
+                font-size: 1.8rem;
+                font-weight: 600;
+                display: block;
+                letter-spacing: 0.1rem;
+            }
+            &-username{
+                font-size: 1.4rem;
+                display: block;
+                color: rgb(119, 119, 119);
+                letter-spacing: 0.1rem;
+            }
+        }
+
+        &--userdetails{
+            width: 100%;
+            height: auto;
+            padding-top: 2.5rem;
+            display: block;
+            position: relative;
+
+            &-posts{
+                width: calc(100%/3);
+                height: 5rem;
+                display: inline-block;
+                position: relative;
+
+                &-number{
+                    display: block;
+                    font-size: 2.5rem;
+                    font-weight: 600;
+                    letter-spacing: 0.1rem;
+                }
+
+                &-title{
+                    display: block;
+                    font-size: 1.5rem;
+                    color: rgb(119, 119, 119);
+                }
+            }
+
+            &-connections{
+                width: calc(100%/3);
+                height: 5rem;
+                display: inline-block;
+                position: relative;
+
+                &-number{
+                    display: block;
+                    font-size: 2.5rem;
+                    font-weight: 600;
+                    letter-spacing: 0.1rem;
+                }
+
+                &-title{
+                    display: block;
+                    font-size: 1.5rem;
+                    color: rgb(119, 119, 119);
+                }
+            }
+
+            &-hits{
+                width: calc(100%/3);
+                height: 5rem;
+                display: inline-block;
+                position: relative;
+
+                &-number{
+                    display: block;
+                    font-size: 2.5rem;
+                    font-weight: 600;
+                    letter-spacing: 0.1rem;
+                }
+
+                &-title{
+                    display: block;
+                    font-size: 1.5rem;
+                    color: rgb(119, 119, 119);
+                }
+            }
+        }
+    }
+
+    .menu-section{
+        width: 100%;
+        height: auto;
+        padding-top: 3rem;
+        text-align: center;
+
+        ul{
+            list-style: none;
+
+            
+
+            li{
+                width: 60%;
+                height: 3rem;
+                margin: 0 auto;
+                font-size: 2rem;
+                letter-spacing: 0.1rem;
+                color: $color-font;
+                font-family: $font-family-primary;
+                margin-top: 1rem;
+                border-radius: 5rem;
+                padding-top: 0.5rem;
+                cursor: pointer;
+
+                &:hover{
+                    background: rgba($color-primary, 0.1);
+                    color: $color-primary;
+                }
+                
+            }
+            .selected{
+                
+                li{
+                    color: $color-primary;
+                    background-color: rgba($color-primary, 0.1);
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .divider{
+        margin: 0 auto;
+        margin-top: 4rem;
+        
+    }
+
+    .footer-section{
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: block;
+        padding-top: 3rem;
+
+        .link-menu{
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 5rem;
+
+            ul{
+                list-style: none;
+                width: 90%;
+                margin: 0 auto;
+
+                
+                li{
+                    display: inline-block;
+                    width: calc( (100% - 2*(2rem))/3 );
+                    height: auto;
+                    font-size: 1.5rem;
+                    padding: 0.3rem;
+                    text-align: center;
+                    cursor: pointer;
+                    box-sizing: border-box;
+                    border-radius: 0.5rem;
+
+                    &:not(:last-child) {
+                        margin-right: 2rem;
+                    }
+
+                    
+                    &:hover{
+                        background: rgba($color-primary, 0.1);
+                        color: $color-primary;
+                    }
+
+                }
+            }
+        }
+
+        .social-links{
+            width: 100%;
+            height: 3rem;
+            margin: 0 auto;
+
+            a{
+                display: inline-block;
+                font-size: 2.5rem;
+                color: $color-primary;
+                text-decoration: none;
+                padding-left: 3rem;
+                margin-left: 1rem;
+            }
+        }
+
+        .copyright{
+            width: 100%;
+            height: auto;
+            padding-top: 1rem;
+            text-align: center;
+            
+            &-icon{
+                display: inline-block;
+
+                img{
+                    width: 1.5rem;
+                }
+            }
+
+            &-title{
+                padding-left: 0.5rem;
+                font-size: 1.5rem;
+            }
+        }
+
+        .developer{
+            width: 100%;
+            height: auto;
+            padding-top: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    }
+
+}

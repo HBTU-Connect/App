@@ -5,11 +5,15 @@ import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 
 
+//components
 import Header from './header';
 import WelcomePage from './welcome/welcome';
 import SignUpForm from './auth/signUpForm';
 import LoginForm from './auth/loginForm';
 import JoinUsPage from './auth/joinUsPage';
+import Feeds from './userPages/feeds/feeds';
+import Sidebar from './userPages/profileSidebar';
+import Clubs from './userPages/clubs/clubs';
 
 import { PrivateRoute } from './utils/protectedRoutes';
 
@@ -30,8 +34,9 @@ class App extends React.Component {
                         <Route path='/joinus' exact component={JoinUsPage} />
                         {/* <Route path='/signup' exact component={SignUpForm} /> */}
                         <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={this.props.hadFilledForm} />
-                        {/* <Route path='/feeds' exact render={props => <div><Feeds/><Clubs/></div>}/>
-                        <Route path='/notification' exact render={props => <div><Feeds/><Notification/></div>} /> */}
+                        <Route path='/feeds' exact render={props => <div className='body-container'><Sidebar/><Feeds/></div>}/>
+                        <Route path='/clubs' exact render={props => <div className='body-container'><Sidebar/><Clubs/></div>}/>
+                        {/* <Route path='/notification' exact render={props => <div><Feeds/><Notification/></div>} /> */}
                         
                     </div>
                 </BrowserRouter>

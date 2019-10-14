@@ -1,0 +1,462 @@
+.content-container{
+    width: 50%;
+    height: 93vh;
+    position: relative;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    padding-top: 3rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow-y: scroll;
+    overflow-x: hidden; 
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        display: none;
+      }
+
+
+    .create-post{
+        width: 95%;
+        height: auto;
+        background: white;
+        border-radius: 1rem;
+        box-sizing: border-box;
+        box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.37);
+        padding: 2rem;
+        position: relative;
+
+        .heading{
+            width: 100%;
+            height: 4rem;
+            font-size: 2rem;
+            color: $color-primary;
+            padding-left: 1rem;
+            font-weight: 600;
+        }
+        .createpost{
+            width: 100%;
+            height: 5rem;
+
+            .input-textarea{
+                display: block;
+                float: left;
+                width: 80%;
+                height: auto;
+                box-sizing: border-box;
+                position: relative;
+
+                textarea{
+                    outline: none;
+                    width: 100%;
+                    height: auto;
+                    // border-radius: 1rem;
+                    border: none;
+                    padding: 1rem;
+                    box-sizing: border-box;
+                    position: relative;
+                }
+            }
+        }
+
+        button{
+            display: block;
+            position: relative;
+            float: left;
+            height: 3rem;
+            box-sizing: border-box;
+            width: 15%;
+            margin-left: 5%;
+            border: none;
+            outline: none;
+            background: $color-primary;
+            color: white;
+            font-size: 1.5rem;
+            border-radius: 0.4rem;
+            cursor: pointer;
+        }
+
+    }
+
+    .post-wrapper{
+        margin: 2rem 0;
+        width: 95%;
+        height: auto;
+        background: white;
+        box-sizing: border-box;
+        box-shadow: 0 0.3rem 0.5rem rgba(82, 82, 82, 0.582);
+        position: relative;
+        border-radius: 1rem;
+        overflow: hidden;
+
+        .post{
+            width: 100%;
+            display: block;
+            position: relative;
+            height: auto;
+            box-sizing: border-box;
+            transition: 0.5s all ease;
+
+            &-profile{
+                background: transparent;
+                transition: 0.5s all ease;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 5rem;
+                padding: 1rem;
+                padding-top: 1rem;
+                box-sizing: border-box;
+                z-index: 1;
+
+
+                &--picture{
+                    position: relative;
+                    display: block;
+                    float: left;
+                    width: 6%;
+                    margin-left: 1rem;
+
+                    img{
+                        width: 100%;
+                        border-radius: 50%;
+                        border: 0.2rem solid white;
+                    }
+                }
+
+                &--user{
+                    display: none;
+                }
+
+            }
+
+            // &-profile{
+            //     position: absolute;
+            //     top: 0;
+            //     left: 0;
+            //     width: 100%;
+            //     height: 5rem;
+            //     padding: 1rem;
+            //     box-sizing: border-box;
+            //     background: white;
+            //     z-index: 1;
+
+            //     &--picture{
+            //         position: relative;
+            //         display: inline-block;
+            //         width: 6%;
+            //         margin-left: 1rem;
+
+            //         img{
+            //             width: 100%;
+            //             border-radius: 50%;
+            //         }
+            //     }
+
+            //     &--user{
+            //         position: relative;
+            //         display: inline-block;
+            //         width: 70%;
+            //         margin-left: 1.5rem;
+            //         box-sizing: border-box;
+            //         margin-bottom: 1rem;
+
+            //         &-name{
+            //             display: block;
+            //             font-size: 1.5rem;
+            //             font-weight: 600;
+            //             letter-spacing: 0.1rem;
+            //         }
+            //         &-username{
+            //             display: block;
+            //             color: rgb(119, 119, 119);
+            //             font-size: 1.2rem;
+            //             letter-spacing: 0.02rem;
+            //         }
+            //     }
+            // }
+
+            &-content{
+                width: 100%;
+                height: auto;
+                display: block;
+                position: relative;
+
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            // &-details{
+            //     opacity: 0;
+            //     transition: 0.3s all ease;
+            //     position: absolute;
+            //     bottom: 0;
+            //     left: 0;
+            //     width: 100%;
+            //     height: 2.5rem;
+            // }
+
+            &-details{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2.5rem;
+                opacity: 0;
+                transition: 0.3s all ease;
+
+                &--views{
+                    position: absolute;
+                    left: 2.5rem;
+                    top: 0.5rem;
+                    display: block;
+                    font-size: 1.3rem;
+                    letter-spacing: 0.1rem;
+                }
+
+                &--time{
+                    position: absolute;
+                    right: 1.5rem;
+                    top:  0.5em;
+                    display: block;
+
+                }
+
+            }
+        }
+
+            &:hover{
+                cursor: pointer;
+
+                .post-profile{
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 5.2rem;
+                    padding: 1rem;
+                    padding-top: 1rem;
+                    box-sizing: border-box;
+                    background: white;
+                    z-index: 1;
+                    transition: 0.5s all ease;
+
+    
+                    &--picture{
+                        position: relative;
+                        display: block;
+                        float: left;
+                        width: 6%;
+                        margin-left: 1rem;
+    
+                        img{
+                            width: 100%;
+                            border-radius: 50%;
+                        }
+                    }
+    
+                    &--user{
+                        position: relative;
+                        display: block;
+                        float: left;
+                        width: 70%;
+                        margin-left: 1.5rem;
+                        box-sizing: border-box;
+                        box-sizing: border-box;
+    
+                        &-name{
+                            display: block;
+                            font-size: 1.5rem;
+                            font-weight: 600;
+                            letter-spacing: 0.1rem;
+                        }
+                        &-username{
+                            display: block;
+                            color: rgb(119, 119, 119);
+                            font-size: 1.2rem;
+                            letter-spacing: 0.02rem;
+                        }
+                    }
+                }
+
+                .post-details{
+                    display: block;
+                    opacity: 1;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2.5rem;
+                    background: white;
+    
+                    &--views{
+                        position: absolute;
+                        left: 2.5rem;
+                        top: 0.5rem;
+                        display: block;
+                        font-size: 1.3rem;
+                        letter-spacing: 0.1rem;
+                    }
+    
+                    &--time{
+                        position: absolute;
+                        right: 1.5rem;
+                        top:  0.5em;
+                        display: block;
+    
+                    }
+    
+                }
+            }
+        
+
+        .post-likes{
+            width: 100%;
+            height: 3rem;
+            background: white;
+            display: block;
+            position: relative;
+
+            &--buttons{
+                position: absolute;
+                left: 1.5rem;
+                top: 0rem;
+                display: block;
+
+                button{
+                    margin-right: 0.5rem;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    font-size: 1.5rem;
+                    letter-spacing: 0.1rem;
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.5rem;
+                    cursor: pointer;
+
+                    &:nth-child(1):hover{
+                        background: rgba(5, 190, 5, 0.466);
+                    }
+
+                    &:nth-child(2):hover{
+                        background: rgba(190, 48, 5, 0.466);
+                    }
+
+
+                }
+            }
+
+            &--details{
+                font-size: 1.2rem;
+                position: absolute;
+                right: 1rem;
+                top: 0rem;
+                color: rgb(119, 119, 119);
+                border-bottom: 2px solid red;
+                height: 100%;
+                width: auto;
+                padding-top: 0.7rem;
+                box-sizing: border-box;
+
+                &-likes-progress{
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    bottom: -0.2rem;
+                    height: 2px;
+                    background: green;
+                }
+            }
+
+        }
+
+        .post-comments{
+            width: 100%;
+            height: 10rem;
+            background: rgb(255, 255, 255);
+            position: relative;
+            padding: 1rem;
+            box-sizing: border-box;
+            
+
+            &-link{
+                display: inline;
+                position: relative;
+                padding: 1rem;
+                font-size: 1.4rem;
+                cursor: pointer;
+                color: rgb(119, 119, 119);
+                letter-spacing: 0.1rem;
+            }
+
+            &--addcomment{
+                width: 100%;
+                height: auto;
+                position: relative;
+                display: block;
+                margin-top: 1.5rem;
+                margin-left: 1rem;
+                
+
+                &-user{
+                    width: 6%;
+                    height: auto;
+                    display: block;
+                    float: left;
+
+                    img{
+                        width: auto;
+                        height: 3rem;
+                        border-radius: 50%;
+                    }
+                }
+
+                &-text{
+                    display: inline-block;
+                    margin-left: 1rem;
+                    width: 70%;
+
+                    input{
+                        width: 100%;
+                        height: 3rem;
+                        border: none;
+                        outline: none;
+                        background: white;
+                        padding-left: 1rem;
+                        box-sizing: border-box;
+                        display: inline-block;
+                        border-radius: 5rem;
+                    }
+                }
+
+                button{
+                    margin-left: 1rem;
+                    width: 15%;
+                    height: 3rem;
+                    font-size: 1.5rem;
+                    color: white;
+                    background: $color-primary;
+                    border: none;
+                    border-radius: 5rem;
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+
+.right-container{
+    display: block;
+    position: relative;
+    float: left;
+    box-sizing: border-box;
+    padding-top: 3rem;
+    width: 25%;
+    
+    
+}
