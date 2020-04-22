@@ -14,6 +14,7 @@ import JoinUsPage from './auth/joinUsPage';
 import Feeds from './userPages/feeds/feeds';
 import Sidebar from './userPages/profileSidebar';
 import Clubs from './userPages/clubs/clubs';
+import ClubPage from './userPages/clubs/clubPage';
 
 import { PrivateRoute } from './utils/protectedRoutes';
 
@@ -24,11 +25,12 @@ class App extends React.Component {
     render(){
         const HeaderWithRouter = withRouter(Header);
         return(
-            <div>
+            <>
                 <ReactNotification />
                 <BrowserRouter>
-                    <div>
+                    <>
                     <HeaderWithRouter />
+                    
                         <Route path='/' exact component={WelcomePage} />
                         <Route path='/login' exact component={LoginForm} />
                         <Route path='/joinus' exact component={JoinUsPage} />
@@ -36,11 +38,12 @@ class App extends React.Component {
                         <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={this.props.hadFilledForm} />
                         <Route path='/feeds' exact render={props => <div className='body-container'><Sidebar/><Feeds/></div>}/>
                         <Route path='/clubs' exact render={props => <div className='body-container'><Sidebar/><Clubs/></div>}/>
+                        <Route path='/clubs/:clubName' exact component={ClubPage} />
                         {/* <Route path='/notification' exact render={props => <div><Feeds/><Notification/></div>} /> */}
                         
-                    </div>
+                    </>
                 </BrowserRouter>
-            </div>
+            </>
         );
     }
 }

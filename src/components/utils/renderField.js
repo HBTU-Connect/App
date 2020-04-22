@@ -9,7 +9,7 @@ import eyeClosedImage from '../../images/eye-closed.png';
 export const renderField = ({ input, label, type, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) => (
     <div className='input-field'>
         
-      <div >
+      <div title={value}>
         <input 
             className={ value || dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
             {...input} 
@@ -30,7 +30,7 @@ export const userField = ({ input, id, showPassword, label, type, input: { value
   
   
   return (
-  <div className='user-field'>
+  <div className='user-field' >
     { (value || active || touched ) && id === 'password' && (type === 'password'?
      <div className='password-show' ><img className='password' onClick={showPassword} src={eyeOpenImage} alt='show'/></div>:
     <div className='password-show' ><img className='password' onClick={showPassword} src={eyeClosedImage} alt='show'/></div>) }
@@ -55,7 +55,7 @@ export const userField = ({ input, id, showPassword, label, type, input: { value
 
 export const renderRadioButton = ({ input: { value }, meta: {pristine, dirty, active, touched, error } }) =>{
   return(
-      <div className='input-field--radio'>
+      <div className='input-field--radio' >
       <label className={  dirty || active ? ( value=== 'male' ? 'input-field--radio--label touched male': 'input-field--radio--label' ) : 'input-field--radio--label'}>
           <Field name="sex" component='input' type="radio" value="male" disabled={value && pristine ? true : false } />{' '}
           Male
@@ -83,7 +83,7 @@ export const renderYearSelector = ({ input, label, input: { value }, meta: {pris
   const years = ['First', 'Second', 'Third', 'Final'];
 
   return(
-  <div className='input-field'>
+  <div className='input-field' title={value}>
       <label className={value || dirty || active ? 'input-field--label touched' : 'input-field--label'}>
           {label}
       </label>
@@ -111,7 +111,7 @@ export const renderBranchSelector = ({ input, label, input: { value }, meta: {pr
   const branchCode = ['BE', 'CSE', 'CHE', 'CE', 'EE', 'ET', 'ME', 'LT', 'PT', 'FT', 'PL'];
 
   return(
-  <div className='input-field'>
+  <div className='input-field' title={value}>
       <label className={value || dirty || active ? 'input-field--label touched' : 'input-field--label'}>
           {label}
       </label>
@@ -135,7 +135,7 @@ export const renderBranchSelector = ({ input, label, input: { value }, meta: {pr
 
 export const checkBox = ({ input, label, id, classname, type, input: { value }, meta: {pristine, valid, dirty, active, touched, error } }) => {
     return(
-          <div className='input-field checkbox'>
+          <div className='input-field checkbox' >
             <label htmlFor={ value ? `${id} checked` : id } className={ value ? `${classname} checked` : classname}>
               <span></span>
             </label>{label}

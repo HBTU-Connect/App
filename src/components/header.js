@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import icons from '../images/icons.svg';
+import userImage from '../images/profile.jpg'
+
 
 class Header extends React.Component {
     state = { addClassName : 'header hide'}
@@ -26,18 +29,47 @@ class Header extends React.Component {
         } 
     }
 
+    svgRender = (iconName, classname ) => {
+        const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
+        return <svg className={`${classname}__icon`} dangerouslySetInnerHTML={{__html: useTag }} />;
+    }
+
     onAuthRender = () => {
         
-        if(false){
+        if(true){
             return (
-                <div className="right-floated-section">
-                    <div className='nav-items-container'>
-    
+                <>
+                <form action='#' className='search'>
+                    <input type='text' className='search__input' placeholder='Search' />
+                    <button className='search__button'>
+                        {this.svgRender('search', 'search')}
+                    </button>
+                </form>
+                <nav className='user-nav'>
+                    <Link to='/feeds'>
+                    <div className='user-nav__icon-box'>
+                        {this.svgRender('home', 'user-nav')}
+                        <span className='user-nav__notification'>3</span>
                     </div>
-                    <div className='nav-button'>
-                        <button className='signout-button'>Sign out</button>
+                    </Link>
+                    <Link to='/feeds'>
+                    <div className='user-nav__icon-box'>
+                        {this.svgRender('bookmark', 'user-nav')}
+                        <span className='user-nav__notification'>7</span>
                     </div>
-                </div>
+                    </Link>
+                    <Link to='/feeds'>
+                    <div className='user-nav__icon-box'>
+                        {this.svgRender('chat', 'user-nav')}
+                        <span className='user-nav__notification'>11</span>
+                    </div>
+                    </Link>
+                    <div className='user-nav__user'>
+                        <img src={userImage} alt='User' className='user-nav__user-photo'/>
+                        <span className='user-nav__user-name'>Yashveer</span>
+                    </div>
+                </nav>
+                </>
             );
         }
         else{
@@ -56,16 +88,15 @@ class Header extends React.Component {
     render(){
         return (
             <div className={ window.location.pathname !== '/login' ?( window.location.pathname === '/' ? `${this.state.addClassName}` : 'header') : 'header hide' } ref='target'>
-                <div className='header-main'>
-                    <Link to='/' className='link'>
-                    <div className='header-main--logo'>
-                        {/* <img src={logo} alt='HBTU_Connect' /> */}
-                        <div className='header-main--logo-primary'>HBTU </div>
-                        <div className='header-main--logo-secondary'>Connect</div>
-                    </div>
-                    </Link>
-                    {this.onAuthRender()}
+            
+                <Link to='/' className='link'>
+                <div className='header-main--logo'>
+                    {/* <img src={logo} alt='HBTU_Connect' /> */}
+                    <div className='header-main--logo-primary'>HBTU </div>
+                    <div className='header-main--logo-secondary'>Connect</div>
                 </div>
+                </Link>
+                {this.onAuthRender()}
             </div>
         );
     }
