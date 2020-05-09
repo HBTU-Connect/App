@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ClubCard from './club-card'
+import EventBox from './eventBox'
 
 import ECellImg from '../../../images/clubs/ECell-profile.jpg'
 import QuizImg from '../../../images/clubs/Quiz-profile.jpg';
@@ -58,7 +59,7 @@ class Clubs extends React.Component{
                     </div>
                 </div>
                 <div className='content-container__ right'>
-                    
+                    <EventBox />
                 </div>
             </div>
 

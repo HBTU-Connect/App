@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html{
@@ -38,11 +39,12 @@ body{
 
 /* width */
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
+    position: absolute;
   }
 
   ::-webkit-scrollbar:hover {
-    width: 10px;
+    width: 7px;
   }
 
   
