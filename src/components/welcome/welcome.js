@@ -11,6 +11,14 @@ import JoinUsForm from '../auth/joinUsForm';
 
 class WelcomePage extends React.Component{
 
+    componentDidMount(){
+        setTimeout(() => {
+        const msg = new SpeechSynthesisUtterance('Welcome to H B T U Connect');
+        window.speechSynthesis.speak(msg)
+        }, 1000
+        )
+    }
+
     render(){
         
         return(

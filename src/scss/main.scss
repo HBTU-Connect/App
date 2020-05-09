@@ -7,6 +7,7 @@
 @import "base/animations";
 @import "base/base";
 @import "base/utilities";
+@import "base/feedsTemplate";
 
 
 @import "components/header";
@@ -16,6 +17,7 @@
 @import "components/joinUsForm";
 @import "components/sidebar";
 @import "components/feedsBox";
+@import "components/createQuiz";
 
 
 @import "pages/welcome.scss";
@@ -23,3 +25,5 @@
 @import "pages/login";
 @import "pages/joinUsPage";
 @import "pages/feedsPage";
+@import "pages/clubsPage";
+@import "pages/clubPage";
