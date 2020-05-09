@@ -1,7 +1,8 @@
 import React from 'react'; 
 
 //images
-import profileImage from '../../../images/cover.jpg'
+import coverImage from '../../../images/cover.jpg';
+import profileImage from '../../../images/profile.jpg';
 
 const Post = (props) => {
     return(
@@ -18,7 +19,7 @@ const Post = (props) => {
 
                 </div>
                 <div className='post-content'>
-                    <img src={profileImage} alt='profile' />
+                    <img src={props.post === 'cover' ? coverImage : profileImage} alt='profile' />
                 </div>
                 <div className='post-details'>
                     <div className='post-details--views'>

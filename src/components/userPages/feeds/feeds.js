@@ -9,13 +9,15 @@ class Feeds extends React.Component{
         return(
             <>
                 <div className='content-container'>
-                    <CreatePost />
-                    <Post />
-                    
+                    <div className='content-container__left'>
+                        <Post post='cover' />
+                        <Post post='profile' />
+                    </div>
+                    <div className='content-container__right'>
+                            <NotificationBox />
+                    </div>
                 </div>
-                <div className='right-container'>
-                    <NotificationBox />
-                </div>
+                
             </>
         );
     }
