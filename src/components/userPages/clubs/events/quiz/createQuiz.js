@@ -99,7 +99,7 @@ const GreenCheckbox = withStyles({
                     <span>Time : </span>
                     <Field type='time' className='custom-time' name={`${question}.time`}  component={renderTextField} step='10' />
                     </div>: null}
-                    <IconButton size='large' title='Add Image' >
+                    <IconButton size='medium' title='Add Image' >
                         <InsertPhotoIcon fontSize='large' />
                     </IconButton>
                     <IconButton
@@ -116,16 +116,16 @@ const GreenCheckbox = withStyles({
         ))}
         {/* </div> */}
         <div className='menu-items-container'>
-            <IconButton size='large' style={{minWidth: 'unset'}} className='btn__add-question' title='Add Question' type="button" onClick={() => {fields.push({}); setTimeout(() => {if(document.getElementsByClassName('active')[0]){document.getElementsByClassName('active')[0].className = document.getElementsByClassName('active')[0].className.replace(" active", "");} document.getElementById(`${fields.length}`).classList.add('active'); document.getElementsByClassName('question-textarea')[fields.length].focus()}, 50) }}>
+            <IconButton size='medium' style={{minWidth: 'unset'}} className='btn__add-question' title='Add Question' type="button" onClick={() => {fields.push({}); setTimeout(() => {if(document.getElementsByClassName('active')[0]){document.getElementsByClassName('active')[0].className = document.getElementsByClassName('active')[0].className.replace(" active", "");} document.getElementById(`${fields.length}`).classList.add('active'); document.getElementsByClassName('question-textarea')[fields.length].focus()}, 50) }}>
                 <AddCircleOutlineIcon fontSize='large' />
             </IconButton>
-            <IconButton size='large' title='Add/Remove Custom Time for Question' onClick={() => {setCustomTime( !customTime); }}>
+            <IconButton size='medium' title='Add/Remove Custom Time for Question' onClick={() => {setCustomTime( !customTime); }}>
                 {!customTime ? <TimerIcon fontSize='large' />: <TimerOffIcon  fontSize='large' />}
             </IconButton>
-            <IconButton size='large' title='Add Answers' onClick={() => setAddAnswers(!addAnswers)} >
+            <IconButton size='medium' title='Add Answers' onClick={() => setAddAnswers(!addAnswers)} >
                 <QuestionAnswerIcon fontSize='large' />
             </IconButton>
-            <IconButton size='large' title='Display Question Numbers' onClick={() => {setQuestionNumber( !questionNumber)}}>
+            <IconButton size='medium' title='Display Question Numbers' onClick={() => {setQuestionNumber( !questionNumber)}}>
                 <FormatListNumberedRoundedIcon fontSize='large' />
             </IconButton>
             
@@ -204,9 +204,9 @@ const renderShortAnswer = ({ fields, questionIndex, meta: { error } }) => (
     </ul>
 )
 
-const renderField = ({ input, label, type, className, step, disabled, meta: { touched, error } }) => (
+const renderField = ({ input, label, style, type, className, step, disabled, meta: { touched, error } }) => (
     <>
-        <input className={className} step={step} {...input} disabled={disabled} type={type} placeholder={label} />
+        <input className={className} style={style} step={step} {...input} disabled={disabled} type={type} placeholder={label} />
         {touched && error && <span>{error}</span>}
     </>
     )
@@ -247,44 +247,39 @@ const radioButton = ({ input, options, questionIndex, ...rest}) => {
 
 const renderCheckBox = ({ input, index, option, questionIndex }) => {
     // setTimeout(() => {document.getElementById('checkbox').addEventListener('change', activeOption(index))}, 1000) 
-    return <FormControlLabel   key={index+1} id={`question${questionIndex}option${index+1}`}  control={<GreenCheckbox id={`checkbox ${index} question ${questionIndex}`} {...input} onChange={(event) => {activeOption(event)}}/>} label={option} />     
+    return <FormControlLabel   key={index+1} id={`question${questionIndex}option${index+1}`}  control={<GreenCheckbox id={`checkbox ${index} question ${questionIndex}`} {...input} onChange={(event) => { activeOption(event)}}/>} label={option} />     
 }
 
 const activeOption = (event) => {
+    // event.preventDefault()
     const index = parseInt(event.currentTarget.id.split(' ')[1])
     const questionIndex = parseInt(event.currentTarget.id.split(' ')[3])
     console.log(index)
-    // event.preventDefault()
     if(document.getElementById(`question${questionIndex}option${index+1}`).classList.contains('active-option')){
-        console.log(event)
         document.getElementById(`question${questionIndex}option${index+1}`).className = document.getElementById(`question${questionIndex}option${index+1}`).className.replace(" active-option", "")
         // document.getElementById('checkbox').checked = true;
          
     } else {
         document.getElementById(`question${questionIndex}option${index+1}`).classList.add('active-option')
-        console.log(event) 
         // document.getElementById('checkbox').checked = false;
     }
 
 }
 
 
-const checkboxButton = ({ fields, options, questionIndex }) => {
-    // if(fields.length !== options.length && options[options.length -1] !== undefined) options.map((option, index) => fields.insert(index, option))
-    // console.log(fields)
-    // console.log(options)
+const checkboxButton = ({ fields, options, questionIndex, meta: { touched } }) => {
+    console.log(options)
     return(
-        // <FormControl  {...rest}>
-            options.map((option, index) => {
-                return <Field key={index} component={renderCheckBox} name={`questions[${questionIndex}].answer.${option}`} value={option} option={option} index={index} questionIndex={questionIndex} />
-                })
-        // </FormControl>
+            options.map( (option, index) => (
+                <Field key={index} component={renderCheckBox} name={`questions[${questionIndex}].answer[${index}]`} option={option} index={index} questionIndex={questionIndex} />
+            ))
     )
 }
 
-const renderTextArea = ({ input, label, className, disabled, meta: { touched, error } }) => (
+
+const renderTextArea = ({ input, label, style, className, disabled, meta: { touched, error } }) => (
 <>
-    <textarea className={`textarea ${className}`} disabled={disabled} rows='1' {...input} placeholder={label} />
+    <textarea className={`textarea ${className}`} style={style} disabled={disabled} rows='1' {...input} placeholder={label} />
     {touched && error && <span>{error}</span>}
 </>
 )
@@ -298,8 +293,12 @@ class CreateQuiz extends React.Component{
         maxRows: 10,
         addQuizTime: false,
         class: 0,
-        description: false
-    }
+        description: false,
+        colorIndex: 0
+        }
+
+    colors = ['#db4437', '#673ab7', '#3f51b5', '#4285f4', '#03a9f4', '#00bcd4', '#ff5722', '#ff9800', '#009688', '#4caf50', '#607d8b', '#9e9e9e']
+    
 
     handleChange = (event) => {
 		const textareaLineHeight = 18;
@@ -329,30 +328,30 @@ class CreateQuiz extends React.Component{
 
     render(){
         return(
-            <div className='form-container'>
+            <div className='form-container__quiz' style={{ backgroundColor: `${this.colors[this.state.colorIndex]}`, borderColor: `${this.colors[this.state.colorIndex]}`}}>
                 <form onSubmit={this.props.handleSubmit(this.onFormSubmit)} >
                     <div className='form-header'>
                     <div className='form-menu'>
-                    <IconButton size='large' title='Add Description' aria-controls="simple-menu" aria-haspopup="true" onClick={() => this.setState({description: !this.state.description})}>
+                        <IconButton size='medium' title='Change Form Color' aria-controls="simple-menu" aria-haspopup="true" onClick={() => { if(this.state.colorIndex < this.colors.length -1){ this.setState({ colorIndex: this.state.colorIndex +1 }) } else{this.setState({ colorIndex: 0})}  } }>
                             <PaletteIcon fontSize='large'/>
                         </IconButton>
-                        <IconButton size='large' title='Add Description' aria-controls="simple-menu" aria-haspopup="true" onClick={() => this.setState({description: !this.state.description})}>
+                        <IconButton size='medium' title='Add Description' aria-controls="simple-menu" aria-haspopup="true" onClick={() => this.setState({description: !this.state.description})}>
                             <DescriptionIcon fontSize='large'/>
                         </IconButton>
-                        <IconButton size='large' title='Schedule Quiz' aria-controls="simple-menu" aria-haspopup="true" >
+                        <IconButton size='medium' title='Schedule Quiz' aria-controls="simple-menu" aria-haspopup="true" >
                             <EventIcon fontSize='large'/>
                         </IconButton>
-                        <IconButton size='large' title='Add Time for Quiz' aria-controls="simple-menu" aria-haspopup="true" >
+                        <IconButton size='medium' title='Add Time for Quiz' aria-controls="simple-menu" aria-haspopup="true" >
                             <QueryBuilderIcon fontSize='large'/>
                         </IconButton>
-                        <IconButton style={{ marginRight: '1rem'}} title='Settings' size='large' aria-controls="simple-menu" aria-haspopup="true" >
+                        <IconButton style={{ marginRight: '1rem'}} title='Settings' size='medium' aria-controls="simple-menu" aria-haspopup="true" >
                             <SettingsIcon fontSize='large'/>
                         </IconButton>
-                        <Button size='large' variant='contained' color='primary' className='btn-submit' type='submit'>Submit</Button>
+                        <Button size='medium' variant='contained' color='primary' className='btn-submit' type='submit'>Submit</Button>
                         
                     </div>
-                        <Field type='text' name='formTitle' component={renderField} label='Form Title' />
-                        { this.state.description && <Field name='formDescription' component={renderTextArea} label='Form Description' onChange={this.handleChange}/>}
+                        <Field type='text' name='formTitle' style={{ borderColor: `${this.colors[this.state.colorIndex]}` }} component={renderField} label='Form Title' />
+                        { this.state.description && <Field name='formDescription' component={renderTextArea}  style={{ borderColor: `${this.colors[this.state.colorIndex]}` }} label='Form Description' onChange={this.handleChange}/>}
                     </div>
                     <div className='question-container'>
                         <FieldArray name='questions' questions={this.props.questions} handleChange={this.handleChange} component={RenderQuestion} />

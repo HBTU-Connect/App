@@ -14,8 +14,9 @@ import JoinUsPage from './auth/joinUsPage';
 import Feeds from './userPages/feeds/feeds';
 import Sidebar from './userPages/profileSidebar';
 import Clubs from './userPages/clubs/clubs';
-import Home from './userPages/feeds/home'
+// import Home from './userPages/feeds/home'
 import ClubPage from './userPages/clubs/clubPage';
+import RenderQuiz from './userPages/clubs/events/quiz/renderQuiz'
 
 import { PrivateRoute } from './utils/protectedRoutes';
 
@@ -44,6 +45,7 @@ class App extends React.Component {
                         <Route path='/clubs/:clubName' >
                             <ClubPage />
                         </Route>
+                        <Route path='/event/quiz/:id' exact component={RenderQuiz} />
                         {/* <Route path='/notification' exact render={props => <div><Feeds/><Notification/></div>} /> */}
                         
                     </>

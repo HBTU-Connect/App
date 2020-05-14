@@ -1,12 +1,12 @@
-.form-container{
+.form-container__quiz{
     display: flex;
     flex-direction: column;
     // align-items: center;
     // border-top: 1px solid $color-primary;
-    background-color: rgb(158, 255, 255);
+    // background-color: rgb(158, 255, 255);
     margin: 2rem;
     border-radius: 1rem;
-    border: 2px solid rgb(158, 255, 255);
+    border: 2px solid;
     overflow: hidden;
     position: relative;
     z-index: 0;
