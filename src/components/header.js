@@ -1,15 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Badge, Avatar } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { ChatOutlined as ChatIcon,
+        HomeOutlined as HomeIcon,
+        NotificationsOutlined as NotificationsIcon,
+        SearchRounded as SearchIcon
+} from '@material-ui/icons';
 
-import icons from '../images/icons.svg';
+// import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
 
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+      top: 6,
+      right: 5,
+      border: `3px solid rgb(1,119,180)`,
+      padding: '6px 6px',
+      borderRadius: '50%'
+    },
+  }))(Badge);
+
+  const ContentBadge = withStyles((theme) => ({
+    badge: {
+      top: 3,
+      right: 3,
+      border: `3px solid rgb(1,119,180)`,
+      padding: '2px 2px',
+    },
+  }))(Badge);
 
 class Header extends React.Component {
-    state = { addClassName : 'header hide'}
+    state = { addClassName : 'header hide', location: ''}
 
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll);
+        window.onload = () => {
+            this.setState({ location: window.location.pathname})
+            console.log(this.state.location, window.location.pathname)
+        }
     }
     
     // componentWillUnmount(){
@@ -29,10 +58,10 @@ class Header extends React.Component {
         } 
     }
 
-    svgRender = (iconName, classname ) => {
-        const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
-        return <svg className={`${classname}__icon`} dangerouslySetInnerHTML={{__html: useTag }} />;
-    }
+    // svgRender = (iconName, classname ) => {
+    //     const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
+    //     return <svg className={`${classname}__icon`} dangerouslySetInnerHTML={{__html: useTag }} />;
+    // }
 
     onAuthRender = () => {
         
@@ -42,33 +71,43 @@ class Header extends React.Component {
                 <form action='#' className='search'>
                     <input type='text' className='search__input' placeholder='Search' />
                     <button className='search__button'>
-                        {this.svgRender('search', 'search')}
+                        <SearchIcon fontSize='large' />
                     </button>
                 </form>
                 <nav className='user-nav'>
-                    <Link to='/feeds'>
+                    <Link to='/feeds' className='link'>
                     <div className='user-nav__icon-box'>
-                        {this.svgRender('home', 'user-nav')}
-                        <span className='user-nav__notification'>3</span>
+                        <StyledBadge color="secondary" variant='dot'>
+                            <HomeIcon />
+                        </StyledBadge>
+                        <span>Home</span>
                     </div>
                     </Link>
-                    <Link to='/feeds'>
+                    
+                    <Link to='/feeds' className='link'>
                     <div className='user-nav__icon-box'>
-                        {this.svgRender('bookmark', 'user-nav')}
-                        <span className='user-nav__notification'>7</span>
+                        <ContentBadge color="secondary" style={{ fontSize: '1rem'}} badgeContent={7} max={99}>
+                            <ChatIcon />
+                        </ContentBadge>
+                        <span>Messaging</span>
                     </div>
                     </Link>
-                    <Link to='/feeds'>
+                    <Link to='/feeds' className='link'>
                     <div className='user-nav__icon-box'>
-                        {this.svgRender('chat', 'user-nav')}
-                        <span className='user-nav__notification'>11</span>
+                        <ContentBadge color="secondary" badgeContent={100} max={99}>
+                            <NotificationsIcon />
+                        </ContentBadge>
+                        <span>Notifications</span>
                     </div>
                     </Link>
-                    <div className='user-nav__user'>
-                        <img src={userImage} alt='User' className='user-nav__user-photo'/>
-                        <span className='user-nav__user-name'>Yashveer</span>
-                    </div>
                 </nav>
+                <div className='user-nav__user'>
+                    <img src={userImage} alt='User' className='user-nav__user-photo'/>
+                    {/* <Avatar src={userImage} alt='user Name' /> */}
+                    <span className='user-nav__user-name'>Yashveer</span>
+                </div>
+                    
+                
                 </>
             );
         }
@@ -87,7 +126,7 @@ class Header extends React.Component {
 
     render(){
         return (
-            <div className={ window.location.pathname !== '/login' ?( window.location.pathname === '/' ? `${this.state.addClassName}` : 'header') : 'header hide' } ref='target'>
+            <div className={ this.state.location !== '/login' || this.state.location !== '/signup' ?( this.state.location === '/' ? `${this.state.addClassName}` : 'header') : 'header hide' } ref='target'>
             
                 <Link to='/' className='link'>
                 <div className='header-main--logo'>

@@ -1,0 +1,82 @@
+.event-form-container{
+    width: 100%;
+    height: calc(100vh -60px);
+    overflow-y: scroll;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    grid-gap: 3rem;
+    justify-items: center;
+    padding: 2rem;
+
+    .form-header{
+        display: flex;
+        flex-direction: column;
+        // margin: 0 1fr;
+        width: 60rem;
+        align-items: flex-start;
+        padding: 2rem 3rem;
+        background-color: white;
+        border-left: 4px solid;
+        border-radius: 10px;
+        box-shadow: 1px 3px 5px rgb(207, 207, 207);
+        font-family: $font-roboto;
+
+        .form-title{
+            font-size: 2.8rem;
+            font-weight: 600;
+            padding-bottom: 1rem;
+        }
+
+        .form-description{
+            font-size: 1.4rem;
+            color: rgb(133, 133, 133);
+        }
+
+    }
+
+    .question-container{
+        display: flex;
+        flex-direction: column;
+        width: 60rem;
+        align-items: flex-start;
+        padding: 2rem 3rem;
+        background-color: white;
+        border-left: 4px solid;
+        border-radius: 10px;
+        box-shadow: 1px 3px 5px rgb(207, 207, 207);
+        font-family: $font-roboto;
+
+        &__question{
+            font-size: 1.7rem;
+            font-weight: 500;
+            padding-bottom: 3rem;
+            color: rgb(56, 56, 56);
+        }
+
+        &__field{
+            width: 100%;
+            padding-bottom: 1rem;
+        }
+
+    }
+
+    .button-container{
+        width: 60rem;
+        display: flex;
+        flex-direction: column;
+        // justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10rem;
+    }
+}
+
+.MuiTextField-root{
+    display: flex !important;
+}
+.MuiFormControlLabel-label{
+    font-size: 1.5rem !important;
+}

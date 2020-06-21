@@ -1,6 +1,5 @@
 import React from 'react';
 
-import CreatePost from './createPost';
 import Post from './posts';
 import NotificationBox from './notificationBox';
 
