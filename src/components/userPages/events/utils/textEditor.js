@@ -11,7 +11,6 @@ import isUrl from 'is-url'
 import { Code as CodeIcon,
     FormatBold as FormatBoldIcon,
     FormatItalic as FormatItalicIcon,
-    FormatUnderlined as FormatUnderlinedIcon,
     FormatListBulleted as FormatListBulletedIcon,
     FormatListNumbered as FormatListNumberedIcon,
     FormatQuote as FormatQuoteIcon, 
@@ -449,6 +448,7 @@ const TextEditor = () => {
     }
     
     return ranges
+    // eslint-disable-next-line
   }, [])
 
   const scroll = () => {
