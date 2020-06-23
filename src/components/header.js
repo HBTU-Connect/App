@@ -78,9 +78,8 @@ class Header extends React.Component {
                     <Link to='/feeds' className='link'>
                     <div className='user-nav__icon-box'>
                         <StyledBadge color="secondary" variant='dot'>
-                            <HomeIcon />
+                            <HomeIcon fontSize={"large"} />
                         </StyledBadge>
-                        <span>Home</span>
                     </div>
                     </Link>
                     
@@ -89,7 +88,6 @@ class Header extends React.Component {
                         <ContentBadge color="secondary" style={{ fontSize: '1rem'}} badgeContent={7} max={99}>
                             <ChatIcon />
                         </ContentBadge>
-                        <span>Messaging</span>
                     </div>
                     </Link>
                     <Link to='/feeds' className='link'>
@@ -97,14 +95,12 @@ class Header extends React.Component {
                         <ContentBadge color="secondary" badgeContent={100} max={99}>
                             <NotificationsIcon />
                         </ContentBadge>
-                        <span>Notifications</span>
                     </div>
                     </Link>
                 </nav>
                 <div className='user-nav__user'>
                     <img src={userImage} alt='User' className='user-nav__user-photo'/>
                     {/* <Avatar src={userImage} alt='user Name' /> */}
-                    <span className='user-nav__user-name'>Yashveer</span>
                 </div>
                     
                 
