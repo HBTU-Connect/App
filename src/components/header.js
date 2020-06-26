@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Avatar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { ChatOutlined as ChatIcon,
-        HomeOutlined as HomeIcon,
-        NotificationsOutlined as NotificationsIcon,
-        SearchRounded as SearchIcon
+import { Chat as ChatIcon,
+        Home as HomeIcon,
+        Notifications as NotificationsIcon,
+        SearchRounded as SearchIcon,
+        Apps as AppsIcon
 } from '@material-ui/icons';
 
 // import icons from '../images/icons.svg';
@@ -13,9 +14,9 @@ import userImage from '../images/profile.jpg'
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
-      top: 6,
-      right: 5,
-      border: `3px solid rgb(1,119,180)`,
+      top: 4,
+      right: 4,
+      border: `3px solid rgb(66,103,178)`,
       padding: '6px 6px',
       borderRadius: '50%'
     },
@@ -25,7 +26,7 @@ const StyledBadge = withStyles((theme) => ({
     badge: {
       top: 3,
       right: 3,
-      border: `3px solid rgb(1,119,180)`,
+      border: `3px solid rgb(66,103,178)`,
       padding: '2px 2px',
     },
   }))(Badge);
@@ -92,17 +93,21 @@ class Header extends React.Component {
                     </Link>
                     <Link to='/feeds' className='link'>
                     <div className='user-nav__icon-box'>
-                        <ContentBadge color="secondary" badgeContent={100} max={99}>
+                        <ContentBadge color="secondary" badgeContent={0} max={99}>
                             <NotificationsIcon />
                         </ContentBadge>
                     </div>
                     </Link>
-                </nav>
+                
                 <div className='user-nav__user'>
                     <img src={userImage} alt='User' className='user-nav__user-photo'/>
                     {/* <Avatar src={userImage} alt='user Name' /> */}
                 </div>
-                    
+                </nav> 
+
+                <div className='user-nav__icon-box app-icon'>
+                    <AppsIcon fontSize='large'/>
+                </div>
                 
                 </>
             );

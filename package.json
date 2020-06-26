@@ -9,6 +9,7 @@
     "@material-ui/pickers": "^3.2.10",
     "axios": "^0.19.2",
     "date-fns": "^2.14.0",
+    "escape-html": "^1.0.3",
     "is-hotkey": "^0.1.6",
     "is-url": "^1.2.4",
     "material-ui": "^0.20.2",

@@ -1,6 +1,6 @@
 .event-form-container{
     width: 100%;
-    height: calc(100vh -60px);
+    height: $body-container-height;
     overflow-y: scroll;
     // display: flex;
     // flex-direction: column;

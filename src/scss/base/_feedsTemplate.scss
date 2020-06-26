@@ -6,10 +6,21 @@
     // justify-items: center;
     
     background: rgba($color-primary,0.05);
-    overflow: hidden;
-    margin-top: 60px;
-    justify-content: space-around;
-    max-height: calc(100vh - 60px);
+    // overflow: hidden;
+    overflow-y: scroll;
+    margin-top: calc(50px);
+    // justify-content: space-around;
+    max-height: $body-container-height;
+    
+
+    &__wrapper{
+        height: max-content;
+        // overflow-y: scroll;
+        width: 100%;
+        display: flex;
+        position: relative;
+        justify-content: space-around;
+    }
 }
 
 .sidebar-container{
@@ -19,15 +30,18 @@
     // position: fixed;
     // top: calc(60px + 3rem);
     // left: 5%;
+    // background-color: white;
     display: flex;
-    position: sticky;
-    position: -webkit-sticky;
-    overflow-y: scroll;
+    // position: sticky;
+    // position: -webkit-sticky;
+    // overflow-y: scroll;
+    position: relative;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    max-height: calc(100vh - 60px);
-    padding-left: 3rem;
+    // max-height: $body-container-height;
+    height: max-content;
+    padding-left: 1rem;
     padding-top: 3rem;
     flex: 0 0 20%;
 
@@ -42,16 +56,21 @@
     flex: 0 0 70%;
     position: sticky;
     position: -webkit-sticky;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     display: flex;
     justify-content: space-between;
     padding-top: 3rem;
 
     &__left{
         flex: 0 0 65%;
+        // max-width: 80%;
+        height: max-content;
     }
 
     &__right{
         margin-right: -2rem;
+        margin-left: 2rem;
+        transition: none;
+        height: max-content;
     }
 }

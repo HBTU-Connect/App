@@ -195,6 +195,7 @@ const withLinks = editor => {
 
 const withLayout = editor => {
     const { normalizeNode } = editor
+    console.log(editor)
     
   
     editor.normalizeNode = ([node, path]) => {
@@ -333,12 +334,14 @@ const TextEditor = () => {
   const textEditor = useRef(null)
 
   useEffect(() => {
-    header.current.style.transform = `translateY(${position}px)`
-    if(!display){
-      header.current.style.visibility = 'hidden'
-    }
-    else{
-      header.current.style.visibility = 'visible'
+    if(header.current){
+      header.current.style.transform = `translateY(${position}px)`
+      if(!display){
+        header.current.style.visibility = 'hidden'
+      }
+      else{
+        header.current.style.visibility = 'visible'
+      }
     }
   }, [position, display])
 
@@ -457,7 +460,7 @@ const TextEditor = () => {
     setHeight(docHeight + 200)
   }
   return (
-      <div className='body-container'>
+      <>
         <Slate editor={editor} value={value} onChange={v => onChange(v)} >
           <div ref={textEditor} className='text-editor' onKeyDown={(e) => {if(e.keyCode === 13)scroll()}}>
             <div className='text-editor__header' ref={header}>
@@ -479,7 +482,7 @@ const TextEditor = () => {
               renderLeaf={renderLeaf}
               placeholder="Tell you story..."
               spellCheck
-              autoFocus
+              // autoFocus
               tabIndex={0}
               onKeyDown={event => {
                 for (const hotkey in HOTKEYS) {
@@ -507,7 +510,7 @@ const TextEditor = () => {
             />
           </div>
         </Slate>
-    </div>
+    </>
   )
 }
 
@@ -574,7 +577,7 @@ const Element = (props) => {
   const selected = useSelected()
   const focused = useFocused()
   const editor = useEditor()
-  const { attributes, children, element, setPosition, setDisplay, } = props
+  const { attributes, children, element, setPosition, setDisplay} = props
   const input = useRef(null)
 
   useEffect(() => {
@@ -627,6 +630,8 @@ const Element = (props) => {
       return <div className='code_block' {...attributes}>{children}</div>
     case 'bulleted-list':
       return <ul {...attributes}>{children}</ul>
+    case 'title':
+      return <h1 className={ `h1-title ${!element.children[0].text ? 'title-with-placeholder': null} ${(focused && selected ? 'title-active': null)}`} {...attributes}>{children}</h1>
     case 'heading-one':
       return <h2 {...attributes}>{children}</h2>
     case 'heading-two':
@@ -637,12 +642,10 @@ const Element = (props) => {
       return <pre {...attributes}>{children}</pre>
     case 'numbered-list':
       return <ol {...attributes}>{children}</ol>
-    case 'title':
-      return <h1 className={ `h1-title ${!element.children[0].text ? 'title-with-placeholder': null} ${(focused && selected ? 'title-active': null)}`} {...attributes}>{children}</h1>
     case 'video':
-      return <VideoElement {...props} />
+      return <VideoElement {...props} parent='texteditor'/>
     case 'image':
-      return <ImageElement {...props} />
+      return <ImageElement {...props} parent='texteditor' />
     case 'editable-void':
       return <EditableVoidElement {...props} input={input} />
     // case 'code_block':
@@ -720,7 +723,7 @@ const BlockButton = ({ format, icon, size, setExpand, title }) => {
   return (
     <IconButton
       size={size} 
-      style={{ marginLeft: '.2rem'}}
+      style={{ marginLeft: '.4rem'}}
       className={active? 'active' : null}
       title={title? title : null}
       onMouseDown={event => {
@@ -753,14 +756,17 @@ const MarkButton = ({ format, icon }) => {
   )
 }
 
-const InsertButton = ({format, icon, setExpand, title}) => {
+const InsertButton = ({format, size, icon, setExpand, title}) => {
   const editor = useEditor()
   return (
     <IconButton
       title={title? title : null}
+      size = {size? size: null}
+      style={{ marginLeft: '.4rem'}}
       onMouseDown={event => {
         event.preventDefault()
         insertEditableVoid(editor, format)
+        if(setExpand)
         setExpand(false)
       }}
     >
@@ -837,7 +843,8 @@ const HoveringToolbar = () => {
         !selection ||
         !ReactEditor.isFocused(editor) ||
         Range.isCollapsed(selection) ||
-        Editor.string(editor, selection) === ''
+        Editor.string(editor, selection) === '' || 
+        editor.selection.anchor.path[0] === 0
       ) {
         el.removeAttribute('style')
         return
@@ -1241,7 +1248,7 @@ const EditableVoidElement = ({ attributes, children, element, input}) => {
 //   )
 // }
 
-const ImageElement = ({ attributes, children, element }) => {
+const ImageElement = ({ attributes, children, element, parent }) => {
   const [ className, setClassName ] = useState('center-aligned')
   const [ caption, setCaption ] = useState(false)
   const selected = useSelected()
@@ -1256,7 +1263,7 @@ const ImageElement = ({ attributes, children, element }) => {
     if(caption && editor.children[editor.selection.anchor.path[0] +1].type !== 'fig-caption'){
       insertCaption(editor)
     }else{
-      if(editor.children[editor.selection.anchor.path[0] +1] && editor.children[editor.selection.anchor.path[0] +1].type === 'fig-caption'){
+      if(editor.selection && editor.children[editor.selection.anchor.path[0] +1] && editor.children[editor.selection.anchor.path[0] +1].type === 'fig-caption'){
         Transforms.removeNodes(editor, { at: [editor.selection.anchor.path[0]+1]})
       }
     }
@@ -1271,7 +1278,7 @@ const ImageElement = ({ attributes, children, element }) => {
       style={{zIndex: '10000', display: 'flex', justifyContent: 'center'}}
       
     >
-      {focused && selected && <EmbedMenu className={className} setClassName={setClassName} caption={caption} setCaption={setCaption} />}
+      {focused && selected && parent === 'texteditor' && <EmbedMenu className={className} setClassName={setClassName} caption={caption} setCaption={setCaption} />}
       <div className={focused && selected ? `image-wrapper wrapper-active`: `image-wrapper`} style={{
             padding: '0 0 0 0',
             position: 'relative',
@@ -1288,7 +1295,7 @@ const ImageElement = ({ attributes, children, element }) => {
   )
 }
 
-const VideoElement = ({ attributes, children, element }) => {
+const VideoElement = ({ attributes, children, element, parent }) => {
   const [ className, setClassName ] = useState('center-aligned')
   const [ caption, setCaption ] = useState(false)
 
@@ -1310,7 +1317,7 @@ const VideoElement = ({ attributes, children, element }) => {
     if(caption && editor.children[editor.selection.anchor.path[0] +1].type !== 'fig-caption'){
       insertCaption(editor)
     }else{
-      if(editor.children[editor.selection.anchor.path[0] +1] && editor.children[editor.selection.anchor.path[0] +1].type === 'fig-caption'){
+      if(editor.selection && editor.children[editor.selection.anchor.path[0] +1] && editor.children[editor.selection.anchor.path[0] +1].type === 'fig-caption'){
         Transforms.removeNodes(editor, { at: [editor.selection.anchor.path[0]+1]})
       }
     }
@@ -1319,7 +1326,7 @@ const VideoElement = ({ attributes, children, element }) => {
   
   return (
     <div className={`video-container ${className}`} {...attributes} contentEditable={false} style={{zIndex: '10000', display: 'flex', justifyContent: 'center'}}>
-      {focused && selected && <EmbedMenu className={className} setClassName={setClassName} caption={caption} setCaption={setCaption} />}
+      {focused && selected && parent=== 'texteditor' && <EmbedMenu className={className} setClassName={setClassName} caption={caption} setCaption={setCaption} />}
         <div 
         className={focused && selected ? `iframe-container wrapper-active`: `iframe-container `}
           style={{
@@ -1360,6 +1367,130 @@ const isVideoUrl = url => {
   const ext = new URL(url).host
   return (ext === 'youtube.com'|| ext === 'http://www.youtube.com' || ext === 'www.youtube.com' || ext === 'vimeo.com')
 }
+
+const TextAreaElement = (props) => {
+  // const selected = useSelected()
+  // const focused = useFocused()
+  // const editor = useEditor()
+  const { attributes, children, element } = props
+  const input = useRef(null)
+
+  // placeholder[editor.children.length-1]
+  
+
+  switch (element.type) {
+    case 'block-quote':
+      return <blockquote {...attributes}>{children}</blockquote>
+    case 'code_block':
+      return <div className='code_block' {...attributes}>{children}</div>
+    case 'bulleted-list':
+      return <ul {...attributes}>{children}</ul>
+    case 'heading-one':
+      return <h2 {...attributes}>{children}</h2>
+    case 'heading-two':
+      return <h3 {...attributes}>{children}</h3>
+    case 'list-item':
+      return <li {...attributes}>{children}</li>
+    case 'code-line':
+      return <pre {...attributes}>{children}</pre>
+    case 'numbered-list':
+      return <ol {...attributes}>{children}</ol>
+    case 'video':
+      return <VideoElement {...props} parent='textarea' />
+    case 'image':
+      return <ImageElement {...props} parent='textarea'/>
+    case 'editable-void':
+      return <EditableVoidElement {...props} input={input} />
+    case 'link':
+      return (
+        <a {...attributes} name={element.url} href={element.url}>
+          {/* <span className='title'>{element.url}</span> */}
+          {children}
+        </a>
+      )
+    default:
+      return(<p {...attributes} className={!element.children[0].text && element.placeholder ? `p-with-placeholder`: 'p'}>
+        {children}
+        </p>)  
+  }
+}
+
+
+
+export const TextArea = ({ value, setValue }) => {
+  const [ addLink, setAddLink ] = useState(false)
+  const renderElement = useCallback(props => <TextAreaElement {...props}  />, [])
+  const renderLeaf = useCallback(props => <Leaf {...props} />, [])
+  const editor = useMemo(() => withShortcuts(withCodeBlockVoids(withLinks(withEditableVoids(withImages(withEmbeds(withHistory(withReact(createEditor())))))))), [])
+  
+
+  return(
+    <>
+      
+      <Slate editor={editor} value={value} onChange={v => setValue(v)} >
+          <div className='text-editor text-area-editor' >
+          <div className='text-area-editor__header'>
+            <MarkButton format="bold" icon={<FormatBoldIcon fontSize='large'/>} />
+            <MarkButton format="italic" icon={<FormatItalicIcon fontSize='large'/>} />
+            <MarkButton format="code" icon={<CodeIcon fontSize='large'/>} />
+            {/* <div className='margin-adder'></div> */}
+            <BlockButton size='small' format="heading-one" icon={<span style={{ padding: '3px 5px', fontSize: '1.8rem', fontWeight: '600'}}>T</span>} />
+            <BlockButton size='small' format="heading-two" icon={<span style={{ padding: '3px 5px', fontSize: '1.4rem'}}>T</span>} />
+            <div className='margin-adder'></div>
+            <IconButton size='small' onClick={() => setAddLink(true)} ><InsertLinkIcon fontSize='large' /> </IconButton>
+            <InsertButton  title='Insert Image' size='small' format='image' icon={<ImageIcon fontSize='large'/>}/>
+            <InsertButton  title='Insert Video' size='small'  format='video' icon={<PlayCircleOutlineIcon fontSize='large'/>} />
+            <CodeButton  title='Insert Code Block' size='small' format="code_block" icon={<CodeIcon fontSize='large'/>} />
+            <div className='margin-adder'></div>
+            <BlockButton  title='Insert Ordered List' size='small' format="numbered-list" icon={<FormatListNumberedIcon fontSize='large'/>} />
+            <BlockButton  title='Insert Unordered List' size='small' format="bulleted-list" icon={<FormatListBulletedIcon fontSize='large'/>} />
+            <BlockButton  title='Insert Quote' size='small' format="block-quote" icon={<FormatQuoteIcon fontSize='large'/> } /> 
+          </div>
+            <Editable
+              renderElement={renderElement}
+              className='text-area-editor__editor'
+              renderLeaf={renderLeaf}
+              placeholder="Add here"
+              spellCheck='false'
+              // autoFocus
+              tabIndex={0}
+              onKeyDown={event => {
+                for (const hotkey in HOTKEYS) {
+                    if (isHotkey(hotkey, event)) {
+                    event.preventDefault()
+                    const mark = HOTKEYS[hotkey]
+                    toggleMark(editor, mark)
+                    }
+                }
+
+                if(event.keyCode === 9){
+                  event.preventDefault()
+                  Transforms.insertText(editor, '    ')
+                }
+
+                if(event.ctrlKey && event.keyCode === 13 ){
+                  insertParagraph(editor)
+                  Transforms.unwrapNodes(editor, {
+                    match: n => n.type === 'code_block',
+                    split: true,
+                  })
+                }
+              }}         
+            />
+          </div>
+        </Slate>
+    </>
+  )
+}
+
+const textareaInitialValue = [
+  {
+    type: 'paragraph',
+    children: [
+      { text: ''}
+    ],  
+  }
+]
 
 
 const initialValue = [

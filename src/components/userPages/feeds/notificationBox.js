@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { Divider } from '@material-ui/core';
+import { ArrowForwardIos as ArrowForwardIosIcon,
+         ChevronRight as ChevronRightIcon 
+} from '@material-ui/icons'
 
 //images
 import profileImage from '../../../images/profile.jpg';
@@ -10,7 +14,7 @@ const NotificationBox = (props) => {
             <div className='box-title'>
                 Notifications
             </div>
-            <div className='divider'></div>
+            <Divider />
             <div className='box-content'>
                 <ul>
                     <li>
@@ -37,8 +41,9 @@ const NotificationBox = (props) => {
                     </li>
                 </ul>
             </div>
+            <Divider />
             <div className='box-page-link'>
-                <Link to='/notifications' className='link'>More</Link>
+                <Link to='/notifications' className='link'>View all<ChevronRightIcon fontSize='large' /> </Link>
             </div>
         </div>
     )

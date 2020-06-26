@@ -14,6 +14,7 @@ import JoinUsPage from './auth/joinUsPage';
 import Feeds from './userPages/feeds/feeds';
 import Sidebar from './userPages/profileSidebar';
 import Clubs from './userPages/clubs/clubs';
+import AskHbtu from './userPages/askHbtu/askHbtu'
 // import Home from './userPages/feeds/home'
 import ClubPage from './userPages/clubs/clubPage';
 import RenderQuiz from './userPages/events/quiz/renderQuiz.jsx'
@@ -40,8 +41,9 @@ class App extends React.Component {
                         <Route path='/login' exact component={LoginForm} />
                         <Route path='/joinus' exact component={JoinUsPage} />
                         <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={this.props.hadFilledForm} />
-                        <Route path='/feeds' exact render={props => <div className='body-container'><Sidebar/><Feeds/></div>}/>
-                        <Route path='/clubs' exact render={props => <div className='body-container'><Sidebar/><Clubs/></div>}/>
+                        <Route path='/feeds' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Feeds/></div></div>}/>
+                        <Route path='/clubs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Clubs/></div></div>}/>
+                        <Route path='/ask' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><AskHbtu/></div></div>}/>
                         {/* <Route path='/' >
                             <Home />
                         </Route> */}

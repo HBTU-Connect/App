@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .header{
     width: 100%;
-    height: 60px;
+    height: $header-height;
     // display: block;
     position: relative;
     box-sizing: border-box;
@@ -24,6 +24,7 @@
         margin: auto;
         margin-left: 3rem;
         position: relative;
+        transform: translateY(3px);
 
         &-primary{
             position: absolute;
@@ -114,13 +115,13 @@
     align-items: center;
     align-self: center;
     border-right: 1px solid rgb(165, 165, 165);
-    padding-right: 2rem;
+    padding-right: 0rem;
     margin-left: auto;
 
     & > *{
         .MuiSvgIcon-root{
             color: rgb(228, 228, 228);
-            font-size: 3rem;
+            font-size: 2.6rem;
         }
         margin-right: 2rem;
         min-width: 4rem;
@@ -155,6 +156,29 @@
         // }
     }
 
+    .user-nav__user{
+        // flex: 0 0 1fr;
+        display: flex;
+        align-self: center;
+        // justify-content: center !important;
+        // margin-right: auto;
+        margin-right: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+    
+        &-photo{
+            height: 3.2rem;
+            border-radius: 50%;
+
+            &:hover{
+                box-shadow:0 0 0 2px rgba(255, 255, 255, 0.692);
+            }
+        }
+    
+    }
+
+    
+
     // &__icon-box{
     //     position: relative;
         
@@ -186,26 +210,16 @@
     
 }
 
-.user-nav__user{
-    flex: 0 0 1fr;
-    display: flex;
-    flex-direction: column;
+.user-nav__icon-box.app-icon{
     margin-right: auto;
-    margin-left: 2rem;
-    align-items: center;
-    justify-content: flex-start;
+    margin-left: 1rem;
 
-    &-photo{
-        height: 3.2rem;
-        border-radius: 50%;
-    }
-
-    &-name{
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: #fff;
+    .MuiSvgIcon-root{
+        color: rgb(228, 228, 228);
+        font-size: 3.2rem;
     }
 }
+
 
 .header.hide{
     display: none;
