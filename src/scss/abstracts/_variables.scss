@@ -1,5 +1,11 @@
-
-$color-primary: rgb(122, 55, 153);
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&display=swap');
+// $color-primary: rgb(122, 55, 153);
+// $color-primary: rgb(126, 1, 184);
+// $color-primary: rgb(1,119,180);
+// $color-primary: rgb(66,103,178);
+$color-primary: rgb(0, 88, 136);
 $color-black-smooth: #2a2a2aa4;
 $color-white: white;
 $color-shadow: rgba(0, 0, 0, 0.39);
@@ -10,7 +16,13 @@ $primary-light: #947ADA;
 $gray: #9A9999;
 
 $gutter-horizontal: 7rem;
+$header-height: 50px;
+$body-container-height: calc(100vh - 50px);
 
 
-$font-family-primary: 'Quicksand', sans-serif;
+$font-family-primary: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
 $font-family-secondary: 'Montserrat', sans-serif;
+$font-roboto: 'Roboto', sans-serif;
+$font-open-sans: 'Open Sans', sans-serif;
+$font-crimpson: 'Lora', serif;
+$font-libre: 'Libre Baskerville', serif;

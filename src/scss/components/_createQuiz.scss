@@ -1,16 +1,31 @@
-.form-container{
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.create-quiz{
+    background-color: transparent;
+}
+.form-container-quiz{
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    min-height: $body-container-height;
+    align-items: flex-start;
+}
+
+.form-container__quiz{
     display: flex;
     flex-direction: column;
     // align-items: center;
     // border-top: 1px solid $color-primary;
-    background-color: rgb(158, 255, 255);
+    // background-color: rgb(158, 255, 255);
     margin: 2rem;
     border-radius: 1rem;
-    border: 2px solid rgb(158, 255, 255);
+    border: 2px solid;
     overflow: hidden;
     position: relative;
     z-index: 0;
     justify-content: stretch;
+    width: 70%;
 
     .form-header{
         margin-bottom: 2rem;
@@ -43,10 +58,82 @@
                 line-height: unset;
             }
         }
+        .form-settings-container{
+            width: 100%;
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: rgba(121, 121, 121, 0.356);
+        }
+
+        .form-settings{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            width: 50%;
+            height: 80%;
+            margin: 2rem auto;
+            // border: 3px solid;
+            border-radius: 1rem;
+            min-height: 10rem;
+            box-shadow: 1px 3px 5px rgb(121, 121, 121);
+            overflow: hidden;
+            
+
+            &__title{
+                width: 100%;
+                max-height: 15%;
+                font-size: 2.4rem;
+                font-weight: 600;
+                font-family: 'Roboto', sans-serif;
+                letter-spacing: .1rem;
+                display: flex;
+                background-color: white;
+                align-items: center;
+                padding: 2rem 2rem;
+                box-shadow: 1px 1px 3px rgba(85, 85, 85, 0.479);
+            }
+
+            .form-settings__settings{
+                width: 100%;
+                height: 83%;
+                overflow-y: scroll;
+                padding: 2rem;
+                padding-top: 0;
+            }
+
+            .form-settings__setting{
+                margin-top: 2rem;
+                display: flex;
+                width: 100%;
+                align-items: center;
+
+                &-title{
+                    display: flex;
+                    flex-direction: column;
+                    margin-right: auto;
+
+                    .setting-title{
+                        font-size: 1.6rem;
+                        font-family: 'Roboto', sans-serif;
+                    }
+
+                    .setting-helper-text{
+                        font-size: 1.3rem;
+                        font-family: 'Roboto', sans-serif;
+                        color: rgb(136, 136, 136);
+                    }
+                }
+            }
+        }
 
 
-        input,
-        textarea{
+        .form-title,
+        .form-description{
             border: none;
             border-bottom: 2px solid rgb(158, 255, 255);
             padding: .3rem 0rem;
@@ -65,7 +152,7 @@
             }
         }
 
-        input{
+        .form-title{
             color: black;
             font-size: 2.5rem;
             font-weight: bolder;
@@ -99,6 +186,83 @@
     
 
     .question-container{
+        &__instructions{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: white;
+            width: 80%;
+            margin: 2rem auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            padding: 2rem;
+            padding-bottom: 1rem;
+            transition: 0.3s all ease;
+
+            span{
+                font-size: 2rem;
+                font-weight: 400;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            ul{
+                list-style-type: decimal;
+                margin-top: 2rem;
+
+                li{
+                    display: flex;
+                    align-items: center;
+                    padding: .5rem 0;
+
+                    span{
+                        display: flex;
+                        flex-wrap: wrap;
+                        width: 4rem;
+                        color: rgb(138, 138, 138);
+                    }
+                    .btn-add-option{
+                        outline: none;
+                        border: none;
+                        background-color: transparent;
+                        font-size: 1.5rem;
+                        color: $color-font;
+                        font-family: inherit;
+                        cursor: text;
+                        padding: .5rem 0;
+                        font-weight: bold;
+                        box-sizing: border-box;
+        
+                        &:hover{
+                            border-bottom: 1px solid $color-font;
+                        }
+        
+                        &:active,
+                        &:focus{
+                            outline: none;
+                            border-bottom: 1px solid $color-font;
+                        }
+                    }
+
+                    .instructions{
+                        // flex: 0 0 70%;
+                        width: 90%;
+                        margin-right: 3rem;
+                        border: none;
+                        outline: none;
+                        padding: 0.5rem 0;
+                        font-size: 1.6rem;
+
+                        &:focus,
+                        &:active{  
+                            border-bottom: 1px solid $color-font;   
+                        }
+                    }
+                }
+            }
+
+            
+        }
+
         &__question{
             display: flex;
             flex-direction: column;
@@ -363,6 +527,7 @@
 
             .question-footer{
                 justify-content: flex-end;
+                align-items: center;
                 width: 100%;
                 padding-right: 2rem;
                 display: none;
@@ -381,6 +546,15 @@
                         font-family: inherit;
                         color: $color-font;
                     }
+                }
+
+                .required-container{
+                    padding-right: 1rem;
+                    border-right: 1px solid rgb(224, 224, 224);
+                    font-size: 1.6rem;
+                    color: rgb(80, 80, 80);
+                    font-family: 'Roboto', sans-serif;
+                    
                 }
 
                 input[type='time']{
@@ -466,7 +640,9 @@
                         box-sizing: border-box;
                         display: none;
 
-                        &:hover{
+                        &:hover,
+                        &:active,
+                        &:focus{
                             border-bottom: 1px solid $color-font;
                         }
                     }

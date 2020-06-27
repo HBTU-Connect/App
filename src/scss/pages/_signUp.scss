@@ -28,11 +28,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 50%;
+        width: 55%;
         height:60rem;
 
         .left-floated{
-            width: 45%;
+            width: 50%;
             height: 90%;
             margin-top: 3rem;
             background-image: linear-gradient(to right, rgba($color-black-smooth, 0.8), rgba($color-black-smooth, 0.575)), url(../../images/signup.jpg);
@@ -128,7 +128,7 @@
         }
 
         .right-floated{
-            width: 55%;
+            width: 50%;
             height: 100%;
             background: $color-white;
             display: inline-block;
