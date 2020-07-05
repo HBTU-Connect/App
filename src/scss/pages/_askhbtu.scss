@@ -144,6 +144,10 @@
         display: flex;
         flex-wrap: wrap;
 
+        .box-page-link{
+            width: 100%;
+        }
+
         .MuiChip-root{
             margin-right: 1rem;
             margin-bottom: 0.5rem;
@@ -341,6 +345,9 @@
 .portal{
     width: 100%;
     height: 100%;
+    top: 9999;
+    left: 9999;
+    transform: translate(1000, 1000);
     background-color: rgba(0, 0, 0, 0.377);
     position: absolute;
     display: flex;
@@ -559,26 +566,32 @@
             flex-direction: column;
             height: 100%;
             overflow-y: scroll;
+            overflow-x: hidden;
             font-size: 1.4rem;
 
             .element-wrapper{
-                min-height: 1.5rem;
+                // padding-top: 1rem;
+                height: max-content;
+                position: relative;
             }
 
             p{
                 margin-top: 0.5rem;
+                min-height: 1rem;
             }
 
             .code_block{
                 margin: 1rem;
-                background-color: rgb(11, 6, 39);
+                background-color: rgb(24,48,85);
                 color: white;
                 padding: 1rem;
                 margin: 2rem auto;
-                width: 90%;
+                width: 100%;
                 font-size: 1.4rem;
+                border-radius: 3px;
+                position: relative;
                 overflow-x: scroll;
-                border-radius: 5px;
+                box-sizing: border-box;
 
                 &::-webkit-scrollbar {
                     display: none;

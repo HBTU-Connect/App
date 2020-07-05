@@ -9,7 +9,7 @@ import ClubMembers from './clubPage/clubMembers';
 import ClubAbout from './clubPage/clubAbout';
 
 
-import coverImage from '../../../images/clubs/cover-1.jpg'
+import coverImage from '../../../images/background-10.jpg'
 import ECell from '../../../images/clubs/ECell-profile.jpg'
 import Qfrat from '../../../images/clubs/Quiz-profile.jpg';
 import Debnexus from '../../../images/clubs/debate.jpg';

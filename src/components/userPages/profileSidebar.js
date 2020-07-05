@@ -61,7 +61,7 @@ class Sidebar extends React.Component{
                         <NavLink to='/feeds' className='link' activeClassName='link selected'><li>Feeds</li></NavLink>
                         <NavLink to='/clubs'  className='link' activeClassName='link selected'><li>Clubs</li></NavLink>
                         <NavLink to='/ask' className='link' activeClassName='link selected'><li>Ask HBTU</li></NavLink>
-                        <NavLink to='/aroundyou' className='link' activeClassName='link selected'><li>Around You</li></NavLink>
+                        <NavLink to='/blogs' className='link' activeClassName='link selected'><li>Blogs</li></NavLink>
                     </ul>
                 </div>
                 {/* <div className='divider'></div> */}
