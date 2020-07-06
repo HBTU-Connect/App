@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 //components
 import { userField, checkBox } from '../utils/renderField';
 import validate from '../utils/validateLogin';
-import Footer from '../welcome/footer';
 
 //images
 import loginImage from '../../images/login1.png';

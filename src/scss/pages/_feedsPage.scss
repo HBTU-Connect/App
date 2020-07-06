@@ -19,7 +19,7 @@
         box-sizing: border-box;
         box-shadow: 0 0.3rem 0.5rem rgba(82, 82, 82, 0.582);
         position: relative;
-        border-radius: 1rem;
+        border-radius: 5px;
         overflow: hidden;
 
         .post{
@@ -377,6 +377,98 @@
                     border-radius: 5rem;
                     outline: none;
                 }
+            }
+        }
+    }
+
+    &__right{
+
+        .footer-section{
+            width: 90%;
+            margin: 0 auto;
+            height: auto;
+            position: relative;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+
+            &.ask-footer{
+                transform: translateX(1rem);
+                width: 85%;
+            }
+        
+            .link-menu{
+                display: block;
+                position: relative;
+                width: 100%;
+                min-height: 5rem;
+                
+        
+                ul{
+                    list-style: none;
+                    display: flex;
+                    justify-content: space-around;
+                    // align-items: center;
+        
+                    li{
+                        font-size: 1.5rem;
+                        padding: 0.3rem;
+                        text-align: center;
+                        cursor: pointer;
+                        box-sizing: border-box;
+                        border-radius: 0.5rem;
+        
+                        &:hover{
+                            background: rgba($color-primary, 0.1);
+                            color: $color-primary;
+                        }
+        
+                    }
+                }
+            }
+        
+            .social-links{
+                width: 100%;
+                // height: 3rem;
+                display: flex;
+                justify-content: space-around;
+        
+                a{
+                    // display: inline-block;
+                    font-size: 2.5rem;
+                    color: $color-primary;
+                    text-decoration: none;
+                    // padding-left: 3rem;
+                    // margin-left: 1rem;
+                }
+            }
+        
+            .copyright{
+                width: 100%;
+                padding-top: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                &-icon{
+        
+                    img{
+                        width: 1.5rem;
+                    }
+                }
+        
+                &-title{
+                    padding-left: 0.5rem;
+                    font-size: 1.5rem;
+                }
+            }
+        
+            .developer{
+                width: 100%;
+                padding-top: 1rem;
+                font-size: 1.5rem;
+                text-align: center;
+                padding-bottom: 4rem;
             }
         }
     }

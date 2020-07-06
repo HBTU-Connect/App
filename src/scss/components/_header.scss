@@ -1,8 +1,8 @@
 
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .header{
     width: 100%;
-    height: 60px;
+    height: $header-height;
     // display: block;
     position: relative;
     box-sizing: border-box;
@@ -23,10 +23,28 @@
         color: white;
         margin: auto;
         margin-left: 3rem;
+        position: relative;
+        transform: translateY(3px);
 
-        &-primary,
+        &-primary{
+            position: absolute;
+            top: 5px;
+            left: 32px;
+            font-family: $font-roboto;
+            font-size: 1.3rem;
+            padding: 0.1rem 0.5rem;
+            color: $color-primary;
+            background-color: white;
+            border-radius: 3px;
+            font-weight: 600;
+            letter-spacing: .2px;
+        }
         &-secondary{
             display: inline;
+        }
+
+        &-secondary{
+            font-family: 'Pacifico', cursive;
         }
     }
 
@@ -38,6 +56,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
 
     &__input{
         font-family: inherit;
@@ -94,25 +113,42 @@
 .user-nav{
     display: flex;
     align-items: center;
-    align-self: stretch;
+    align-self: center;
+    border-right: 1px solid rgb(165, 165, 165);
+    padding-right: 0rem;
+    margin-left: auto;
 
     & > *{
-        padding: 0 2rem;
+        .MuiSvgIcon-root{
+            color: rgb(228, 228, 228);
+            font-size: 2.6rem;
+        }
+        margin-right: 2rem;
+        min-width: 4rem;
         cursor: pointer;
-        height: 100%;
+        min-height: 4rem;
         display: flex;
         align-items: center; 
+        justify-content: center;
+    }
+
+    &__icon-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgb(228, 228, 228);
     }
 
     & > *:hover{
-        background-color: white;
-
-        .user-nav__icon{
-            fill: $color-primary;
+        .MuiSvgIcon-root{
+            color: white
+        }
+        span{
+            color: white;
         }
 
         .user-nav__user-name{
-            color: $color-primary;
+            color: white
         }
 
         // .user-nav__notification{
@@ -120,48 +156,76 @@
         // }
     }
 
-    &__icon-box{
-        position: relative;
-        
-    }
-
-    &__icon{
-        height: 2.25rem;
-        width: 2.25rem;
-        fill: #f4f2f2;
-    }
-
-    &__notification{
-        font-size: 1.2rem;
-        font-weight: 600;
-        height: 1.75rem;
-        width: 1.75rem;
-        border-radius: 50%;
-        background-color: rgb(255, 42, 42);
-        color: white;
-        position: absolute;
-        top: -1rem;
-        right: -.8rem;
-
+    .user-nav__user{
+        // flex: 0 0 1fr;
         display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &__user-photo{
-        height: 3.75rem;
-        border-radius: 50%;
+        align-self: center;
+        // justify-content: center !important;
+        // margin-right: auto;
         margin-right: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+    
+        &-photo{
+            height: 3.2rem;
+            border-radius: 50%;
+
+            &:hover{
+                box-shadow:0 0 0 2px rgba(255, 255, 255, 0.692);
+            }
+        }
+    
     }
 
-    &__user-name{
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #fff;
+    
+
+    // &__icon-box{
+    //     position: relative;
+        
+    // }
+
+    // &__icon{
+    //     height: 2.25rem;
+    //     width: 2.25rem;
+    //     fill: #f4f2f2;
+    // }
+
+    // &__notification{
+    //     font-size: 1.2rem;
+    //     font-weight: 600;
+    //     height: 1.75rem;
+    //     width: 1.75rem;
+    //     border-radius: 50%;
+    //     background-color: rgb(255, 42, 42);
+    //     color: white;
+    //     position: absolute;
+    //     top: -1rem;
+    //     right: -.8rem;
+
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    // }
+
+    
+}
+
+.user-nav__icon-box.app-icon{
+    margin-right: auto;
+    margin-left: 1rem;
+
+    .MuiSvgIcon-root{
+        color: rgb(228, 228, 228);
+        font-size: 3.2rem;
     }
 }
+
 
 .header.hide{
     display: none;
     transition: all 0.5s ease-in;
+}
+
+.MuiBadge-badge{
+    font-size: 1rem !important;
 }

@@ -23,29 +23,31 @@ class WelcomePage extends React.Component{
         
         return(
             <div className='welcome-page'>
-                <div className='header-container'>
-                    <div className='left-floated-div'>
-                        <div className='heading-container'>
-                            <span className='heading-tertiary'>Welcome to</span>
-                            <span className='heading-primary'>HBTU Connect</span>
-                            {/* <span className='heading-secondary'>Connecting Mates</span> */}
-                            <p className='heading-about'>
-                                We are Social forum with main vision to connect Mates.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-                                dolore magna aliqua.
-                            </p>
-                            <Link to='/login'>
-                            <button className='heading-login-button'>Log into your Account <span className='right-arrow'>&rarr;</span></button>
-                            </Link>
+                <div className='welcome-page__wrapper'>
+                    <div className='header-container'>
+                        <div className='left-floated-div'>
+                            <div className='heading-container'>
+                                <span className='heading-tertiary'>Welcome to</span>
+                                <span className='heading-primary'>HBTU Connect</span>
+                                {/* <span className='heading-secondary'>Connecting Mates</span> */}
+                                <p className='heading-about'>
+                                    We are Social forum with main vision to connect Mates.
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                                    dolore magna aliqua.
+                                </p>
+                                <Link to='/login'>
+                                <button className='heading-login-button'>Log into your Account <span className='right-arrow'>&rarr;</span></button>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className='right-floated-div'>
+                            <JoinUsForm />
                         </div>
                     </div>
-                    <div className='right-floated-div'>
-                        <JoinUsForm />
-                    </div>
-                </div>
-                <PageHTML />
+                    <PageHTML />
 
-                <Footer />
+                    <Footer />
+                </div>
             </div>
         );
     }
