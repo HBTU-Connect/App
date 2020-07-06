@@ -8,9 +8,11 @@
     background: rgba($color-primary,0.05);
     // overflow: hidden;
     overflow-y: scroll;
-    margin-top: calc(50px);
+    // margin-top: 50px !important;
     // justify-content: space-around;
-    max-height: $body-container-height;
+    // height: $body-container-height;
+    height: 100vh;
+    padding-top: 50px;
     
 
     &__wrapper{
@@ -72,5 +74,6 @@
         margin-left: 2rem;
         transition: none;
         height: max-content;
+        padding-bottom: 5rem;
     }
 }

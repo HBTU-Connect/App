@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
-import escapeHtml from 'escape-html'
-import { Node, Text } from 'slate'
+
 import { Divider, TextField, Button, Chip, Avatar } from '@material-ui/core'
 import { 
     People as PeopleIcon,
@@ -11,86 +10,9 @@ import {
 } from '@material-ui/icons'
 
 import { TextArea } from '../events/utils/textEditor'
-import escapeHTML from 'escape-html'
+import RenderBody from '../events/utils/htmlSerializer'
 
-const serialize = node => {
-    if (Text.isText(node)) {
-        if(node.bold){
-            console.log(node.text)
-            return `<strong>${escapeHtml(node.text)}</strong>`
-        }
-        if (node.code) {
-            return `<code>${escapeHtml(node.text)}</code>`
-        }
 
-        if (node.italic) {
-            return `<em>${escapeHtml(node.text)}</em>`
-        }
-      return escapeHtml(node.text)
-    }
-    let newurl
-    
-    const children = node.children.map(n => serialize(n)).join('')
-    if (node.type === 'video'){
-        const url = node.url
-        let tempUrl = url.split('watch?v=')
-        if(url.includes('youtube')){
-            newurl = `${tempUrl[0]}embed/${tempUrl[1]}`
-        }
-    }
-    if(node.type === 'image'){
-        const url = node.url
-        const temp = url.split('/')
-        const name = temp[temp.length -1]
-        newurl = `https://source.unsplash.com/${name}`
-    }
-
-    
-  
-    switch (node.type) {
-        case 'block-quote':
-            return `<blockquote><p>${children}</p></blockquote>`
-        case 'paragraph':
-            return `<p>${children}</p>`
-        case 'link':
-            return `<a href="${escapeHtml(node.url)}">${children}</a>`
-        case 'code_block':
-            return `<div class='code_block'>${children}</div>`
-        case 'code-line':
-            return `<pre>${children}</pre>`
-        case 'heading-one':
-            return `<h2>${children}</h2>`
-        case 'heading-two':
-            return `<h3>${children}</h3>`
-        case 'bulleted-list':
-            return `<ul>${children}</ul>`
-        case 'numbered-list':
-            return `<ol>${children}</ol>`
-        case 'list-item':
-            return `<li>${children}</li>`
-        case 'image':
-            return `<div class='image-container'><img alt=${escapeHtml(node.url)} src=${escapeHtml(newurl)} />${children}</div>`
-        case 'video':
-            return `<div class='video-container'><iframe title='Youtube Video' src=${escapeHtml(newurl)} />${children}</div>`
-        default:
-            return children
-    }
-  }
-
-const renderReviewBody = (bodyValue) => {
-    // let htmlContent = ''
-    return bodyValue.map((node, index) => {
-        //   htmlContent = htmlContent + serialize(node)
-          return(
-                <div key={index} className='element-wrapper' dangerouslySetInnerHTML={{__html: serialize(node) }} />
-            )
-        //   console.log(serialize(node))
-    })
-    // console.log(htmlContent)
-    // return(
-    //     <div dangerouslySetInnerHTML={{__html: htmlContent }} />
-    // )
-  }
   
 const AskQuestion = (props) => {
     const [ openSelect, setOpenSelect ] = useState(false)
@@ -136,8 +58,8 @@ const AskQuestion = (props) => {
         if(!review){
             setReview(true)
         }else{
-            const values = {...formValues, body: bodyValue, privacy: selectValue, tags: tags }
-            console.log(values)
+            const values = {privacy: selectValue, question: { ...formValues, body: bodyValue, tags: tags }, answers: [] }
+            window.localStorage.setItem('question', JSON.stringify(values))
         }
     }
 
@@ -210,7 +132,7 @@ const AskQuestion = (props) => {
                         {formValues.title}
                     </div>
                     <div className='review-body'>
-                        {renderReviewBody(bodyValue)}
+                        <RenderBody bodyValue={JSON.stringify(bodyValue)} />
                     </div>
                 </div>}
                 <div className='portal-footer portal-ask-question'>

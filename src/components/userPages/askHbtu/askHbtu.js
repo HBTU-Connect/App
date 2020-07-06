@@ -25,6 +25,7 @@ const AskHbtu = (props) => {
     useEffect(() => {
         const body = document.getElementsByClassName('body-container')[0]
         body.addEventListener('scroll', onScroll)
+        console.log(window.location)
     }, [])
 
     useEffect(() => {
@@ -34,6 +35,8 @@ const AskHbtu = (props) => {
         }
         else{
             portalRef.current.removeAttribute('style')
+            // portalRef.current.style.top = '9999'
+            // portalRef.current.style.left = '9999'
         }
     }, [displayPortal])
 
@@ -42,8 +45,9 @@ const AskHbtu = (props) => {
         const parent = document.getElementsByClassName('body-container')[0]
         const sibling = document.getElementsByClassName('content-container__left')[0]
         const rect = el.getBoundingClientRect()
+        // const parentHeight = parent.offsetHeight -50
         // let height 
-        if(parent.scrollTop > (rect.height -  parent.offsetHeight) && parent.scrollTop < (sibling.offsetHeight - parent.offsetHeight +60)){
+        if(parent.scrollTop > (rect.height -  parent.offsetHeight ) && parent.scrollTop < (sibling.offsetHeight - parent.offsetHeight +60 )){
             if(rect.height -  parent.offsetHeight <= 0)
                 el.style.transform = `translateY(${parent.scrollTop}px)`
             else{
@@ -65,6 +69,7 @@ const AskHbtu = (props) => {
             <AskQuestion portalRef={portalRef} displayPortal={displayPortal} setDisplayPortal={setDisplayPortal} userImg={profileImage} />
         </Portal>
         <div className='content-container'>
+        
             <div className='content-container__left ask-hbtu'>
                 <AskCard handleAskClick={handleAskClick} />
                 <Suggestions />

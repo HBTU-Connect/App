@@ -1,7 +1,14 @@
 .welcome-page{
     width: 100%;
-    height: auto;
+    height: 100vh;
     overflow: hidden;
+    overflow-y: scroll;
+
+    &__wrapper{
+        width: 100%;
+        height: max-content;
+
+    }
     
 
     .header-container{

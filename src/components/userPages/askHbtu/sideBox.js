@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Chip, Avatar, Divider } from '@material-ui/core'
-import { Person as PersonIcon, QuestionAnswerSharp } from '@material-ui/icons'
+import { Person as PersonIcon,
+         ChevronRight as ChevronRightIcon
+} from '@material-ui/icons'
 
 
 const renderTags = (tags, activeChip, setActiveChip) => {
@@ -68,6 +71,12 @@ const SideBox = (props) => {
             <div className='sidebox-content sidebox-ask-content'>
                 {props.tags && renderTags(props.tags, activeChip, setActiveChip)}
                 {props.myQuestions && renderMyQuestions(props.myQuestions)}
+                {props.myQuestions && <>
+                    <Divider style={{ marginTop: '1rem', width: '100%'}}/>
+                    <div className='box-page-link'>
+                        <Link to='/ask?q=myquestions' className='link'>View all<ChevronRightIcon fontSize='large' /> </Link>
+                    </div>
+                </>}
             </div>
         </div>
     )

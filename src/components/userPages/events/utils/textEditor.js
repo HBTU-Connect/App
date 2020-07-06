@@ -321,8 +321,8 @@ const withShortcuts = editor => {
 }
 
 
-const TextEditor = () => {
-  const [ value, setValue ] = useState(initialValue)
+const TextEditor = ({ value, setValue }) => {
+  // const [ value, setValue ] = useState(initialValue)
   const [ height, setHeight ] = useState(0)
   const [ position, setPosition ] = useState(0)
   const [ display, setDisplay ] = useState(false)
@@ -407,6 +407,7 @@ const TextEditor = () => {
             anchor: { path, offset: start },
             focus: { path, offset: end },
           })
+          // Editor.addMark(editor, type, true)
         }
 
         start = end
@@ -420,11 +421,13 @@ const TextEditor = () => {
         if (typeof token !== 'string') {
           let type = token.type
           if(token.type === 'class-name') type = 'classname'
+          // toggleMark(editor, type)
           ranges.push({
             [type]: true,
             anchor: { path, offset: start },
             focus: { path, offset: end },
           })
+          // Editor.addMark(editor, type, true)
         }
 
         start = end
@@ -439,11 +442,15 @@ const TextEditor = () => {
         const end = start + length
 
         if (typeof token !== 'string') {
+          let type = token.type
+          if(token.type === 'class-name') type = 'classname'
+          // toggleMark(editor, type)
           ranges.push({
-            [token.type]: true,
+            [type]: true,
             anchor: { path, offset: start },
             focus: { path, offset: end },
           })
+          
         }
 
         start = end
@@ -478,7 +485,7 @@ const TextEditor = () => {
             <Editable
               renderElement={renderElement}
               decorate={decorate}
-              className='text-editor__editor'
+              className='text-editor__editor blog-content'
               renderLeaf={renderLeaf}
               placeholder="Tell you story..."
               spellCheck
@@ -584,8 +591,11 @@ const Element = (props) => {
     if(selected && focused){
       if(attributes.ref.current.offsetTop < 250)
         setPosition(153)
-      else
-        setPosition(attributes.ref.current.offsetTop-50)
+      else{
+        const el = document.getElementsByClassName('text-editor__header')[0]
+        setPosition(attributes.ref.current.offsetTop- el.offsetHeight/2 - 50)
+
+      }
       if(element.type === 'video' || element.type === 'image' || element.type === 'code_block' || element.type === 'editable-void' || element.type === 'title'){
         setDisplay(false)
       }else{
@@ -622,6 +632,7 @@ const Element = (props) => {
           content: `'${element.placeholder}'`
       });
   }
+  
 
   switch (element.type) {
     case 'block-quote':
@@ -669,8 +680,9 @@ const Element = (props) => {
 }
 
 const Leaf = ({ attributes, children, leaf }) => {
-  const type = Object.keys(leaf)[1]
-  if(type){
+  
+  let type = Object.keys(leaf)[1]
+  if(type && type !== 'bold' && type !== 'italic' && type !== 'code'){
     children = <span className={`token ${type}`}>{children}</span>
   }
   if (leaf.bold) {
@@ -708,6 +720,7 @@ const CodeButton = ({ format, icon, size, setExpand, title }) => {
       onMouseDown={event => {
         event.preventDefault()
         toggleCode(editor, format)
+        // toggleMark(editor, format, true)
         if(setExpand)setExpand(false)
       }}
     >
@@ -1376,7 +1389,6 @@ const TextAreaElement = (props) => {
   const input = useRef(null)
 
   // placeholder[editor.children.length-1]
-  
 
   switch (element.type) {
     case 'block-quote':
@@ -1423,12 +1435,112 @@ export const TextArea = ({ value, setValue }) => {
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withShortcuts(withCodeBlockVoids(withLinks(withEditableVoids(withImages(withEmbeds(withHistory(withReact(createEditor())))))))), [])
   
+  const decorate = useCallback(([node, path]) => {
+    const ranges = []
+    
+    if (!Text.isText(node)) {
+      return ranges
+    }
+
+    const getLength = token => {
+      if (typeof token === 'string') {
+        return token.length
+      } else if (typeof token.content === 'string') {
+        return token.content.length
+      } else {
+        return token.content.reduce((l, t) => l + getLength(t), 0)
+      }
+    }
+    
+    if(editor.selection && editor.children[editor.selection.anchor.path[0]].type === 'code_block'){
+
+      const jsxTokens = Prism.tokenize(node.text, Prism.languages['javascript'])
+      const pythonTokens =Prism.tokenize(node.text, Prism.languages['python'])
+      const htmlTokens =Prism.tokenize(node.text, Prism.languages['html'])
+      let start = 0
+
+      for (const token of jsxTokens) {
+        const length = getLength(token)
+        const end = start + length
+
+        if (typeof token !== 'string') {
+          let type = token.type
+          if(token.type === 'class-name') type = 'classname'
+          ranges.push({
+            [type]: true,
+            anchor: { path, offset: start },
+            focus: { path, offset: end },
+          })
+        }
+
+        start = end
+      }
+      start = 0
+
+      for (const token of pythonTokens) {
+        const length = getLength(token)
+        const end = start + length
+
+        if (typeof token !== 'string') {
+          let type = token.type
+          if(token.type === 'class-name') type = 'classname'
+          ranges.push({
+            [type]: true,
+            anchor: { path, offset: start },
+            focus: { path, offset: end },
+          })
+        }
+
+        start = end
+      }
+      start = 0
+
+      for (const token of htmlTokens) {
+        const length = getLength(token)
+        const end = start + length
+
+        if (typeof token !== 'string') {
+          let type = token.type
+          if(token.type === 'class-name') type = 'classname'
+          ranges.push({
+            [type]: true,
+            anchor: { path, offset: start },
+            focus: { path, offset: end },
+          })
+        }
+
+        start = end
+      }
+    }
+    else{
+      const tokens = Prism.tokenize(node.text, Prism.languages['markdown'])
+      let start = 0
+
+      for (const token of tokens) {
+        const length = getLength(token)
+        const end = start + length
+
+        if (typeof token !== 'string') {
+          ranges.push({
+            [token.type]: true,
+            anchor: { path, offset: start },
+            focus: { path, offset: end },
+          })
+        }
+
+        start = end
+      }
+    }
+    
+    return ranges
+    // eslint-disable-next-line
+  }, [])
 
   return(
     <>
       
       <Slate editor={editor} value={value} onChange={v => setValue(v)} >
-          <div className='text-editor text-area-editor' >
+          <div className='text-area-editor' >
           <div className='text-area-editor__header'>
             <MarkButton format="bold" icon={<FormatBoldIcon fontSize='large'/>} />
             <MarkButton format="italic" icon={<FormatItalicIcon fontSize='large'/>} />
@@ -1452,6 +1564,7 @@ export const TextArea = ({ value, setValue }) => {
               renderLeaf={renderLeaf}
               placeholder="Add here"
               spellCheck='false'
+              decorate={decorate}
               // autoFocus
               tabIndex={0}
               onKeyDown={event => {

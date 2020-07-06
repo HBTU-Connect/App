@@ -412,6 +412,7 @@ const RenderSettings = ({userSettings, clearFields, schedule, autofill }) => {
         if(schedule){
             setDate(schedule)
         }
+        // eslint-disable-next-line
     }, [])
 
     useEffect(()=> {
@@ -420,6 +421,7 @@ const RenderSettings = ({userSettings, clearFields, schedule, autofill }) => {
             console.log(date.getTime())
             autofill('schedule', date)
         }
+        // eslint-disable-next-line
     }, [date])
 
     useEffect(() => {
@@ -585,8 +587,10 @@ class CreateQuiz extends React.Component{
     onFormSubmit = (formValues) => {
         // event.preventDefault()
         if(formValues.questions){
+            // eslint-disable-next-line
             formValues.questions.map((question, index) => {
                 if(question.type === 'Multiple Select'){
+                    // eslint-disable-next-line
                     question.options.map((option, index) => {
                         if(!question.answer[index]){
                             question.answer[index] = false

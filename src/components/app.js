@@ -14,7 +14,11 @@ import JoinUsPage from './auth/joinUsPage';
 import Feeds from './userPages/feeds/feeds';
 import Sidebar from './userPages/profileSidebar';
 import Clubs from './userPages/clubs/clubs';
-import AskHbtu from './userPages/askHbtu/askHbtu'
+import AskHbtu from './userPages/askHbtu/askHbtu';
+import QuestionPage from './userPages/askHbtu/questionPage';
+import Blog from './userPages/blog/blog';
+import WriteBlog from './userPages/blog/writeBlog'
+import BlogPage from './userPages/blog/blogPage';
 // import Home from './userPages/feeds/home'
 import ClubPage from './userPages/clubs/clubPage';
 import RenderQuiz from './userPages/events/quiz/renderQuiz.jsx'
@@ -44,6 +48,12 @@ class App extends React.Component {
                         <Route path='/feeds' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Feeds/></div></div>}/>
                         <Route path='/clubs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Clubs/></div></div>}/>
                         <Route path='/ask' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><AskHbtu/></div></div>}/>
+                        <Route path='/ask/:id' exact component={QuestionPage} />
+
+                        <Route path='/blogs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Blog /></div></div>}/>
+                        <Route path='/blogs/:id/edit' exact component={WriteBlog} />
+                        <Route path='/blogs/new' exact component={WriteBlog} />
+                        <Route path='/blogs/:id' exact component={BlogPage} />
                         {/* <Route path='/' >
                             <Home />
                         </Route> */}

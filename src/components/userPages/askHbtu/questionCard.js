@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Chip, Avatar } from '@material-ui/core'
 import { Person as PersonIcon } from '@material-ui/icons'
 
@@ -33,9 +34,11 @@ const QuestionCard = (props) =>{
                 <Avatar className={classes.small}><PersonIcon /></Avatar>
                 <span>Yashveer</span> asked
             </div>
+            <Link className='link' to='/ask/87758342'>
             <div className='card-title question-title'>
                 Why can't Python set the Excel print area on a VM without open RDP connection?
             </div>
+            </Link>
             <div className='card-footer question-details'>
                 <div className='question-details__upvotes'>
                     <span className='question-details__count'>3</span>
