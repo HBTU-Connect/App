@@ -26,7 +26,6 @@ const WriteBlog = () => {
     const defaultOptions = ['One', 'Two', 'Three']
 
     const handleNextClick = () => {
-        console.log(bodyValue)
         if(bodyValue[0] && bodyValue[0].type === 'title' && bodyValue[0].children[0] && bodyValue[0].children[0].text){
             setTitleValue(bodyValue[0].children[0].text)
         }
@@ -35,8 +34,8 @@ const WriteBlog = () => {
     
     const handlePublishClick = () => {
         let formValues = {title: titleValue, subTitle: subTitleValue, body: bodyValue, tags: tagValue}
+        window.localStorage.setItem('blog', JSON.stringify(formValues))
         console.log(formValues)
-
     }
 
     return(

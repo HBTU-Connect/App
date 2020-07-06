@@ -485,7 +485,7 @@ const TextEditor = ({ value, setValue }) => {
             <Editable
               renderElement={renderElement}
               decorate={decorate}
-              className='text-editor__editor'
+              className='text-editor__editor blog-content'
               renderLeaf={renderLeaf}
               placeholder="Tell you story..."
               spellCheck

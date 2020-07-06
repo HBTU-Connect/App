@@ -6,7 +6,7 @@ import { Text } from 'slate'
 const serialize = node => {
     if (Text.isText(node)) {
         if(node.bold){
-            console.log(node.text)
+            // console.log(node.text)
             return `<strong>${escapeHtml(node.text)}</strong>`
         }
         if (node.code) {
@@ -80,6 +80,8 @@ const serialize = node => {
             return `<div class='image-container'><img alt=${escapeHtml(node.url)} src=${escapeHtml(newurl)} />${children}</div>`
         case 'video':
             return `<div class='video-container'><iframe title='Youtube Video' src=${escapeHtml(newurl)} />${children}</div>`
+        case 'title':
+            return null
         default:
             return children
     }
