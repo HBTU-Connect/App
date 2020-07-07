@@ -1,215 +1,145 @@
-.clubs-list-container{
+.content-container__left{
+    &-helper-text{
+        display: flex;
+        font-size: 2.4rem;
+        font-weight: 600;
+        margin-bottom: 2.5rem;
+        color: rgb(99, 99, 99);
+    }
+}
+
+.club-card{
+    display: flex;
+    // display: block;
+    align-items: center;
+
+    .link{
+        display: flex;
+    }
+
+    .MuiAvatar-root{
+        width: 10rem;
+        height: 10rem;
+        // float: left;
+    }
+
+    img{
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        box-shadow: 0 0 0px 1px rgb(216, 216, 216);
+    }
+
+    &__content{
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        // margin-left: 1.5rem;
+    }
+
+    &__name{
+        // display: block;
+        display: flex;
+        color: black;
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }
+
+    &__desc{
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+        color: rgb(165, 165, 165);
+        margin-bottom: 1rem;
+    }
+
+    &__details{
+        color: rgb(172, 172, 172);
+        font-size: 1.4rem;
+        display: inline-flex;
+    }
+}
+
+.content-container__right{
+    width: 100%;
+
+    .MuiButton-root{
+        font-size: 1.4rem;
+        width: 85%;
+        display: flex;
+        align-items: center;
+        text-transform: none;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+
+    // .club-footer{
+    //     width: 100%;
+    // }
+}
+
+.request-club-card__wrapper{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.288);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.request-club-card{
+    width: 50rem;
     background-color: white;
     padding: 2rem;
+    min-height: 70%;
     display: flex;
     flex-direction: column;
-    box-shadow: 1px 3px 5px $color-shadow;
-    border-radius: 10px;
-    margin-bottom: 5rem;
-}
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.315);
 
-.section-heading{
-    font-size: 52px;
-}
-
-.divider{
-    margin-top: 0px;
-    margin-left: 7px;
-    margin-bottom: 10px;
-    width: 120px;
-}
-
-.section-content{
-    margin-top: 3rem;
-    font-size: 1.8rem;
-    margin-left: 5px;
-    margin-bottom: 3rem;
-}
-
-.my-clubs__container{
-    margin-top: 2rem;
-    border: 2px solid $color-primary;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    grid-gap: 1rem;
-
-    &-heading{
-        position: relative;
-        grid-column: 1 / -1;
+    &__header{
+        font-size: 2.4rem;
         font-weight: 600;
-        font-size: 1.6rem;
-        font-family: inherit;
-        color: $color-primary;
-        transform: translate(0px, -12px);
-        z-index: 1;
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: center;
 
-        &::before{
-            content: '';
-            background-color: white;
-            width: 10rem;
-            height: 2rem;
-            display: block;
-            position: absolute;
-            z-index: -1;
-            left: -10px;
+        span{
+            margin-right: auto;
         }
     }
 
-    &-card{
-        width: 15rem;
-        height: 16rem;
+    &__tile{
+        margin-bottom: 3rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: $color-primary;
-        border: white 2px solid;
-        border-radius: .8rem;
-        transition: all .3s ease;
-        z-index: 10;
-        margin: 3rem 0;
 
-        .club-profile{
-            width: 6rem;
-            height: 6rem;
-            border-radius: 50%;
-            object-fit: cover;
-            border: white solid 2px;
-            transition: inherit;
-            transform: translateY(-35px);
-        }
-
-        .club-name{
-            padding: 2rem 1.5rem;
-            font-size: 2rem;
-            color: white;
-            font-family: inherit;
-            font-weight: 600;
-            letter-spacing: 1.4px;
-            transition: inherit;
-            transform: translateY(-40px);
-        }
-
-        .club-details{
-            display: none;
-            transition: inherit;
-        }
-
-        .club-view{
-            // visibility: hidden;
-            transition: inherit;
-            transform: translateY(-20px);
+        .MuiInputBase-root{
+            font-size: 1.4rem;
+            line-height: 1.8rem;
         }
     }
-}
 
-.other-clubs__container{
-    margin-top: 8rem;
-    border: 2px solid $color-primary;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    grid-gap: 3rem;
-    padding-bottom: 5rem;
-
-    &-heading{
-        position: relative;
-        grid-column: 1 / -1;
-        font-weight: 600;
+    &__title{
         font-size: 1.6rem;
-        font-family: inherit;
-        color: $color-primary;
-        transform: translate(0px, -12px);
-        z-index: 1;
-
-        &::before{
-            content: '';
-            background-color: white;
-            width: 21rem;
-            height: 2rem;
-            display: block;
-            position: absolute;
-            z-index: -1;
-            left: -10px;
-        }
+        font-weight: 500;
+        margin-bottom: 1rem;
     }
 
-    &-card{
-        width: 15rem;
-        height: 18rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: $color-primary;
-        border: white 2px solid;
-        border-radius: .8rem;
-        transition: all .3s ease;
-        margin-top: 5rem;
-        // margin: 2rem;
-        // margin-bottom: 10rem;
-        z-index: 10;
-        // margin-right: 3rem;
-
-        .club-profile{
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            object-fit: cover;
-            border: white solid 2px;
-            transition: inherit;
-        }
-
-        .club-name{
-            padding: 2rem 1.5rem;
-            font-size: 2rem;
-            color: white;
-            font-family: inherit;
-            font-weight: 600;
-            letter-spacing: 1.4px;
-            transition: inherit;
-        }
-
-        .club-details{
-            display: none;
-            transition: inherit;
-        }
-
-        .club-view{
-            // visibility: hidden;
-            display: none;
-            transition: inherit;
-        }
-
-        &:hover{
-            transform: scale(1.4);
-
-            .club-profile{
-                transform: translateY(-20px);
-            }
-
-            .club-name{
-                transform: translateY(-35px) scale(.7);
-            }
-
-            .club-details{
-                display: block;
-                transform: translateY(-40px);
-                padding: 0rem 1.75rem;
-                text-align: center;
-                color: white;
-                font-size: 1rem;
-                font-family: inherit;
-            }
-
-            .club-view{
-                display: block;
-                transform: scale(.8) translateY(-20px);
-            }
-        }
+    &__helper{
+        font-size: 1.2rem;
+        color: rgb(141, 141, 141);
+        margin: .5rem 0;
     }
 
+    .MuiButton-root{
+
+        font-size: 1.4rem;
+        text-transform: capitalize;
+
+    }
 }
