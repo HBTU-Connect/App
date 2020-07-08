@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge, Avatar } from '@material-ui/core';
+import { connect } from 'react-redux'
+import { Badge } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Chat as ChatIcon,
         Home as HomeIcon,
@@ -8,6 +9,7 @@ import { Chat as ChatIcon,
         SearchRounded as SearchIcon,
         Apps as AppsIcon
 } from '@material-ui/icons';
+import{ headerDisplay } from '../actions/headerAction'
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
@@ -31,40 +33,23 @@ const StyledBadge = withStyles((theme) => ({
     },
   }))(Badge);
 
-class Header extends React.Component {
-    state = { addClassName : 'header hide', location: ''}
+const Header = (props) =>  {
+    // state = { addClassName : ''}
+    const [ headerClass, setHeaderClass ] = useState('')
 
-    componentDidMount(){
-        window.addEventListener('scroll', this.handleScroll);
-        window.onload = () => {
-            this.setState({ location: window.location.pathname})
-            console.log(this.state.location, window.location.pathname)
-        }
-    }
-    
-    // componentWillUnmount(){
-    //     window.removeEventListener('scroll', this.handleScroll);
-    // }
-    
-    handleScroll = (event) => {
-        let scrollTop = window.pageYOffset;
-        if(scrollTop > 665){
-            this.setState({
-                addClassName: 'header'
-            });
-        }else{
-            this.setState({
-                addClassName: 'header hide'
-            });
-        } 
-    }
+
+    useEffect(() => {
+        console.log(props.UI)
+        if(props.UI)
+        setHeaderClass(props.UI.displayHeader)
+    }, [props.UI])
 
     // svgRender = (iconName, classname ) => {
     //     const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
     //     return <svg className={`${classname}__icon`} dangerouslySetInnerHTML={{__html: useTag }} />;
     // }
 
-    onAuthRender = () => {
+    const onAuthRender = () => {
         
         if(true){
             return (
@@ -84,14 +69,14 @@ class Header extends React.Component {
                     </div>
                     </Link>
                     
-                    <Link to='/feeds' className='link'>
+                    <Link to='/messaging' className='link'>
                     <div className='user-nav__icon-box'>
                         <ContentBadge color="secondary" style={{ fontSize: '1rem'}} badgeContent={7} max={99}>
                             <ChatIcon />
                         </ContentBadge>
                     </div>
                     </Link>
-                    <Link to='/feeds' className='link'>
+                    <Link to='/notification' className='link'>
                     <div className='user-nav__icon-box'>
                         <ContentBadge color="secondary" badgeContent={0} max={99}>
                             <NotificationsIcon />
@@ -125,21 +110,27 @@ class Header extends React.Component {
         }
     }
 
-    render(){
-        return (
-            <div className={ this.state.location !== '/login' || this.state.location !== '/signup' ?( this.state.location === '/' ? `${this.state.addClassName}` : 'header') : 'header hide' } ref='target'>
-            
-                <Link to='/' className='link'>
-                <div className='header-main--logo'>
-                    {/* <img src={logo} alt='HBTU_Connect' /> */}
-                    <div className='header-main--logo-primary'>HBTU </div>
-                    <div className='header-main--logo-secondary'>Connect</div>
-                </div>
-                </Link>
-                {this.onAuthRender()}
+    return (
+        <div className={`header ${headerClass}`}>
+        
+            <Link to='/' className='link'>
+            <div className='header-main--logo'>
+                {/* <img src={logo} alt='HBTU_Connect' /> */}
+                <div className='header-main--logo-primary'>HBTU </div>
+                <div className='header-main--logo-secondary'>Connect</div>
             </div>
-        );
+            </Link>
+            {onAuthRender()}
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return{
+        UI: state.UIData
     }
 }
 
-export default Header;
+export default connect(mapStateToProps,{
+    headerDisplay
+})(Header);

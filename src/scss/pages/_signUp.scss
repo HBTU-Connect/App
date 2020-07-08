@@ -55,6 +55,7 @@
                 margin-top: 0.5rem;
                 background: $color-white;
                 width: 8rem;
+                margin-left: 0;
             }
 
             .page-content{
@@ -131,7 +132,8 @@
             width: 50%;
             height: 100%;
             background: $color-white;
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
             position: relative;
             box-sizing: border-box;
             box-shadow: 0 0.5rem 0.5rem $color-shadow;
@@ -152,13 +154,12 @@
                 }
             }
 
-            .form-container{
-                width: 80%;
-                margin-left: 10%;
-
-                .disabled-field{
-                    background: red;
-                }
+            .form-container__sign-up{
+                width: 100%;
+                height: 100%;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
 
                 .form-heading{
                     padding-top: 3rem;
@@ -172,292 +173,62 @@
                         margin-top: 0.5rem;
                         width: 6rem;
                         height: 0.4rem;
+                        margin-left: 0;
                     }
                 }
 
-                
+                .input-field__signup{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1rem;
+                    font-size: 1.4rem;
+                    padding: 0;
 
-                .input-field{
-                    width: 100%;
-                    height: 6rem;
-                    text-align: left;
-                    margin: 0 auto;
-                    display: block;
-                    position: relative;
-                    transition: all 0.2s ease;
-
-                    &:nth-child(1){
-                        margin-right: 1.5rem;
-                    }
-
-                    &:nth-child(1),
-                    &:nth-child(2){
-                        width: calc((100% - (1.5rem))/2);
-                        display: inline-block;
-                        position: relative;
-                    }
-
-                    &--label{
-                        color: $color-font;
-                        position: absolute;
-                        left: 1rem;
-                        top:0.4rem;
-                        font-size: 1.7rem;
-                        font-family: $font-family-primary;
-                        transition: all 0.2s ease;
-                        z-index: 10;
-
-                        &.touched{
-                            transform: translate( -1.5rem , -2.5rem) scale(0.8);
-                            color: rgb(43, 184, 43);
-                        }
-
-                    }
-
-                    &.checkbox{
-                        font-size: 1.5rem;
-                        font-family: $font-family-primary;
-                        position: relative;
-                        color: $color-black-smooth;
-                        cursor: pointer;
-                        padding-left:3rem;
-                        
-                    }
-
-                    &--checkbox,
-                    input[type="checkbox"]{
-                        position: absolute;
-                        left: 0;
-                        top: 0.2rem;
-                        z-index: 100;
-                        width: 2rem;
-                        height: 2rem;
-                        cursor: pointer;
-
-                    }
-
-                    &--value,
-                    input{
+                    .MuiFormControl-root{
                         width: 100%;
-                        height: 3rem;
-                        z-index: 100;
-                        position: relative;
-                        background: transparent;
-                        font-family: $font-family-secondary;
-                        box-sizing: border-box;
+                    }
 
-                        &.touched{
-                            border-color: rgb(43, 184, 43);
+                    .MuiFormControlLabel-root{
+                        margin-right: 0;
+                    }
+
+                    .MuiSvgIcon-root{
+                        width: 1.3em;
+                        height: 1.3em;
+                    }
+
+                    .MuiFormGroup-root{
+                        display: flex;
+                        justify-content: space-between;
+                    }
+
+                    &.user{
+                        margin-bottom: 2rem;
+                    }
+
+                    &.name-field{
+                        display: flex;
+                        justify-content: space-between;
+
+                        .MuiFormControl-root{
+                            width: 48%;
                         }
                     }
 
-                    &--radio{
-                        display: inline-block;
-                        font-size: 1.6rem;
-                        font-family: $font-family-primary;
-                        box-sizing: border-box;
-                        padding-bottom: 2rem;
-
-                        &--label{
-                            position: relative;
-                            margin-right: 3rem;
-                            padding-left: 2.5rem;
-                            cursor: pointer;
-                            -webkit-user-select: none;
-                            -moz-user-select: none;
-                            -ms-user-select: none;
-                            user-select: none;
-
-                                /* Hide the browser's default radio button */
-                                 input {
-                                    position: absolute;
-                                    opacity: 0;
-                                    cursor: pointer;
-                                }
-                                
-                                /* Create a custom radio button */
-                                .checkmark {
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    height: 2rem;
-                                    width: 2rem;
-                                    background-color: #eee;
-                                    border-radius: 50%;
-                                }
-                                
-                                /* On mouse-over, add a grey background color */
-                                :hover input ~ .checkmark {
-                                    background-color: #ccc;
-                                }
-                                
-                                /* When the radio button is checked, add a blue background */
-                                 input:checked ~ .checkmark {
-                                    background-color: rgb(43, 184, 43);
-                                }
-                                
-                                /* Create the indicator (the dot/circle - hidden when not checked) */
-                                .checkmark:after {
-                                    content: "";
-                                    position: absolute;
-                                    display: none;
-                                }
-                                
-                                /* Show the indicator (dot/circle) when checked */
-                                 input:checked ~ .checkmark:after {
-                                    display: block;
-                                }
-                                
-                                /* Style the indicator (dot/circle) */
-                                 .checkmark:after {
-                                    top: 6px;
-                                    left: 6px;
-                                    width: 8px;
-                                    height: 8px;
-                                    border-radius: 50%;
-                                    background: white;
-                                }
-
-                                &.male{
-                                    color: rgb(43, 184, 43);
-                                }
-                                &.female{
-                                    color: rgb(43, 184, 43);
-                                }
-                                &.other{
-                                    color: rgb(43, 184, 43);
-                                }
-
-                        }
-                    }
-                    
-                }
-
-                .user-field{
-                    width: 100%;
-                    height: 6.5rem;
-                    text-align: left;
-                    margin: 0 auto;
-                    display: block;
-                    position: relative;
-                    transition: all 0.2s ease;
-
-                    .password-show{
-                        position: absolute;
-                        right: 1.3rem;
-                        top: 0rem;
-                        width: 2rem;
-                        cursor: pointer;
-                        z-index: 1000;
-
-                        img{
-                            width: 3rem;
-                            position: relative;
-                        }
-
-                    }
-
-
-                    &--label{
-                        color: $color-font;
-                        position: absolute;
-                        left: 1rem;
-                        top:0.4rem;
-                        font-size: 1.7rem;
-                        font-family: $font-family-primary;
-                        transition: all 0.2s ease;
-                        z-index: 10;
-
-                        &.touched{
-                            transform: translate( -1.5rem , -2.5rem) scale(0.8);
-                            color: rgb(43, 184, 43);
-                        }
-
-                    }
-
-                    &--value,
-                    input{
-                        width: 100%;
-                        height: 3rem;
-                        border: 0.1rem solid rgb(105, 105, 105);
-                        border-radius: 0.2rem;
-                        outline: none;
-                        padding-left: 0.5rem;
-                        color: $color-font;
-                        font-size: 1.6rem;
-                        z-index: 100;
-                        position: relative;
-                        background: transparent;
-                        font-family: $font-family-secondary;
-                        box-sizing: border-box;
-
-                        &.touched{
-                            border-color: rgb(43, 184, 43);
-                        }
-
-                        &.error{
-                            border-color: red;
-                        }
-                
-                        &-error{
-                            position: absolute;
-                            right: 0;
-                            color: red;
-                            font-size: 1.2rem;
-                            display: block;
-                            font-family: $font-family-primary;
-                        }
+                    &.last{
+                        margin-bottom: auto;
                     }
                 }
 
                 .form-button{
-                    position: absolute;
-                    left: 50%;
-                    bottom: 3rem;
-                    transform: translateX(-50%);
-                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
 
-                    button{
-                        margin: 0 auto;
-                        width: 12rem;
-                        height: 4rem;
-                        font-size: 2.6rem;
-                        background: $color-white;
-                        font-family: $font-family-primary;
-                        color: $color-primary;
-                        font-weight: 500;
-                        border: none;
-                        outline: none;
-                        cursor: pointer;
-                        transition: all 0.2s ease;
-                        float: left;
-                        position: relative;
-
-                        &:hover{
-                            transform: translateY(-0.3rem);
-                            text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.486);
-                        }
-
-                        &:active{
-                            transform: translateY(-0.2rem);
-                        }
-
-                        &.next{
-                            float: right;
-                            margin-right: 1.5rem;
-                        }
-                        &.previous{
-                            float: left;
-                            margin-left: 2rem;
-                        }
-                        &.submit{
-                            float: right;
-                            margin-right: 2rem;
-                            color: white;
-                            background: $color-primary;
-                            border-radius: 0.5rem;
-                            box-shadow: 0 0.2rem 0.3rem $color-shadow;
-                        }
+                    .MuiButton-root{
+                        font-size: 1.4rem;
+                        text-transform: capitalize;
                     }
                 }
             }

@@ -1,25 +1,28 @@
 .signup-form-container{
     width: 90%;
-    height: auto;
-    margin-top: 20rem;
-    margin-left: 5%;
+    height: max-content;
+    // margin-top: 20rem;
+    // margin-left: 5%;
     color: $color-white;
     text-align: center;
     text-align: center;
 
     
 
-    .form-container{
+    .form-container__joinus{
         width: 70%;
-        height: 40rem;
+        // height: 40rem;
+        height: max-content;
         background: $color-white;
         position: relative;
         box-sizing: border-box;
+        padding: 0 2rem;
         padding-top: 12rem;
-        border-radius: 1rem;
+        padding-bottom: 4rem;
+        border-radius: 5px;
         box-shadow: 0 0.5rem 0.5rem $color-shadow;
 
-        transition: all 3s ease-in;
+        transition: all .3s ease-in;
 
         .form-heading{
             width: 90%;
@@ -33,6 +36,7 @@
             border-radius: 0.5rem;
             box-sizing: border-box;
             box-shadow: 0 0.3rem 0.5rem rgba(73, 0, 82, 0.377);
+            z-index: 100;
 
             &-primary{
                 display: block;
@@ -56,37 +60,41 @@
             width: 100%;
             height: auto;
             text-align: center;
+            margin-top: 1rem;
 
             .input-field{
-                width: 80%;
-                height: 9rem;
+                width: 100%;
+                // height: 9rem;
+                height: max-content;
                 text-align: left;
                 margin: 0 auto;
-                display: block;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 7rem;
 
                 &--label{
                     color: $color-font;
                     text-align: left;
                     font-size: 2rem;
                     font-family: $font-family-primary;
-                    display: block;
+                    margin-bottom: 1rem;
+
                     &.touched{
                         color: $color-primary;
                     }
                 }
-
-
                 
-                &--value,
-                input{
+                &--value{
                     width: 100%;
-                    height: 3rem;
+                    // height: 3rem;
+                    height: auto !important;
                     border: 0.1rem solid rgb(105, 105, 105);
+                    padding: 1rem 0.5rem;
                     border-radius: 0.2rem;
                     outline: none;
                     font-size: 1.6rem;
                     font-family: $font-family-primary;
-                    padding-left: 0.5rem;
+                    // padding-left: 0.5rem;
                     color: $color-font;
 
                     &.touched{
@@ -105,42 +113,13 @@
                     }
                     
                 }
-                input[type=date]{
-                    &::-webkit-datetime-edit-year-field:not([aria-valuenow]),
-                    &::-webkit-datetime-edit-month-field:not([aria-valuenow]),
-                    &::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
-                        color: transparent;
-                    }
-                }
 
             }
-            button{
-                margin-top: 2rem;
-                width: 40%;
-                height: 4rem;
-                background: $color-white;
-                color: $color-primary;
-                border: 0.1rem solid $color-primary;
-                outline: none;
-                font-size: 2.4rem;
-                font-family: $font-family-primary;
-                font-weight: 500;
-                letter-spacing: 0.2rem;
-                cursor: pointer;
-                border-radius: 5rem;
-                transition: all 0.3s ease;
 
-                &:hover{
-                    background: $color-primary;
-                    color: $color-white;
-                    transform: translateY(-0.2rem);
-                    box-shadow: 0 0.2rem 0.5rem rgba(73, 0, 82, 0.377);
-
-                }
-                &:active{
-                    transform: translateY(-0.1rem);
-                }
-
+            .MuiButton-root{
+                width: 100%;
+                text-transform: capitalize;
+                font-size: 1.6rem;
             }
             
         }
@@ -157,25 +136,16 @@
 
         .loader{
             position: absolute;
-            top: 30%;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 50%;
+            height: 100%;
             background: rgba(255, 255, 255, 0.514);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.5s ease;
-
-            // &-animation{
-            //     position: absolute;
-            //     left: 0;
-            //     top: 0;
-            //     width: 30%;
-            //     height: 100%;
-            //     border-radius: 5rem;
-            //     background: $color-primary;
-            //     transition: all 1s ease;
-
-            //     animation: loading 1s infinite  ease;
-            // }
+            border-radius: 5px;
         }
             
     }

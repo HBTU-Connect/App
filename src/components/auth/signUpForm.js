@@ -7,7 +7,8 @@ import SignUpFormFirstPage from './signUpFormFirstPage';
 import SignUpFormSecondPage from './signUpFormSecondPage';
 
 //actions
-import { getData } from '../../actions';
+import { getData, signUpAction } from '../../actions';
+import{ headerDisplay } from '../../actions/headerAction'
 
 //images
 import signUpImage1 from "../../images/signup.png";
@@ -16,10 +17,12 @@ import signUpImage1 from "../../images/signup.png";
 class SignUpForm extends React.Component{
     state = {
         page: 1,
-        width: '33%'
+        width: '33%',
+        formValues: {}
     }
       
     componentDidMount() {
+        this.props.headerDisplay('hide')
         window.onbeforeunload = function() {
             this.onUnload();
             return "";
@@ -31,7 +34,9 @@ class SignUpForm extends React.Component{
     };
 
 
-    nextPage = () => {
+    nextPage = (formValues) => {
+        this.setState({ formValues: {...this.state.formValues, ...formValues}})
+        console.log(formValues)
         this.setState({ page: this.state.page + 1, width: '66%' });
     }
 
@@ -41,7 +46,9 @@ class SignUpForm extends React.Component{
 
     onSubmitForm = (formValues) => {
         this.setState({ width: '100%'})
-        console.log(formValues);
+        const values = {...this.state.formValues, ...formValues}
+        this.props.signUpAction(values)
+        console.log({...this.state.formValues, ...formValues});
     }
 
     render(){
@@ -109,5 +116,7 @@ const mapStateToProps = (store) => {
 }
 
 export default connect(mapStateToProps,{
-    getData
+    getData,
+    headerDisplay,
+    signUpAction
 })(SignUpForm);

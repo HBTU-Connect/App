@@ -15,7 +15,6 @@ const PageHTML = () => {
 
             <div className='section_two'>
                 <div className='section_two-content'>
-                    <img src={studentsImage} alt='students'/>
                     <div className='section_two-heading'>
                         <div className='section_two-heading-primary'>
                             Connecting Mates
@@ -25,6 +24,8 @@ const PageHTML = () => {
                             Join the community and Grow your connections in the College.
                         </div>
                     </div>
+                    <img src={studentsImage} alt='students'/>
+                    
                 </div>
             
             </div>
@@ -79,7 +80,7 @@ const PageHTML = () => {
                         <div className='divider'></div>
                         <div className='section_four-heading-secondary'>
                             You can find all our College Clubs here. 
-                            And become A member .
+                            And become a member
                         </div>
                     </div>
                 </div>
