@@ -14,7 +14,7 @@ body{
     box-sizing: border-box;
     background: white;
     height: 100vh;
-    overflow: hidden;
+    // overflow: hidden;
     font-family: $font-family-primary;
 }
 
@@ -41,29 +41,33 @@ body{
 
 /* width */
 ::-webkit-scrollbar {
-    width: 0px;
     position: absolute;
+    right: 0;
+    top: 0;
+    width: .8rem;
+    z-index: 1;
   }
 
   ::-webkit-scrollbar:hover {
-    width: 7px;
+    width: 1rem;
   }
 
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #c0c0c0; 
+    background: transparent; 
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #2a2a2a; 
+    background: #00000057;
+    border-radius: 50px;
+    // width: 1rem;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-    width: 10px;
+    background: rgba(0, 0, 0, 0.472);
 }
 
 input[type=date]{
@@ -88,4 +92,11 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.MuiPaper-root{
+  font-size: 1.4rem;
+}
+
+.MuiSnackbarContent-message{
+  font-size: 1.2rem;
+}
 

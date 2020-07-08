@@ -10,11 +10,14 @@
     display: block;
     overflow: hidden;
 
-    .form{
+    .join-us__form{
         width: 100%;
         height: 95vh;
         position: relative;
-        display: block;
+        // display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img{
             position: absolute;
@@ -24,13 +27,17 @@
             opacity: 0.6;
         }
 
-        &-container{
-            width: 50%;
-            height: 60vh;
-            position: absolute;
-            top: 5rem;
-            left: 50%;
-            transform: translateX(-50%);
+        .form-container__joinus{
+            width: 35rem;
+            // height: 100%;
+            height: max-content;
+            position: relative;
+            // top: 5rem;
+            // left: 50%;
+            transform: translateY(1.5rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 

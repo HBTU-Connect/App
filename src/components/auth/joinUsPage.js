@@ -10,9 +10,9 @@ import joinusImage from '../../images/joinUs1.png';
 const JoinUsPage = () => {
     return(
         <div className='joinus-page'>
-            <div className='form'>
+            <div className='join-us__form'>
                 <img src={joinusImage} alt='join us' />
-                <div className='form-container'>
+                <div className='form-container__joinus'>
                     <JoinUsForm />
                 </div>
             </div>

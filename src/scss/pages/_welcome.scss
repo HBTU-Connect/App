@@ -7,6 +7,8 @@
     &__wrapper{
         width: 100%;
         height: max-content;
+        display: flex;
+        flex-direction: column;
 
     }
     
@@ -18,29 +20,29 @@
         height: 100vh;
         width: 100%;
         position: relative;
-        display: inline-block;
+        display: flex;
         
         .left-floated-div{
-            float: left;
-            display: block;
             width: 60%;
             height: 100%;
             overflow: hidden;
             box-sizing: border-box;
             color: $color-white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             .heading-container{
                 width: 80%;
-                height: auto;
-                margin-left: 10%;
-                margin-top: 150px;
+                height: max-content;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
 
                 .heading-primary{
-                    padding-top: 1rem;
-                    font-size: 8rem;
-                    display: block;
-                    font-weight: 1000;
-                    font-family: $font-family-secondary;
+                    font-size: 8.8rem;
+                    font-weight: 600;
+                    font-family: $font-family-primary;
                     letter-spacing: 0.3rem;
                 }
                 .heading-secondary{
@@ -51,20 +53,26 @@
                 }
                 .heading-tertiary{
                     font-size: 4rem;
-                    display: block;
-                    font-weight: 600;
+                    margin-bottom: 2rem;
+                    font-weight: 500;
                     font-family: $font-family-primary;
                     letter-spacing: 0.5rem;
                 }
                 .heading-about{
                     width: 80%;
-                    padding-top: 4rem;
+                    margin-top: 2rem;
                     font-size: 2rem;
                     line-height: 2.8rem;
                     display: block;
                     font-weight: 500;
                     color: rgb(209, 209, 209);
                     font-family: $font-family-primary;
+                }
+
+                .link-login-button{
+                    display: flex;
+                    text-decoration: none;
+                    color: $color-primary;
                 }
                 .heading-login-button{
                     text-align: center;
@@ -83,12 +91,9 @@
                     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.473);
                     cursor: pointer;
                     transition: all 0.2s ease;
-
-                    .right-arrow{
-                        font-size: 3rem;
-                        font-weight: 1000;
-                        
-                    }
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
                     &:hover{
                         box-shadow: 0 6px 5px rgba(0, 0, 0, 0.473);
@@ -103,196 +108,12 @@
         }
 
         .right-floated-div{
-            display: inline-block;
+            display: flex;
             width: 40%;
             height: 100%;
             font-size: 3rem;
-
-            // .signup-form-container{
-            //     width: 90%;
-            //     height: auto;
-            //     margin-top: 20rem;
-            //     margin-left: 5%;
-            //     color: $color-white;
-            //     text-align: center;
-            //     text-align: center;
-
-                
-
-            //     .form-container{
-            //         width: 70%;
-            //         height: 40rem;
-            //         background: $color-white;
-            //         position: relative;
-            //         box-sizing: border-box;
-            //         padding-top: 12rem;
-            //         border-radius: 1rem;
-            //         box-shadow: 0 0.5rem 0.5rem $color-shadow;
-
-            //         transition: all 3s ease-in;
-
-            //         .form-heading{
-            //             width: 90%;
-            //             height: 15rem;
-            //             background: $color-primary;
-            //             padding-top: 2rem;
-            //             position: absolute;
-            //             left: 50%;
-            //             top: -5rem;
-            //             transform: translateX(-50%);
-            //             border-radius: 0.5rem;
-            //             box-sizing: border-box;
-            //             box-shadow: 0 0.3rem 0.5rem rgba(73, 0, 82, 0.377);
-    
-            //             &-primary{
-            //                 display: block;
-            //                 font-size: 4rem;
-            //                 font-weight:1000;
-            //                 font-family: $font-family-primary;
-            //                 letter-spacing: 0.5rem;
-            //             }
-            //             &-secondary{
-            //                 display: block;
-            //                 padding-top: 1rem;
-            //                 font-size: 1.5rem;
-            //                 font-weight: 500;
-            //                 font-family: $font-family-primary;
-            //             }
-
-                        
-            //         }
-
-            //         .join-us{
-            //             width: 100%;
-            //             height: auto;
-            //             text-align: center;
-
-            //             .input-field{
-            //                 width: 80%;
-            //                 height: 9rem;
-            //                 text-align: left;
-            //                 margin: 0 auto;
-            //                 display: block;
-
-            //                 &--label{
-            //                     color: $color-font;
-            //                     text-align: left;
-            //                     font-size: 2rem;
-            //                     font-family: $font-family-primary;
-            //                     display: block;
-            //                     &.touched{
-            //                         color: $color-primary;
-            //                     }
-            //                 }
-
-
-                            
-            //                 &--value,
-            //                 input{
-            //                     width: 100%;
-            //                     height: 3rem;
-            //                     border: 0.1rem solid rgb(105, 105, 105);
-            //                     border-radius: 0.2rem;
-            //                     outline: none;
-            //                     font-size: 1.6rem;
-            //                     font-family: $font-family-primary;
-            //                     padding-left: 0.5rem;
-            //                     color: $color-font;
-
-            //                     &.touched{
-            //                         border-color: $color-primary;
-            //                     }
-
-            //                     &.error{
-            //                         border-color: red;
-            //                     }
-
-            //                     &-error{
-            //                         color: red;
-            //                         font-size: 1.5rem;
-            //                         display: block;
-            //                         font-family: $font-family-primary;
-            //                     }
-                                
-            //                 }
-            //                 input[type=date]{
-            //                     &::-webkit-datetime-edit-year-field:not([aria-valuenow]),
-            //                     &::-webkit-datetime-edit-month-field:not([aria-valuenow]),
-            //                     &::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
-            //                         color: transparent;
-            //                     }
-            //                 }
-
-            //             }
-            //             button{
-            //                 margin-top: 2rem;
-            //                 width: 40%;
-            //                 height: 4rem;
-            //                 background: $color-white;
-            //                 color: $color-primary;
-            //                 border: 0.1rem solid $color-primary;
-            //                 outline: none;
-            //                 font-size: 2.4rem;
-            //                 font-family: $font-family-primary;
-            //                 font-weight: 500;
-            //                 letter-spacing: 0.2rem;
-            //                 cursor: pointer;
-            //                 border-radius: 5rem;
-            //                 transition: all 0.3s ease;
-
-            //                 &:hover{
-            //                     background: $color-primary;
-            //                     color: $color-white;
-            //                     transform: translateY(-0.2rem);
-            //                     box-shadow: 0 0.2rem 0.5rem rgba(73, 0, 82, 0.377);
-
-            //                 }
-            //                 &:active{
-            //                     transform: translateY(-0.1rem);
-            //                 }
-
-            //             }
-                        
-            //         }
-            //         .auth-error{
-            //             position: relative;
-            //             width: 100%;
-            //             height: 2rem;
-            //             text-align: center;
-            //             font-size: 1.4rem;
-            //             font-family: $font-family-primary;
-            //             padding-top: 1.5rem;
-            //             color: rgb(255, 0, 0);
-            //         }
-
-            //         .loader{
-            //             position: absolute;
-            //             top: 30%;
-            //             left: 0;
-            //             width: 100%;
-            //             height: 50%;
-            //             background: rgba(255, 255, 255, 0.514);
-            //             transition: all 0.5s ease;
-
-            //             // &-animation{
-            //             //     position: absolute;
-            //             //     left: 0;
-            //             //     top: 0;
-            //             //     width: 30%;
-            //             //     height: 100%;
-            //             //     border-radius: 5rem;
-            //             //     background: $color-primary;
-            //             //     transition: all 1s ease;
-
-            //             //     animation: loading 1s infinite  ease;
-            //             // }
-            //         }
-                        
-            //     }
-
-            // }
-
-                
+            align-items: center;
+            justify-content: center;
         }
 
         
@@ -305,6 +126,7 @@
         padding-top: 4rem;
         position: relative;
         box-sizing: border-box;
+        display: flex;
 
         .section_two-content{
             width: 70%;
@@ -312,23 +134,24 @@
             position: absolute;
             left: 0;
             top: 15rem;
-            display: block;
+            display: flex;
+            align-items: center;
             background: rgba($color-primary, 0.1);
             margin: 0 auto;
 
             img{
-                position: absolute;
-                width: 65rem;
-                top: 6rem;
-                left: 65%;
+                position: relative;
+                width: 65%;
+                margin-right: -60%;
             }
 
             .section_two-heading{
                 width: 40rem;
                 height: auto;
-                position: absolute;
-                top: 18rem;
-                left: 10%;
+                margin-left: 10%;
+                margin-right: 10%;
+                display: flex;
+                flex-direction: column;
 
                 &-primary{
                     font-size: 6rem;
@@ -338,15 +161,16 @@
                     letter-spacing: 0.4rem;
                 }
                 .divider{
-                    margin-top: 2rem;
-                    display: block;
+                    margin-top: 1rem;
+                    // display: block;
+                    margin-left: 0;
                     width: 10rem;
                     height: .8rem;
                     background: $color-primary;
                     border-radius: 10rem;
                 }
                 &-secondary{
-                    margin-top: 2rem;
+                    margin-top: 5rem;
                     font-size: 3.5rem;
                     font-weight: 400;
                     font-family: $font-family-primary;
@@ -362,27 +186,23 @@
         width: 100%;
         height: 75rem;
         position: relative;
-        display: block;
-        background: rgb(255, 226, 254);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(255, 236, 254);
         box-sizing: border-box;
-        padding-top: 15rem;
 
         .cards{
-            margin: 0 auto;
-            max-width: 114rem;
-
-            @include clearfix;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
 
             .card-1-of-3{
-                width: calc((100% - 2*#{$gutter-horizontal})/3);
-                float: left;
-                height: 40rem;
+                width: 25%;
+                height: max-content;
                 text-align: center;
                 position: relative;
-
-                &:not(:last-child) {
-                    margin-right: $gutter-horizontal;
-                }
 
                 .card-image{
                     width: 100%;
@@ -405,7 +225,7 @@
                     position: relative;
                     font-family: $font-family-primary;
                     font-size: 2rem;
-                    font-weight: 500;
+                    font-weight: 400;
                     color: $color-black-smooth;
                     margin-top: 2rem;
                 }
@@ -474,6 +294,12 @@
                 margin-top: 3rem;
             }
 
+            .divider{
+                margin-left: 0;
+                width: 7rem;
+                margin-top: .5rem;
+            }
+
             &-secondary{
                 width: 80%;
                 position: relative;
@@ -481,7 +307,7 @@
                 font-size: 3rem;
                 font-weight: 500;
                 color: $color-black-smooth;
-                padding-top: 3rem;
+                padding-top: 5rem;
 
             }
 
