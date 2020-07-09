@@ -1,4 +1,14 @@
 import axios from 'axios';
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:5000'
+  })
+// axiosInstance.interceptors.response.use(response => {
+//     console.log(response)
+//     return response
+// }, error => {
+//     console.log(error)
+//     Promise.reject({...error})
+// })
 
 
 export const getData = formValues => async dispatch =>  {
@@ -50,14 +60,66 @@ export const getData = formValues => async dispatch =>  {
 export const signUpAction = formValues => async dispatch => {
     const data = formValues
     try{
-        const response = await axios.post('http://localhost:5000/register', data, {
+        const response = await axiosInstance.post('/register', data, {
             headers:{
                 "Access-Control-Allow-Origin": "*"
             }
-        } );
-        console.log(response)
+        } )
+        dispatch({
+            type: 'SIGN_UP',
+            payload: response.data
+        })
+        return true
     }
     catch(error){
-        console.log(error)
+        console.log(error.response)
+        // Promise.reject({...error})
+        if(error.response && error.response.data && error.response.data.error){
+            dispatch({
+                type: 'ERROR',
+                payload: error.response.data.error
+            })
+        }
+        else{
+            dispatch({
+                type: 'ERROR',
+                payload: error.message
+            })
+        }
+        return true
     }
 }
+
+export const loginAction = formValues => async dispatch => {
+    const data = formValues
+    try{
+        const response = await axiosInstance.post('/login', data, {
+            headers:{
+                "Access-Control-Allow-Origin": "*"
+            }
+        } )
+        dispatch({
+            type: 'LOGIN',
+            payload: response.data
+        })
+        return true
+    }
+    catch(error){
+        console.log(error.response)
+        // Promise.reject({...error})
+        if(error.response && error.response.data && error.response.data.error){
+            dispatch({
+                type: 'ERROR',
+                payload: error.response.data.error
+            })
+        }
+        else{
+            dispatch({
+                type: 'ERROR',
+                payload: error.message
+            })
+        }
+        return true
+    }
+}
+

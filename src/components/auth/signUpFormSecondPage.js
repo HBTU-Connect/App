@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField, FormHelperText, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from '@material-ui/core'
 import { Visibility, VisibilityOff} from '@material-ui/icons'
 import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -87,6 +87,11 @@ const SignUpFormSecondPage = (props) => {
     const [ showPassword, setShowPassword ] = useState(false)
     const { onSubmit, previousPage } = props
 
+    useEffect(()=> {
+        setFormValues({...formValues, ...props.initialValues })
+        // console.log(props.initialValues)
+    }, [])
+
     const handleFieldChange = (e) => {
         const name = e.target.name
         const value = e.target.value
@@ -113,7 +118,7 @@ const SignUpFormSecondPage = (props) => {
             </div>
             <ThemeProvider theme={theme}>
             <div className='input-field__signup user'>
-                <TextField margin='dense' variant='outlined' error={formErrors.userName ? true: false} helperText={formErrors.userName} name='username' label='User Name' type='text' value={formValues.userName} onChange={(e) => handleFieldChange(e)} />
+                <TextField margin='dense' variant='outlined' error={formErrors.username ? true: false} helperText={formErrors.username} name='username' label='User Name' type='text' value={formValues.username} onChange={(e) => handleFieldChange(e)} />
             </div>
             <div className='input-field__signup user'>
                 <FormControl variant="outlined" error={formErrors.password ? true: false}>
