@@ -121,7 +121,7 @@ const SignUpFormFirstPage = (props) => {
     // const classes = useStyles();
 
     useEffect(()=> {
-        setFormValues({...formValues, ...props.initialValues})
+        setFormValues({...formValues, ...props.initialValues, ...props.previousValues})
         // console.log(props.initialValues)
     }, [])
 

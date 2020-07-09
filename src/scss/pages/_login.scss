@@ -89,22 +89,29 @@
         text-align: center;
         background: white;
         border-radius: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 3rem;
     
         .form-heading{
-            width: 80%;
+            width: 100%;
             height: 10rem;
             font-size: 3.5rem;
             color: $color-primary;
             font-weight: 600;
-            margin-top: 2rem;
-            padding-left: 4rem;
+            // margin-top: 2rem;
+            // padding-left: 4rem;
             text-align: left;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
             //text-transform: uppercase;
 
             &-secondary{
                 margin-top: 1rem;
-                display: block;
+                display: flex;
+                align-items: center;
                 font-size: 1.3rem;
                 color: black;
                 font-weight: 500;
@@ -113,6 +120,7 @@
                     text-decoration: none;
                     color: $color-primary;
                     font-weight: 600;
+                    margin-left: .5rem;
                 }
             }
 
@@ -123,116 +131,152 @@
             }
         }
 
-        .user-field{
-            width: 80%;
-            height: 6.5rem;
-            text-align: left;
-            margin: 0 auto;
-            display: block;
-            position: relative;
-            transition: all 0.2s ease;
-            margin-top: 1rem;
+        .input-field__login{
+            width: 100%;
+            height: auto;
+            margin-bottom: 2.5rem;
+            align-items: flex-start;
 
-            .password-show{
-                position: absolute;
-                right: 1.3rem;
-                top: 1rem;
-                width: 2.5rem;
-                cursor: pointer;
-                z-index: 1000;
-
-                img{
-                    width: 3rem;
-                    position: relative;
-                }
-
+            &.switch{
+                width: max-content;
+                margin-top: -1rem;
+                margin-bottom: 4rem;
             }
 
-
-            &--label{
-                color: black;
-                position: absolute;
-                left: 1rem;
-                top: 1rem;
-                font-size: 2rem;
-                font-family: $font-family-primary;
-                font-weight: 500;
-                transition: all 0.2s ease;
-                z-index: 10;
-
-                &.touched{
-                    transform: translate( -1.4rem , -1.1rem) scale(0.7);
-                    color: $color-black-smooth;
+            .Mui-focused{
+                .MuiInputAdornment-positionStart{
+                    color: $color-primary;
                 }
 
-            }
-
-            &--value,
-            input{
-                width: 100%;
-                height: 5rem;
-                border: 0.1rem solid black;
-                border-radius: 0.3rem;
-                outline: none;
-                padding-left: 1rem;
-                padding-top: 1.5rem;
-                color: black;
-                font-size: 2rem;
-                z-index: 100;
-                position: relative;
-                background: transparent;
-                font-family: $font-family-secondary;
-                box-sizing: border-box;
-
-                &.touched{
-                    border: 0.2rem solid rgb(43, 184, 43);
+                &.MuiFormLabel-root{
+                    color: $color-primary;
                 }
 
-                &.error{
-                    border-color: red;
-                }
-        
-                &-error{
-                    position: absolute;
-                    right: 0;
-                    color: red;
-                    font-size: 1.2rem;
-                    display: block;
-                    font-family: $font-family-primary;
+                .MuiOutlinedInput-notchedOutline{
+                    border-color: $color-primary;
                 }
             }
-
-            
         }
 
-        .input-field.checkbox{
-            width: 80%;
-            margin-left: 10%;
-            height: 5rem;
-            font-size: 1.5rem;
+        .MuiButton-root{
+            width: 100%;
+            font-size: 1.8rem;
+            font-weight: 500;
+            text-transform: capitalize;
             font-family: $font-family-primary;
-            position: relative;
-            color: $color-black-smooth;
-            cursor: pointer;
-            padding-left: 0.5rem;
-
-            label{
-                left: 0rem;
-                display: inline-block;
-            }
-            
+            margin-bottom: 2rem;
         }
 
-        .input-field--checkbox,
-        input[type="checkbox"]{
-            position: absolute;
-            left: -1rem;
-            top: 0.2rem;
-            z-index: 100;
-            width: 1.5rem;
-            height: 1.5rem;
-            cursor: pointer;
-            opacity: 0;
+        // .user-field{
+        //     width: 80%;
+        //     height: 6.5rem;
+        //     text-align: left;
+        //     margin: 0 auto;
+        //     display: block;
+        //     position: relative;
+        //     transition: all 0.2s ease;
+        //     margin-top: 1rem;
+
+        //     .password-show{
+        //         position: absolute;
+        //         right: 1.3rem;
+        //         top: 1rem;
+        //         width: 2.5rem;
+        //         cursor: pointer;
+        //         z-index: 1000;
+
+        //         img{
+        //             width: 3rem;
+        //             position: relative;
+        //         }
+
+        //     }
+
+
+        //     &--label{
+        //         color: black;
+        //         position: absolute;
+        //         left: 1rem;
+        //         top: 1rem;
+        //         font-size: 2rem;
+        //         font-family: $font-family-primary;
+        //         font-weight: 500;
+        //         transition: all 0.2s ease;
+        //         z-index: 10;
+
+        //         &.touched{
+        //             transform: translate( -1.8rem , -1.1rem) scale(0.6);
+        //             color: $color-black-smooth;
+        //         }
+
+        //     }
+
+        //     &--value,
+        //     input{
+        //         width: 100%;
+        //         height: 5rem;
+        //         border: 0.1rem solid black;
+        //         border-radius: 0.3rem;
+        //         outline: none;
+        //         padding-left: 1rem;
+        //         padding-top: 1.5rem;
+        //         color: black;
+        //         font-size: 1.4rem;
+        //         z-index: 100;
+        //         position: relative;
+        //         background: transparent;
+        //         font-family: $font-family-secondary;
+        //         box-sizing: border-box;
+
+        //         &.touched{
+        //             border: 0.2rem solid rgb(43, 184, 43);
+        //         }
+
+        //         &.error{
+        //             border-color: red;
+        //         }
+        
+        //         &-error{
+        //             position: absolute;
+        //             right: 0;
+        //             color: red;
+        //             font-size: 1.2rem;
+        //             display: block;
+        //             font-family: $font-family-primary;
+        //         }
+        //     }
+
+            
+        // }
+
+        // .input-field.checkbox{
+        //     width: 80%;
+        //     margin-left: 10%;
+        //     height: 5rem;
+        //     font-size: 1.5rem;
+        //     font-family: $font-family-primary;
+        //     position: relative;
+        //     color: $color-black-smooth;
+        //     cursor: pointer;
+        //     padding-left: 0.5rem;
+
+        //     label{
+        //         left: 0rem;
+        //         display: inline-block;
+        //     }
+            
+        // }
+
+        // .input-field--checkbox,
+        // input[type="checkbox"]{
+        //     position: absolute;
+        //     left: -1rem;
+        //     top: 0.2rem;
+        //     z-index: 100;
+        //     width: 1.5rem;
+        //     height: 1.5rem;
+        //     cursor: pointer;
+        //     opacity: 0;
 
         }
 
@@ -242,7 +286,8 @@
             margin-right: 10%;
             text-align: right;
             display: inline-block;
-            margin-left: 10%;
+            // margin-left: 10%;
+            margin: 0 auto;
             padding: 0.5rem 1rem;
             font-weight: 600;
             border-radius: 0.3rem;
@@ -257,26 +302,26 @@
             }
         }
         
-        button{
-            margin-top: 2rem;
-            margin-bottom: 3rem;
-            width: 80%;
-            height: 4rem;
-            border-radius: 0.3rem;
-            color: $color-white;
-            font-size: 2rem;
-            font-family: $font-family-primary;
-            background: $color-primary;
-            font-weight: 600;
-            outline: none;
-            border: none;
-            display: block;
-            margin-left: 10%;
-            cursor: pointer;
+        // button{
+        //     margin-top: 2rem;
+        //     margin-bottom: 3rem;
+        //     width: 80%;
+        //     height: 4rem;
+        //     border-radius: 0.3rem;
+        //     color: $color-white;
+        //     font-size: 2rem;
+        //     font-family: $font-family-primary;
+        //     background: $color-primary;
+        //     font-weight: 600;
+        //     outline: none;
+        //     border: none;
+        //     display: block;
+        //     margin-left: 10%;
+        //     cursor: pointer;
 
-            &:hover{
-                background: rgba($color-primary, 0.8);
-            }
-        }
-    }
+        //     &:hover{
+        //         background: rgba($color-primary, 0.8);
+        //     }
+        // }
+    // }
 }
