@@ -28,6 +28,7 @@ import TextEditor from './userPages/events/utils/textEditor'
 import { PrivateRoute } from './utils/protectedRoutes';
 
 import NotificationPage from './notification';
+import ProfilePage from './userPages/userProfile/profilePage'
 
 
 class App extends React.Component {
@@ -48,6 +49,7 @@ class App extends React.Component {
                         <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={this.props.hadFilledForm} />
                         
                         <Route path='/notification' exact component={NotificationPage} />
+                        <Route path='/user/:username' exact component={ProfilePage} />
 
                         <Route path='/feeds' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Feeds/></div></div>}/>
                         <Route path='/clubs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Clubs/></div></div>}/>

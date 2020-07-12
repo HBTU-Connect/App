@@ -342,19 +342,7 @@
     
 }
 
-.portal{
-    width: 100%;
-    height: 100%;
-    top: 9999;
-    left: 9999;
-    transform: translate(1000, 1000);
-    background-color: rgba(0, 0, 0, 0.377);
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
+
 
 .portal-ask-question{
     width: 50%;

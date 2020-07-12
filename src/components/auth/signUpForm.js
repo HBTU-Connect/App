@@ -37,6 +37,7 @@ const SignUpForm = (props) => {
             onUnload();
             return "";
         };
+        // eslint-disable-next-line
     },[])
 
     useEffect(() =>{
@@ -47,6 +48,7 @@ const SignUpForm = (props) => {
             enqueueSnackbar(props.authData.error, {variant: 'error', autoHideDuration: 3000})
 
         }
+        // eslint-disable-next-line
     }, [loading])
 
     const onUnload = (event) => { 
