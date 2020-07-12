@@ -41,7 +41,7 @@ const JoinUsForm  = (props) => {
             setError(false)
             props.change("dob", null);
         }
-        
+       // eslint-disable-next-line 
     },[loading])
     
     const renderField = ({ input, label, type,input: { value }, meta: { valid, dirty, active, touched, error } }) => (

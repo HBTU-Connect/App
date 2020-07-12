@@ -147,6 +147,7 @@ const LoginForm  = (props) => {
             enqueueSnackbar(props.authData.error, {variant: 'error', autoHideDuration: 3000})
 
         }
+        // eslint-disable-next-line
     }, [loading])
 
 

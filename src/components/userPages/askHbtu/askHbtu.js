@@ -29,14 +29,12 @@ const AskHbtu = (props) => {
     }, [])
 
     useEffect(() => {
-        if(displayPortal){
+        if(displayPortal && portalRef.current){
             portalRef.current.style.top = '0'
             portalRef.current.style.left = '0'
         }
-        else{
+        else if(!displayPortal && portalRef.current){
             portalRef.current.removeAttribute('style')
-            // portalRef.current.style.top = '9999'
-            // portalRef.current.style.left = '9999'
         }
     }, [displayPortal])
 
@@ -65,9 +63,9 @@ const AskHbtu = (props) => {
 
     return(
         <>
-        <Portal>
+        {displayPortal && <Portal>
             <AskQuestion portalRef={portalRef} displayPortal={displayPortal} setDisplayPortal={setDisplayPortal} userImg={profileImage} />
-        </Portal>
+        </Portal>}
         <div className='content-container'>
         
             <div className='content-container__left ask-hbtu'>

@@ -16,7 +16,7 @@ export const authReducer= (state ={}, action) => {
         case 'SIGN_UP':
             return state ={...state, signUpData: action.payload, msg: 'Success', error: null}
         case 'LOGIN':
-            return state ={...state, loginData: action.payload, msg: 'Success', error: null}
+            return state ={...state, loginData: action.payload, msg: 'Success', isLoggedIn: true, error: null}
         case 'ERROR':
             return state={...state, error: action.payload, msg: 'error'};
         default:

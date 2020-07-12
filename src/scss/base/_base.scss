@@ -92,11 +92,137 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.MuiPaper-root{
-  font-size: 1.4rem;
-}
 
+//notistack
 .MuiSnackbarContent-message{
   font-size: 1.2rem;
+}
+
+.round{
+  border-radius: 50%;
+}
+
+.semi-round{
+  border-radius: 10px;
+}
+
+.image{
+  object-position: center;
+  object-fit: cover;
+}
+
+.flex{
+  display: flex;
+
+  &.center{
+    align-items: center;
+  }
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+
+  &.center{
+    align-items: center;
+  }
+}
+
+.size-1-2{
+  font-size: 1.2rem;
+}
+.size-1-4{
+  font-size: 1.4rem;
+}
+.size-1-6{
+  font-size: 1.6rem;
+}
+.size-1-8{
+  font-size: 1.8rem;
+}
+.size-2-0{
+  font-size: 2rem;
+}
+.size-2-2{
+  font-size: 2.2rem;
+}
+.size-2-4{
+  font-size: 2.4rem;
+}
+.size-2-8{
+  font-size: 2.8rem;
+}
+
+.capitalize{
+  text-transform: capitalize;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.lowercase{
+  text-transform: lowercase;
+}
+
+.font-black{
+  color: black;
+}
+
+.font-light{
+  color: rgb(161, 161, 161);
+}
+
+.weight-400{
+  font-weight: 400;
+}
+
+.weight-500{
+  font-weight: 500;
+}
+
+.weight-600{
+  font-weight: 600;
+}
+
+.padding-1{
+  padding: 1rem;
+}
+
+.padding-2{
+  padding: 2rem;
+}
+
+.margin-bottom-half{
+  margin-bottom: .5rem;
+}
+
+.margin-bottom-1{
+  margin-bottom: 1rem;
+}
+
+.margin-bottom-2{
+  margin-bottom: 2rem;
+}
+
+.margin-bottom-3{
+  margin-bottom: 3rem;
+}
+
+.mid-dot-divider{
+  color: rgb(185, 185, 185);
+}
+
+.portal-container{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.377);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 

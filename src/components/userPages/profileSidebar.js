@@ -12,11 +12,12 @@ class Sidebar extends React.Component{
 
     onScroll = () => {
         const el = document.getElementsByClassName('sidebar-container')[0]
+        const child = document.getElementsByClassName('menu-section')[0]
         const parent = document.getElementsByClassName('body-container')[0]
         // const rect = el.getBoundingClientRect()
         // let height 
-        if(parent.scrollTop > 380){
-            el.style.transform = `translateY(${parent.scrollTop -380}px)`
+        if(parent.scrollTop > child.offsetTop){
+            el.style.transform = `translateY(${parent.scrollTop -child.offsetTop}px)`
             // el.style.transform = `translateY(${parent.scrollTop - (rect.height -  parent.offsetHeight)}px)`
         }
         if(parent.scrollTop === 0){
@@ -28,11 +29,11 @@ class Sidebar extends React.Component{
         return(
             <div className='sidebar-container'>
                 <div className='profile-section'>
-                    <div className='profile-section--cover' style={{ backgroundImage: `url(https://source.unsplash.com/4jd8B_t-qgI`}}>
+                    {/* <div className='profile-section--cover' style={{ backgroundImage: `url(https://source.unsplash.com/4jd8B_t-qgI`}}> */}
                         <div className='profile-section--cover-profile-picture'>
                             <img src={avatarImage} alt='profile' />
                         </div>
-                    </div>
+                    {/* </div> */}
                     <div className='profile-section--username'>
                         <span className='profile-section--username-name'>Yashveer Talan</span>
                         <span className='profile-section--username-username'>@yv-official</span>
@@ -41,17 +42,17 @@ class Sidebar extends React.Component{
                         <span className='profile-section--userdescription-description'>Web & App Developer at Entrepreneurship Cell, HBTU Kanpur</span>
                     </div>
                     <div className='profile-section--userdetails'>
-                        <div className='profile-section--userdetails-posts'>
+                        {/* <div className='profile-section--userdetails-posts'>
                             <span className='profile-section--userdetails-posts-number'>10</span>
                             <span className='profile-section--userdetails-posts-title'>Posts</span>
-                        </div>
+                        </div> */}
                         <div className='profile-section--userdetails-connections'>
-                            <span className='profile-section--userdetails-connections-number'>45</span>
                             <span className='profile-section--userdetails-connections-title'>Connections</span>
+                            <span className='profile-section--userdetails-connections-number'>45</span>
                         </div>
                         <div className='profile-section--userdetails-hits'>
-                            <span className='profile-section--userdetails-hits-number'>70</span>
                             <span className='profile-section--userdetails-hits-title'>Hits</span>
+                            <span className='profile-section--userdetails-hits-number'>70</span>
                         </div>
                     </div>
                 </div>
