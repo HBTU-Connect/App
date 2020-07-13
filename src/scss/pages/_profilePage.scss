@@ -1,0 +1,493 @@
+.profile-page-container{
+    justify-content: center;
+}
+
+.profile-page{
+    padding-top: 1rem;
+    width: 90%;
+    max-width: 90rem;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+
+
+    &__top-card{
+        position: relative;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        overflow: hidden;
+        padding-bottom: 3rem;
+        box-shadow: 1px 1px 5px 2px rgb(226, 226, 226);
+    }
+
+    &__menu{
+        position: absolute;
+        right: 1rem;
+        top: 31rem;
+
+        .MuiButton-root{
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        
+        
+    }
+
+    &__cover-container{
+        width: 100%;
+        height: 30rem;
+        position: relative;
+        display: flex;
+
+        .edit-button__cover{
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: white;
+            // border: 1px so
+            box-shadow: 1px 1px 3px rgb(172, 172, 172);
+
+            &:hover{
+                background-color: rgb(221, 221, 221);
+            }
+        }
+    }
+
+    &__cover{
+        width: 100%;
+        height: 30rem;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__profile-img-container{
+        width: 20rem;
+        position: relative;
+        display: flex;
+
+        .edit-button__profile{
+            position: absolute;
+            bottom: 4rem;
+            right: 1rem;
+            background-color: white;
+            // border: 1px so
+            box-shadow: 1px 1px 3px rgb(172, 172, 172);
+
+            &:hover{
+                background-color: rgb(221, 221, 221);
+            }
+        }
+    }
+
+    &__profile-img{
+        width: 20rem;
+        height: 20rem;
+        object-position: center;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 8px solid white;
+        margin-top: -12rem;
+        margin-bottom: 2rem;
+    }
+
+    &__name{
+        font-size: 2.8rem;
+        font-weight: 600;
+        margin-bottom: .6rem;
+    }
+
+    &__username{
+        font-size: 1.6rem;
+        color: rgb(131, 131, 131);
+        margin-bottom: 1rem;
+    }
+
+    &__content{
+        display: flex;
+        margin-top: 3rem;
+    
+        &__left{
+            width: 30%;
+            height: max-content;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__right{
+            margin-left: auto;
+            width: 65%;
+            height: max-content;
+            display: flex;
+            flex-direction: column;
+            // background-color: whitesmoke;
+        }
+    }
+
+    .card-profile{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 3px;
+        padding: 2rem;
+        box-shadow: 1px 1px 5px 2px rgb(226, 226, 226);
+        margin-bottom: 2rem;
+        height: max-content;
+    }
+
+    .card-small{
+        width: 100%;
+        align-items: flex-start;
+
+        &__header{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        &__content{
+            display: flex;
+            flex-direction: column;
+            font-size: 1.6rem;
+            color: rgb(102, 102, 102);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            width: 100%;
+
+            &__tile{
+                display: flex;
+                margin-bottom: 1.5rem;
+                // flex-direction: column;
+                align-items: center;
+                // justify-content: center;
+                font-size: 1.4rem;
+                color: black;
+                // color:rgb(226, 245, 255);
+                text-transform: capitalize;
+
+                .social-links{
+                    text-transform: lowercase;
+                    color: $color-primary;
+                    margin-left: .5rem;
+                    cursor: pointer;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+
+                .MuiSvgIcon-root{
+                    width: 1.1em;
+                    height: 1.1em;
+                    margin-right: 1rem;
+                    color: rgb(102, 102, 102);
+                }
+            }
+
+            .content-tile{
+
+                &__title{
+                    font-size: 1.4rem;
+                    color: rgb(156, 156, 156);
+                    font-weight: 500;
+                    margin-right: 1rem;
+                }
+            }
+        }
+
+        .MuiButton-root{
+            font-size: 1.4rem;
+            width: 100%;
+            font-family: unset;
+            text-transform: unset;
+        }
+    }
+
+    .card-large{
+        width: 100%;
+        margin-bottom: 3rem;
+        // border: 1px solid rgb(179, 179, 179);
+
+        &__header{
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            text-transform: capitalize;
+
+            &__secondary{
+                font-weight: 400;
+                font-size: 2rem;
+                color: rgb(129, 129, 129);
+            }
+
+            .MuiButton-root{
+                margin-left: auto;
+                margin-top: 0 !important;
+                width: auto !important;
+            }
+        }
+
+        &__content{
+            display: flex;
+
+            &.grid-view{
+                display: grid;
+                grid-template-columns: 48.5% 48.5%;
+                grid-auto-rows: max-content;
+                grid-gap: 3%;
+
+                &.interests-section{
+                    grid-template-columns: 30% 30% 30%;
+                    grid-gap: 5%;
+                    margin-bottom: 4rem;
+                }
+            }
+
+            .no-activities{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                min-height: 10rem;
+                color: rgb(155, 155, 155);
+            }
+        }
+
+        .MuiButton-root{
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            text-transform: unset;
+            font-family: unset;
+            width: 100%;
+            cursor: pointer !important;
+        }
+    }
+
+    &__club-card{
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        // box-shadow: 1px 1px 3px 2px rgb(231, 231, 231);
+        img{
+            width: 7rem;
+            height: 7rem;
+            margin-right: 1.5rem;
+        }
+    }
+
+}
+
+.profile-connection-card{
+    // padding: 1rem 0;
+    // box-shadow: 1px 1px 3px 2px rgb(236, 236, 236);
+    // border: 1px solid rgb(228, 228, 228);
+    border-radius: 5px;
+
+    img{
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1.5rem;
+    }
+
+}
+
+.section-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 3px;
+    height: 25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover{
+
+        .section-card__button{
+            display: flex !important;
+        }
+
+    }
+
+    &.add-data-card{
+        display: flex;
+        height: 25rem;
+        border: 1px dashed rgb(187, 187, 187);
+        align-items: center;
+        justify-items: center;
+        cursor: pointer;
+
+        .MuiSvgIcon-root{
+            width: 5em;
+            height: 5em;
+            color: rgb(187, 187, 187);
+            margin: auto 0;
+            // margin-top: auto;
+        }
+    }
+
+    &__icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(243, 243, 243);
+        width: 100%;
+        height: 18rem;
+        margin-bottom: 2rem;
+
+        .MuiSvgIcon-root{
+            width: 5rem;
+            height: 5rem;
+            color: rgb(197, 197, 197);
+        }
+    }
+
+    img{
+        width: 100%;
+        height: 18rem;
+        object-fit: cover;
+        object-position: center;
+        margin-bottom: 1rem;
+    }
+
+    &__button{
+        display: none !important;
+        position: absolute !important;
+        top: -15px;
+        right: -15px;
+        background-color: white !important;
+        box-shadow: 0px 0px 3px 1px rgb(212, 212, 212);
+    }
+}
+
+.MuiPaper-root{
+    transform: translateY(50px) !important;
+}
+
+
+.MuiMenuItem-root{
+    padding: 1rem !important;
+    border-bottom: 1px solid rgb(212, 212, 212) !important;
+    font-size: 1.4rem !important;
+    width: 100%;
+    font-family: unset !important;
+}
+
+.search-data{
+    width: 60%;
+    height: 80%;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 12% 88%;
+    border-radius: 5px;
+
+
+    &__header{
+        justify-content: space-between;
+        padding: 1rem;
+        box-shadow: 1px 1px 3px rgb(199, 199, 199);
+    }
+
+    &__input{
+        padding: 1rem;
+        width: 110%;
+        font-family: inherit;
+        font-size: 1.2rem;
+        border-radius: 3px;
+        outline: none;
+        border: 1px solid rgb(151, 151, 151);
+
+        &:hover{
+            border-color: black;
+        }
+    }
+
+    &__content{
+        position: relative;
+        padding: 2rem;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        grid-auto-rows: 30rem;
+        grid-gap: 5%;
+        padding-bottom: 3rem;
+
+        &.image-grid-view{
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr) );
+            grid-auto-rows: 10px;
+            grid-gap: 0 10px;
+            // display: flex;
+            // flex-wrap: wrap;
+        }
+
+        .search-data__card{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 5px;
+            border: 1px solid rgb(197, 197, 197);
+            overflow: hidden;
+            text-align: center;
+            text-transform: capitalize;
+            cursor: pointer;
+            margin-bottom: 2rem;
+
+            &__icon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb(243, 243, 243);
+                width: 100%;
+                height: 20rem;
+                margin-bottom: 2rem;
+
+                .MuiSvgIcon-root{
+                    width: 5rem;
+                    height: 5rem;
+                    color: rgb(197, 197, 197);
+                }
+            }
+
+            img{
+                width: 100%;
+                height: 20rem;
+                object-fit: cover;
+                object-position: center;
+                margin-bottom: 1rem;
+
+                &.tv-series{
+                    // width: 10rem;
+                    // height: 20rem;
+                    object-position: bottom;
+                }
+
+                
+            }
+        }
+
+        img.unsplash-image{
+            width: 100%;
+            height: auto;
+            border-radius: 3px;
+        }
+    }
+}

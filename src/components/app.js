@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ReactNotification from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css';
+import { SnackbarProvider } from 'notistack'
 
 
 //components
@@ -28,6 +27,9 @@ import TextEditor from './userPages/events/utils/textEditor'
 
 import { PrivateRoute } from './utils/protectedRoutes';
 
+import NotificationPage from './notification';
+import ProfilePage from './userPages/userProfile/profilePage'
+
 
 class App extends React.Component {
     
@@ -36,7 +38,7 @@ class App extends React.Component {
         const HeaderWithRouter = withRouter(Header);
         return(
             <>
-                <ReactNotification />
+                <SnackbarProvider maxSnack={3}>
                 <BrowserRouter>
                     <>
                     <HeaderWithRouter />
@@ -45,6 +47,10 @@ class App extends React.Component {
                         <Route path='/login' exact component={LoginForm} />
                         <Route path='/joinus' exact component={JoinUsPage} />
                         <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={this.props.hadFilledForm} />
+                        
+                        <Route path='/notification' exact component={NotificationPage} />
+                        <Route path='/user/:username' exact component={ProfilePage} />
+
                         <Route path='/feeds' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Feeds/></div></div>}/>
                         <Route path='/clubs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Clubs/></div></div>}/>
                         <Route path='/ask' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><AskHbtu/></div></div>}/>
@@ -68,6 +74,7 @@ class App extends React.Component {
                         
                     </>
                 </BrowserRouter>
+                </SnackbarProvider>
             </>
         );
     }

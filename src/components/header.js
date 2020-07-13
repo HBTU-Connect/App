@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Badge, Avatar } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { Badge, Button, ClickAwayListener } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Chat as ChatIcon,
         Home as HomeIcon,
@@ -8,6 +9,7 @@ import { Chat as ChatIcon,
         SearchRounded as SearchIcon,
         Apps as AppsIcon
 } from '@material-ui/icons';
+import{ headerDisplay } from '../actions/headerAction'
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
@@ -16,91 +18,118 @@ const StyledBadge = withStyles((theme) => ({
     badge: {
       top: 4,
       right: 4,
-      border: `3px solid rgb(66,103,178)`,
+      border: `3px solid rgb(0, 88, 136)`,
       padding: '6px 6px',
       borderRadius: '50%'
     },
-  }))(Badge);
+}))(Badge);
 
-  const ContentBadge = withStyles((theme) => ({
-    badge: {
-      top: 3,
-      right: 3,
-      border: `3px solid rgb(66,103,178)`,
-      padding: '2px 2px',
+const ContentBadge = withStyles((theme) => ({
+badge: {
+    top: 3,
+    right: 3,
+    border: `3px solid rgb(0, 88, 136)`,
+    padding: '2px 2px',
+},
+}))(Badge);
+
+const ColorButton = withStyles((theme) => ({
+    root: {
+        '&:hover': {
+        backgroundColor: 'rgb(230,246,254)',
+        color: `rgb(0, 88, 136)`
+        },
     },
-  }))(Badge);
+}))(Button);
 
-class Header extends React.Component {
-    state = { addClassName : 'header hide', location: ''}
+const Header = (props) =>  {
+    // state = { addClassName : ''}
+    const [ headerClass, setHeaderClass ] = useState('')
+    const [ showMenu, setShowMenu ] = useState(false)
 
-    componentDidMount(){
-        window.addEventListener('scroll', this.handleScroll);
-        window.onload = () => {
-            this.setState({ location: window.location.pathname})
-            console.log(this.state.location, window.location.pathname)
-        }
-    }
-    
-    // componentWillUnmount(){
-    //     window.removeEventListener('scroll', this.handleScroll);
-    // }
-    
-    handleScroll = (event) => {
-        let scrollTop = window.pageYOffset;
-        if(scrollTop > 665){
-            this.setState({
-                addClassName: 'header'
-            });
-        }else{
-            this.setState({
-                addClassName: 'header hide'
-            });
-        } 
-    }
+
+    useEffect(() => {
+        console.log(props.UI)
+        if(props.UI)
+        setHeaderClass(props.UI.displayHeader)
+    }, [props.UI])
 
     // svgRender = (iconName, classname ) => {
     //     const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
     //     return <svg className={`${classname}__icon`} dangerouslySetInnerHTML={{__html: useTag }} />;
     // }
 
-    onAuthRender = () => {
+    const onAuthRender = () => {
         
+        // if(props.authData && props.authData && props.authData.isLoggedIn ){
         if(true){
             return (
                 <>
-                <form action='#' className='search'>
-                    <input type='text' className='search__input' placeholder='Search' />
-                    <button className='search__button'>
-                        <SearchIcon fontSize='large' />
-                    </button>
-                </form>
                 <nav className='user-nav'>
-                    <Link to='/feeds' className='link'>
+                    <NavLink to='/feeds' className='link' activeClassName='active_tab'>
                     <div className='user-nav__icon-box'>
                         <StyledBadge color="secondary" variant='dot'>
                             <HomeIcon fontSize={"large"} />
                         </StyledBadge>
                     </div>
-                    </Link>
+                    </NavLink>
                     
-                    <Link to='/feeds' className='link'>
+                    <NavLink to='/messaging' className='link' activeClassName='active_tab'>
                     <div className='user-nav__icon-box'>
                         <ContentBadge color="secondary" style={{ fontSize: '1rem'}} badgeContent={7} max={99}>
                             <ChatIcon />
                         </ContentBadge>
                     </div>
-                    </Link>
-                    <Link to='/feeds' className='link'>
+                    </NavLink>
+                    <NavLink to='/notification' className='link'activeClassName='active_tab'>
                     <div className='user-nav__icon-box'>
                         <ContentBadge color="secondary" badgeContent={0} max={99}>
                             <NotificationsIcon />
                         </ContentBadge>
                     </div>
-                    </Link>
+                    </NavLink>
                 
-                <div className='user-nav__user'>
+                <div className='user-nav__user'onClick={() => setShowMenu(!showMenu)}>
                     <img src={userImage} alt='User' className='user-nav__user-photo'/>
+                    {showMenu && 
+                    <ClickAwayListener onClickAway={() => setShowMenu(false)}>
+                    <div className='user-nav__user__menu' onClick={(e) => e.stopPropagation()}>
+                        <div className='nav-menu__profile'>
+                            <div className ='nav-menu__profile__details'>
+                                <img src={userImage} alt='Yashveer' />
+                                <div className='div-child-1'>
+                                    <span className='span-child-1'>Yashveer Talan</span>
+                                    <span className='span-child-2'>@yv_official</span>
+                                </div>
+                            </div>
+                            <div className='nav-menu__profile__button'>
+                                <Link to='/user/yv_official' className='link'>
+                                <ColorButton variant='text'>View profile</ColorButton>
+                                </Link>
+                            </div>
+                        </div>
+                        <ul>
+                            <li className='nav-menu__heading'>
+                                Account
+                            </li>
+                            <li className='nav-menu__item'>
+                                Settings & Privacy
+                            </li>
+                            <li className='nav-menu__item'>
+                                Help & Support
+                            </li>
+                            <li className='nav-menu__heading'> 
+                                Actions
+                            </li>
+                            <li className='nav-menu__item'>
+                                Give Feedback
+                            </li>
+                            <li className='nav-menu__item log-out'>
+                                Log Out
+                            </li>
+                        </ul>
+                    </div>
+                    </ClickAwayListener>}
                     {/* <Avatar src={userImage} alt='user Name' /> */}
                 </div>
                 </nav> 
@@ -114,32 +143,45 @@ class Header extends React.Component {
         }
         else{
             return (
-                <div className="right-floated-section">
-                    <div className='nav-button'>
-                        <Link to='/login' className='link'>
-                        <button className='login-button'>Log In</button>
-                        </Link>
-                    </div>
-                </div> 
+                <>
+                <div className='nav-button'>
+                    <NavLink to='/login' className='link'>
+                        <Button variant='contained' className='login-button'>Log In</Button>
+                    </NavLink>
+                </div>
+                </> 
             );
         }
     }
 
-    render(){
-        return (
-            <div className={ this.state.location !== '/login' || this.state.location !== '/signup' ?( this.state.location === '/' ? `${this.state.addClassName}` : 'header') : 'header hide' } ref='target'>
-            
-                <Link to='/' className='link'>
-                <div className='header-main--logo'>
-                    {/* <img src={logo} alt='HBTU_Connect' /> */}
-                    <div className='header-main--logo-primary'>HBTU </div>
-                    <div className='header-main--logo-secondary'>Connect</div>
-                </div>
-                </Link>
-                {this.onAuthRender()}
+    return (
+        <div className={`header ${headerClass}`}>
+        
+            <Link to='/' className='link'>
+            <div className='header-main--logo'>
+                {/* <img src={logo} alt='HBTU_Connect' /> */}
+                <div className='header-main--logo-primary'>HBTU </div>
+                <div className='header-main--logo-secondary'>Connect</div>
             </div>
-        );
+            </Link>
+            <form action='#' className='search'>
+                <input type='text' className='search__input' placeholder='Search' />
+                <button className='search__button'>
+                    <SearchIcon fontSize='large' />
+                </button>
+            </form>
+            {onAuthRender()}
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return{
+        UI: state.UIData,
+        authData: state.authData
     }
 }
 
-export default Header;
+export default connect(mapStateToProps,{
+    headerDisplay
+})(Header);

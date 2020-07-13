@@ -1,14 +1,14 @@
 const validate = values => {
     const errors = {}
-    if (!values.rollNumber) {
-      errors.rollNumber = 'Required'
-    } else if (isNaN(Number(values.rollNumber))) {
-      errors.rollNumber = 'Must be a number'
-    }
+    // if (!values.rollNumber) {
+    //   errors.rollNumber = 'Required'
+    // } else if (isNaN(Number(values.rollNumber))) {
+    //   errors.rollNumber = 'Must be a number'
+    // }
 
-    if (!values.dob) {
-      errors.dob = 'Required'
-    }
+    // if (!values.dob) {
+    //   errors.dob = 'Required'
+    // }
 
     if (!values.firstName){
       errors.firstName = 'Required'
@@ -36,8 +36,8 @@ const validate = values => {
       errors.year = 'Required'
     }
 
-    if( !values.sex){
-      errors.sex = 'Required'
+    if( !values.gender){
+      errors.gender = 'Required'
     }   
 
 
@@ -45,31 +45,31 @@ const validate = values => {
       errors.declare = 'Please Confirm your Details'
     }
 
-    if( !values.userName){
-      errors.userName='Required'
-    }else if ([ 'john', 'paul', 'george', 'ringo' ].includes(values.userName)) {
-      errors.userName= 'Username is taken' 
-    }else if(!/^[\w]+$/i.test(values.userName)){
-      errors.userName='Username can only contain _ '
-    }
+    // if( !values.userName){
+    //   errors.userName='Required'
+    // }else if ([ 'john', 'paul', 'george', 'ringo' ].includes(values.userName)) {
+    //   errors.userName= 'Username is taken' 
+    // }else if(!/^[\w]+$/i.test(values.userName)){
+    //   errors.userName='Username can only contain _ '
+    // }
 
-    if( !values.password){
-      errors.password='Required'
-    }else if(!/(?=.*[a-z])/i.test(values.password)){
-      errors.password='Password must contain an Alphabate'
-    }else if( !/(?=.*[0-9])/i.test(values.password)){
-      errors.password= 'Password Must contain a Number'
-    }else if( !/(?=.[!@#$%^&])/i.test(values.password)){
-      errors.password= 'Password Must contain a symbol'
-    }else if( !/(?=.*[A-Z])/i.test(values.password)){
-       errors.password= 'Password Must contain a capital letter'
-     }else if(!/(?=.{8,})/i.test(values.password)){
-       errors.password = 'Password Should be greater than 8 Characters'
-     }
+    // if( !values.password){
+    //   errors.password='Required'
+    // }else if(!/(?=.*[a-z])/i.test(values.password)){
+    //   errors.password='Password must contain an Alphabate'
+    // }else if( !/(?=.*[0-9])/i.test(values.password)){
+    //   errors.password= 'Password Must contain a Number'
+    // }else if( !/(?=.[!@#$%^&])/i.test(values.password)){
+    //   errors.password= 'Password Must contain a symbol'
+    // }else if( !/(?=.*[A-Z])/i.test(values.password)){
+    //    errors.password= 'Password Must contain a capital letter'
+    //  }else if(!/(?=.{8,})/i.test(values.password)){
+    //    errors.password = 'Password Should be greater than 8 Characters'
+    //  }
 
-    if( values.confirmPassword !== values.password){
-      errors.confirmPassword = 'Passwords do not Match'
-    }
+    // if( values.confirmPassword !== values.password){
+    //   errors.confirmPassword = 'Passwords do not Match'
+    // }
 
     return errors
   }

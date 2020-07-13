@@ -75,7 +75,7 @@ const AskQuestion = (props) => {
     }
 
     return(
-        <div ref={props.portalRef} onClick={() => {props.setDisplayPortal(!props.displayPortal)}} className='portal click-away-listner'>
+        <div ref={props.portalRef} onClick={() => {props.setDisplayPortal(!props.displayPortal)}} className='portal-container click-away-listner'>
             <div className='portal-ask-question' onClick={(e) => { e.stopPropagation() }}>
                 { !review && 
                 <div className='portal-content'>
