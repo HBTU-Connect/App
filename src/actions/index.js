@@ -60,7 +60,7 @@ export const getData = formValues => async dispatch =>  {
 export const signUpAction = formValues => async dispatch => {
     const data = formValues
     try{
-        const response = await axiosInstance.post('/register', data, {
+        const response = await axiosInstance.post('/api/register', data, {
             headers:{
                 "Access-Control-Allow-Origin": "*"
             }
@@ -93,7 +93,7 @@ export const signUpAction = formValues => async dispatch => {
 export const loginAction = formValues => async dispatch => {
     const data = formValues
     try{
-        const response = await axiosInstance.post('/login', data, {
+        const response = await axiosInstance.post('/api/login', data, {
             headers:{
                 "Access-Control-Allow-Origin": "*"
             }
