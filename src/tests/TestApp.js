@@ -5,7 +5,7 @@ import reducers from '../reducers';
 import reduxThunk from 'redux-thunk';
 
 import App from '../components/app';
-import './scss/main.scss';
+import '../scss/main.scss';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
