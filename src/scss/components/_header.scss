@@ -3,8 +3,6 @@
 .header{
     width: 100%;
     height: $header-height;
-    // display: block;
-    position: relative;
     box-sizing: border-box;
     z-index: 10;
     transition: all 0.5s ease-in;
@@ -17,6 +15,15 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.4rem  ;
+    transition: all 0.5s ease-in;
+
+    &.show{
+        display: flex;
+    }
+
+    &.hide{
+        display: none;
+    }
 
     &-main--logo{
         font-size: 3rem;
@@ -349,12 +356,6 @@
         color: rgb(228, 228, 228);
         font-size: 3.2rem;
     }
-}
-
-
-.header.hide{
-    display: none;
-    transition: all 0.5s ease-in;
 }
 
 .MuiBadge-badge{

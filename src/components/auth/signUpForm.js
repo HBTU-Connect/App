@@ -41,10 +41,10 @@ const SignUpForm = (props) => {
     },[])
 
     useEffect(() =>{
-        if(!loading && props.authData && props.authData.signUpData){
-            enqueueSnackbar(props.authData.signUpData.message, {variant: 'success', autoHideDuration: 3000})
+        if(!loading && props.authData && props.authData.type === 'signup' && props.authData.data){
+            enqueueSnackbar(props.authData.data.message, {variant: 'success', autoHideDuration: 3000})
         }
-        if(!loading && props.authData && props.authData.error){
+        if(!loading && props.authData && props.authData.type === 'error' && props.authData.data){
             enqueueSnackbar(props.authData.error, {variant: 'error', autoHideDuration: 3000})
 
         }

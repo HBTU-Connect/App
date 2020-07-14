@@ -11,11 +11,13 @@
     "axios": "^0.19.2",
     "date-fns": "^2.14.0",
     "escape-html": "^1.0.3",
+    "husky": "^4.2.5",
     "is-hotkey": "^0.1.6",
     "is-url": "^1.2.4",
     "material-ui": "^0.20.2",
     "node-sass": "^4.14.1",
     "notistack": "^0.9.17",
+    "pretty-quick": "^2.0.1",
     "prismjs": "^1.20.0",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
@@ -37,8 +39,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick  --staged"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -54,5 +57,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^10.4.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "prettier": "2.0.5",
+    "redux-mock-store": "^1.5.4"
   }
 }
