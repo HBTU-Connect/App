@@ -4,8 +4,6 @@ export const userReducer = (state = {}, action) => {
     switch(action.type){
         case 'ADD_DATA':
             return state ={...state, data: action.payload, hadFilledForm: true };
-        case 'ERROR':
-            return state={...state, error: action.payload};
         default:
             return state;
     }
@@ -14,11 +12,13 @@ export const userReducer = (state = {}, action) => {
 export const authReducer= (state ={}, action) => {
     switch(action.type){
         case 'SIGN_UP':
-            return state ={...state, signUpData: action.payload, msg: 'Success', error: null}
+            return state ={...state, data: action.payload, type: 'signup', msg: 'Success'}
         case 'LOGIN':
-            return state ={...state, loginData: action.payload, msg: 'Success', isLoggedIn: true, error: null}
+            return state ={...state, data: action.payload, type: 'login', msg: 'Success', isLoggedIn: true}
+        case 'LOGOUT':
+            return state = { ...state, data: action.payload, type: 'logout', msg: 'Success', isLoggedIn: false}
         case 'ERROR':
-            return state={...state, error: action.payload, msg: 'error'};
+            return state={...state, data: action.payload, type: 'error', msg: 'error'};
         default:
             return state
     } 

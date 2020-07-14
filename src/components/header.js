@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { Badge, Button, ClickAwayListener } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,9 +10,11 @@ import { Chat as ChatIcon,
         Apps as AppsIcon
 } from '@material-ui/icons';
 import{ headerDisplay } from '../actions/headerAction'
+import { logoutAction } from '../actions'
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
+import { useSnackbar } from 'notistack';
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -46,6 +48,21 @@ const Header = (props) =>  {
     // state = { addClassName : ''}
     const [ headerClass, setHeaderClass ] = useState('')
     const [ showMenu, setShowMenu ] = useState(false)
+    const [ loading, setLoading ] = useState(false)
+    const [ redirect, setRedirect ] = useState(false)
+    const { enqueueSnackbar } = useSnackbar()
+
+    useEffect(() =>{
+        if(!loading && props.authData && props.authData.type === 'logout' && props.authData.data){
+            enqueueSnackbar(props.authData.data.message, {variant: 'success', autoHideDuration: 3000})
+            setRedirect(true)
+        }
+        if(!loading && props.authData && props.authData.type === 'error' && props.authData.data){
+            enqueueSnackbar(props.authData.error, {variant: 'error', autoHideDuration: 3000})
+
+        }
+        // eslint-disable-next-line
+    }, [loading])
 
 
     useEffect(() => {
@@ -53,6 +70,18 @@ const Header = (props) =>  {
         if(props.UI)
         setHeaderClass(props.UI.displayHeader)
     }, [props.UI])
+
+    const handleLogOut = async () =>{
+        console.log('clicked')
+        setLoading(true)
+        if(props.authData && props.authData.data && props.authData.data.access_token){
+            const accessToken = props.authData.data.access_token
+            const response = await props.logoutAction(accessToken)
+            if(response) {
+                setLoading(false)
+            }
+        }
+    }
 
     // svgRender = (iconName, classname ) => {
     //     const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
@@ -124,7 +153,7 @@ const Header = (props) =>  {
                             <li className='nav-menu__item'>
                                 Give Feedback
                             </li>
-                            <li className='nav-menu__item log-out'>
+                            <li onClick={handleLogOut} className='nav-menu__item log-out'>
                                 Log Out
                             </li>
                         </ul>
@@ -154,7 +183,11 @@ const Header = (props) =>  {
         }
     }
 
+    
+
     return (
+        <>
+        {!loading && redirect && <Redirect to='/' />}
         <div className={`header ${headerClass}`}>
         
             <Link to='/' className='link'>
@@ -172,6 +205,7 @@ const Header = (props) =>  {
             </form>
             {onAuthRender()}
         </div>
+        </>
     );
 }
 
@@ -183,5 +217,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,{
-    headerDisplay
+    headerDisplay,
+    logoutAction
 })(Header);
