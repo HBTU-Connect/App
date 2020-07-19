@@ -491,3 +491,168 @@
         }
     }
 }
+
+.portal.edit-about-details{
+    width: 70%;
+    height: 80%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 80% 10%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.377);
+}
+
+.edit-about-details{
+    overflow: hidden;
+
+    &__header{
+        position: relative;
+        display: flex;
+        font-size: 2rem;
+        font-weight: 500;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 1px 1px 3px rgb(207, 207, 207);
+
+        .close-btn{
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__content{
+        display: flex;
+    }
+
+    &__left{
+        width: 30%;
+        border-right: 1px solid rgb(212, 212, 212);
+
+        ul{
+            list-style: none;
+            width: 100%;
+            margin-top: 1rem;
+            padding-left: 1rem;
+
+            li{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 1rem 2rem;
+                font-size: 1.4rem;
+                font-weight: 500;
+                color: rgb(145, 145, 145);
+                cursor: pointer;
+                margin-bottom: 1rem;
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+                transition: 0.2s all ease;
+
+                &:hover{
+                    background-color: rgb(245, 255, 255);
+                }
+
+                &.active{
+                    background-color: rgb(226, 255, 255);
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+
+    &__right{
+        width: 70%;
+        padding: 1rem 2rem;
+        overflow-y: scroll;
+        
+        &__title{
+            font-size: 2.4rem;
+            margin-bottom:4rem;
+            font-weight: 600;
+        }
+    }
+
+    &__tile{
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: flex-start;
+
+        .MuiSvgIcon-root{
+            // width: 1.5em;
+            // height: 1.5em;
+            color: rgb(172, 172, 172);
+        }
+
+        &__content{
+            width: 60%;
+        }
+    }
+
+    &__edit{
+        &__action{
+            display: flex;
+            margin-top: 2rem;
+
+            div.default-privacy{
+                background-color: rgb(223, 223, 223);
+                padding: 0.5rem 1rem;
+                border-radius: 50px;
+                color: rgb(70, 70, 70);
+                cursor: pointer;
+            }
+
+            .MuiSelect-root{
+                display: flex;
+                align-items: center;
+                font-size: 1.2rem;
+            }
+
+            .MuiButton-root{
+                font-size: 1.4rem;
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    &__about-tile{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        &__content{
+            .MuiSvgIcon-root{
+                // width: 1.5em;
+                // height: 1.5em;
+                color: rgb(172, 172, 172);
+            }
+        }
+    }
+
+    &__contact-tile{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 3rem;
+
+        .MuiSvgIcon-root{
+            // width: 1.5em;
+            // height: 1.5em;
+            color: rgb(172, 172, 172);
+        }
+    }
+
+    &__footer{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        box-shadow: -1px -1px 3px rgb(207, 207, 207);
+
+        .MuiButton-root{
+            font-size: 1.4rem;
+            text-transform: capitalize;
+        }
+    }
+}

@@ -11,7 +11,7 @@ RUN npm install
 COPY ./ /app/
 
 # RUN npm run build
-# RUN npm rebuild node-sass
+RUN npm rebuild node-sass
 
 # RUN npm start
 CMD [ "npm", "start" ]
