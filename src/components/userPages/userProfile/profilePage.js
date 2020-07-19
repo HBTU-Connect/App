@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, IconButton, ClickAwayListener, Menu, MenuItem } from '@material-ui/core'
+import { connect } from 'react-redux'
+import { Button, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Assignment as AssignmentIcon,
         AssignmentInd as AssignmentIndIcon,
@@ -18,22 +19,27 @@ import { Assignment as AssignmentIcon,
         PhoneAndroid,
         Email,
         Contacts,
-        Group,
         Edit,
-        Palette,
-        Settings,
         Add,
         ExpandMore,
         Loyalty,
         Close,
         Album,
         Movie,
-        MenuBook
+        MenuBook,
+        WhatsApp,
+        YouTube
 } from '@material-ui/icons'
 
 import SearchData from './searchData'
+import EditCard from './editCard'
 import {ChasingDotsSpinner} from '../../utils/loadingSpinner'
 import Footer from '../footer'
+
+//actions
+import { editProfileDetailsAction } from '../../../actions'
+
+
 //image
 import userImage from '../../../images/profile.jpg'
 import ECellImg from '../../../images/clubs/ECell-profile.jpg'
@@ -41,7 +47,7 @@ import ECellImg from '../../../images/clubs/ECell-profile.jpg'
 const aboutTileIcons = {
     branch: <School />,
     year: <CalendarTodayIcon />,
-    from: <Room />,
+    hometown: <Room />,
     school: <Apartment />,
     hostel: <HomeWork />,
     instagram: <Instagram />,
@@ -53,6 +59,8 @@ const aboutTileIcons = {
     birthday: <Cake />,
     phone: <PhoneAndroid/>,
     email: <Email />,
+    whatsapp: <WhatsApp />,
+    youtube: <YouTube />
 }
 
 const branches = {
@@ -80,10 +88,10 @@ const ColorPrimaryButton = withStyles((theme) => ({
     },
 }))(Button);
 
-const renderAboutCard = (data) => {
+const renderAboutCard = (data, setDisplayEditPortal, setEditPage) => {
     const about = data.about
     const userFields = ['branch', 'year']
-    const aboutFields = ['hostel', 'birthday', 'from', 'school' ]
+    const aboutFields = ['hostel', 'birthday', 'hometown', 'school' ]
     return(
         <div className='card-profile card-small'>
             <span className='card-small__header'>
@@ -91,7 +99,8 @@ const renderAboutCard = (data) => {
                 About
             </span>
             <div className='card-small__content'>
-                {userFields.map((field, index) => {
+                {// eslint-disable-next-line
+                userFields.map((field, index) => {
                     if(data[field]){
                         return(
                             <div key={index} className='card-small__content__tile'>
@@ -106,13 +115,14 @@ const renderAboutCard = (data) => {
                         )
                     }
                 })}
-                {aboutFields.map((field, index) => {
+                {// eslint-disable-next-line
+                aboutFields.map((field, index) => {
                     if(about[field]){
                         return(
                             <div key={index} className='card-small__content__tile'>
                                 {aboutTileIcons[field]}
                                 <span className='content-tile__title'>
-                                    {field}
+                                    {field === 'hometown' ? 'from' : field}
                                 </span>
                                 <span>
                                     {about[field]}
@@ -123,15 +133,14 @@ const renderAboutCard = (data) => {
                 })}
                 
             </div>
-            <ColorButton variant='text'>Edit About</ColorButton>
+            <ColorButton variant='text' onClick={() => {setEditPage(3); setDisplayEditPortal(true)} }>Edit About</ColorButton>
         </div>
     )
 }
 
-const renderContacts = (data, lastCardRef) => {
+const renderContacts = (data, lastCardRef, setDisplayEditPortal, setEditPage) => {
     const socialHandles = data.about.socialHandles
     const contactFields = ['phone', 'email']
-    const socialHandleFields = ['instagram', 'facebook', 'linkedIn', 'twitter', 'github', 'website']
     return(
         <div ref={lastCardRef} className='card-profile card-small'>
             <span className='card-small__header'>
@@ -139,7 +148,8 @@ const renderContacts = (data, lastCardRef) => {
                 Contact
             </span>
             <div className='card-small__content'>
-            {contactFields.map((field, index) => {
+            {// eslint-disable-next-line
+            contactFields.map((field, index) => {
                     if(data[field]){
                         return(
                             <div key={index} className='card-small__content__tile'>
@@ -154,23 +164,22 @@ const renderContacts = (data, lastCardRef) => {
                         )
                     }
                 })}
-            {socialHandleFields.map((field, index) => {
-                    if(socialHandles[field]){
-                        return(
-                            <div key={index} className='card-small__content__tile'>
-                                {aboutTileIcons[field]}
-                                {/* <span className='content-tile__title'>
-                                    {field}
-                                </span> */}
-                                <span className='social-links'>
-                                    {socialHandles[field]}
-                                </span>
-                            </div>
-                        )
-                    }
+            {// eslint-disable-next-line
+            socialHandles.map((handle, index) => {
+                    return(
+                        <div key={index} className='card-small__content__tile'>
+                            {aboutTileIcons[handle.title]}
+                            {/* <span className='content-tile__title'>
+                                {field}
+                            </span> */}
+                            <span className='social-links'>
+                                {handle.content}
+                            </span>
+                        </div>
+                    )
                 })}
             </div>
-            <ColorButton variant='text'>Edit Contact Details</ColorButton>
+            <ColorButton variant='text' onClick={() => {setEditPage(4); setDisplayEditPortal(true)} }>Edit Contact Details</ColorButton>
         </div>
     )
 
@@ -199,7 +208,8 @@ const renderConnectionCard = (connections) => {
             </div>
             <div className='card-large__content grid-view margin-bottom-3'>
                 {connections.length === 0 && <span className='no-activities'>No Connection</span>}
-                {connections.map((connection, index) => {
+                {// eslint-disable-next-line
+                connections.map((connection, index) => {
                     if(index < 6){
                         return(
                             <div key={index} className='profile-connection-card flex padding-1  margin-bottom-1'>
@@ -236,7 +246,9 @@ const RenderClubsCard = ({clubs}) => {
             </div>
             <div className='card-large__content grid-view clubs'>
                 {clubs && clubs.length === 0 && <span className='no-activities'>No Clubs</span>}
-                {clubs && clubs.length > 0 && clubs.map((club, index) => {
+                {clubs && clubs.length > 0 &&
+                // eslint-disable-next-line
+                 clubs.map((club, index) => {
                     if(index<length){
                         return(
                             <div key={index} className='profile-page__club-card flex center padding-1'>
@@ -266,6 +278,7 @@ const InterestSection = ({ name, data }) => {
     useEffect(() => {
         console.log(sectionData.length)
         setSectionData([...data])
+        // eslint-disable-next-line
     },[data])
 
     useEffect(() => {
@@ -339,14 +352,17 @@ const InterestSection = ({ name, data }) => {
     )
 }
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
     const [ userDetails, setUserDetails ] = useState({})
     const [ loading, setLoading ] = useState(true)
     const [anchorEl, setAnchorEl] = useState(null);
     const [ interestSections, setInterestSections ] = useState([])
     const [ displayPortal, setDisplayPortal ] = useState(false)
+    const [ displayEditPortal, setDisplayEditPortal ] = useState(false)
+    const [ editPage, setEditPage ] = useState(0)
     const [ image, setImage] = useState('https://source.unsplash.com/1_CMoFsPfso')
     const portalRef = useRef(null)
+    const editPortalRef = useRef(null)
     const lastCardRef = useRef(null)
     const leftContainerRef = useRef(null)
 
@@ -382,6 +398,16 @@ const ProfilePage = () => {
         }
     }, [displayPortal])
 
+    useEffect(() => {
+        if(displayEditPortal && editPortalRef.current){
+            editPortalRef.current.style.top = '0'
+            editPortalRef.current.style.left = '0'
+        }
+        else if(!displayEditPortal && editPortalRef.current){
+            editPortalRef.current.removeAttribute('style')
+        }
+    }, [displayEditPortal])
+
     const handleScroll = (e) => {
         // console.log('ok')
         if(lastCardRef.current && leftContainerRef.current && e.target.scrollTop > (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop - 60) ){
@@ -408,6 +434,7 @@ const ProfilePage = () => {
         <div onScroll={(e) => handleScroll(e)} className='body-container profile-page-container'>
 
         {displayPortal && <SearchData name={'coverImage'} setSectionData={setImage} setDisplayPortal={setDisplayPortal} portalRef={portalRef} />}
+        {displayEditPortal && <EditCard page={editPage} data={userDetails} setDisplayEditPortal={setDisplayEditPortal} editPortalRef={editPortalRef} />}
             <div className='profile-page'>
                 <div className='profile-page__top-card'>
                     <div className='profile-page__cover-container'>
@@ -451,10 +478,10 @@ const ProfilePage = () => {
                             <div className='card-small__content'>
                                 {userDetails.about.bio}
                             </div>
-                            <ColorButton variant='text'>Edit Bio</ColorButton>
+                            <ColorButton variant='text' onClick={() => {setEditPage(2); setDisplayEditPortal(true)}}>Edit Bio</ColorButton>
                         </div>
-                        {renderAboutCard(userDetails)}
-                        {renderContacts(userDetails, lastCardRef)}
+                        {renderAboutCard(userDetails, setDisplayEditPortal, setEditPage)}
+                        {renderContacts(userDetails, lastCardRef, setDisplayEditPortal, setEditPage)}
                         <Footer class='profile-page' />
                     </div>
                     <div className='profile-page__content__right'>
@@ -485,16 +512,30 @@ const sampleData = {
     about: {
         bio: 'Web & App Developer at Entrepreneurship Cell, HBTU Kanpur',
         birthday: '3 November',
-        from: 'Jewar',
+        hometown: 'Jewar',
         school: 'Pragyan Public School',
-        hostel: 'Raman Hostel',
-        socialHandles: {
-            instagram: 'yv_official',
-            facebook: 'yashveer.talan.9',
-            linkedIn: 'yashveerTalan',
-            github: 'yv_official',
-            twitter: 'yv_official'
-        },
+        // hostel: 'Raman Hostel',
+        socialHandles: [
+            {title: 'instagram', content: 'yv_official'},
+            {title: 'facebook', content: 'yashveer.talan.9'},
+            {title: 'linkedIn', content: 'yashveertalan'},
+            {title: 'whatsapp', content: '8126560602'},
+            {title: 'twitter', content: 'yv_official_'},
+            {title: 'github', content: 'yv-official'}
+        ],
+    },
+    settings: {
+        privacy: {
+            email: 'connections',
+            phone: 'private',
+            bio: 'public',
+            birthday: 'public',
+            hometown: 'public',
+            school: 'connections',
+            hostel: 'public',
+            socialHandles: 'connections',
+            websites: 'connections'
+        }
     },
     connections: [
         {
@@ -584,4 +625,12 @@ const sampleData = {
 
 }
 
-export default ProfilePage
+const mapStateToProps = (state) => {
+    return{
+        authData: state.authData
+    }
+}
+
+export default connect(mapStateToProps, {
+    editProfileDetailsAction
+})(ProfilePage)

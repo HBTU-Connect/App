@@ -92,7 +92,7 @@ export const loginAction = formValues => async dispatch => {
     }
 }
 
-
+//logout action
 export const logoutAction = (token) => async dispatch => {
     try{
         const response = await axiosInstance.get('/logout/access', {
@@ -106,6 +106,44 @@ export const logoutAction = (token) => async dispatch => {
             payload: response.data
         })
         return true
+    }
+    catch(error){
+        console.log(error.response)
+        if(error.response && error.response.data && error.response.data.error){
+            dispatch({
+                type: 'ERROR',
+                payload: error.response.data.error
+            })
+        }
+        else{
+            dispatch({
+                type: 'ERROR',
+                payload: error.message
+            })
+        }
+        return true
+    }
+}
+
+
+
+
+
+//user actions
+export const editProfileDetailsAction = (values, token, username) => async dispatch => {
+    try{
+        const response = await axiosInstance.post(`/user/edit?username=yv`, values, {
+            headers:{
+                "Access-Control-Allow-Origin": "*",
+                Authorization: `Bearer ${token}`
+            }
+        } )
+        console.log(response)
+        // dispatch({
+        //     type: '',
+        //     payload: response.data
+        // })
+        // return true
     }
     catch(error){
         console.log(error.response)

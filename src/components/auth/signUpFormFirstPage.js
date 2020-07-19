@@ -238,6 +238,7 @@ const SignUpFormFirstPage = (props) => {
                 <div className='input-field__signup last'>
                 <FormControl error={formErrors.declare ? true: false}>
                     <FormControlLabel
+                        className='signup-form-declare-label'
                         control={<GreenCheckbox checked={formValues.declare} onChange={(e) => handleFieldChange(e)} name="declare" />}
                         label="I hereby declare that all the details maintioned above belongs to me."
                     />
