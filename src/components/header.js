@@ -66,13 +66,12 @@ const Header = (props) =>  {
 
 
     useEffect(() => {
-        console.log(props.UI)
         if(props.UI)
         setHeaderClass(props.UI.displayHeader)
     }, [props.UI])
 
     const handleLogOut = async () =>{
-        console.log('clicked')
+        setShowMenu(false)
         setLoading(true)
         if(props.authData && props.authData.data && props.authData.data.access_token){
             const accessToken = props.authData.data.access_token
@@ -133,24 +132,24 @@ const Header = (props) =>  {
                             </div>
                             <div className='nav-menu__profile__button'>
                                 <Link to='/user/yv_official' className='link'>
-                                <ColorButton variant='text'>View profile</ColorButton>
+                                <ColorButton onClick={() => setShowMenu(false)} variant='text'>View profile</ColorButton>
                                 </Link>
                             </div>
                         </div>
                         <ul>
-                            <li className='nav-menu__heading'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__heading'>
                                 Account
                             </li>
-                            <li className='nav-menu__item'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__item'>
                                 Settings & Privacy
                             </li>
-                            <li className='nav-menu__item'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__item'>
                                 Help & Support
                             </li>
-                            <li className='nav-menu__heading'> 
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__heading'> 
                                 Actions
                             </li>
-                            <li className='nav-menu__item'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__item'>
                                 Give Feedback
                             </li>
                             <li onClick={handleLogOut} className='nav-menu__item log-out'>
@@ -159,7 +158,6 @@ const Header = (props) =>  {
                         </ul>
                     </div>
                     </ClickAwayListener>}
-                    {/* <Avatar src={userImage} alt='user Name' /> */}
                 </div>
                 </nav> 
 
