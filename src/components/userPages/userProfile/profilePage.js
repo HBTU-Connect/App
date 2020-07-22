@@ -409,10 +409,11 @@ const ProfilePage = (props) => {
     }, [displayEditPortal])
 
     const handleScroll = (e) => {
-        // console.log('ok')
+        const body = document.getElementsByClassName('profile-page__content')[0]
         if(lastCardRef.current && leftContainerRef.current && e.target.scrollTop > (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop - 60) ){
-            // console.log(e.target.scrollTop, lastCardRef.current.offsetTop)
-            leftContainerRef.current.style.transform = `translateY(${e.target.scrollTop - (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop -60)}px)`
+            if(body.getBoundingClientRect().bottom > e.target.offsetHeight - 50){
+                leftContainerRef.current.style.transform = `translateY(${e.target.scrollTop - (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop -60)}px)`
+            }
         }
         else{
             leftContainerRef.current.style.transform = `translateY(${0}px)`
