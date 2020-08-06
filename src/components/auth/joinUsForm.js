@@ -1,6 +1,5 @@
 import React, { useEffect, useState} from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
@@ -11,7 +10,7 @@ import { useSnackbar } from 'notistack';
 import validate from '../utils/validate';
 
 //actions
-import { getData } from '../../actions';
+// import { getData } from '../../actions';
 
 
 const ColorButton = withStyles((theme) => ({
@@ -28,21 +27,6 @@ const JoinUsForm  = (props) => {
     const [ loading, setLoading ] = useState(false)
     const [ error, setError ] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
-
-    useEffect(() => {
-        const { userData } = props;
-        if( userData.error && error  && !loading){
-            enqueueSnackbar(userData.error.msg, {variant: 'error', autoHideDuration: 3000})
-            setError(false)
-            props.change("dob", null);
-        }
-        if( !userData.error && error  && !loading){
-            enqueueSnackbar('Please fill all the details', {variant: 'info', autoHideDuration: 3000, style: { fontSize: '1.4rem'}})
-            setError(false)
-            props.change("dob", null);
-        }
-       // eslint-disable-next-line 
-    },[loading])
     
     const renderField = ({ input, label, type,input: { value }, meta: { valid, dirty, active, touched, error } }) => (
         <div className='input-field'>
@@ -62,18 +46,15 @@ const JoinUsForm  = (props) => {
         setLoading(true)
         setError(true)
         window.localStorage.setItem('rollNumber', formValues.rollNumber);
-        const response = await props.getData(formValues);
-        if(response){
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-        };
+        
+        //add action here to add roll no. to global store
+        setLoading(false)
     }
 
 
-    if(props.userData.data && !loading){
-        return <Redirect to='/signup' />
-    }
+    // if( !loading){
+    //     return <Redirect to='/signup' />
+    // }
 
     return(
         <>
@@ -103,15 +84,11 @@ const formWrapper = reduxForm({
     validate
 })(JoinUsForm);
 
-const mapStateToProps = (state) => {
-    return {
-        userData: state.userData,
-        initialValues: { rollNumber: window.localStorage.getItem('rollNumber')}
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         userData: state.userData,
+//         initialValues: { rollNumber: window.localStorage.getItem('rollNumber')}
+//     }
+// }
 
-const connectProps =  connect(mapStateToProps, {
-    getData
-})(formWrapper);
-
-export default withRouter(connectProps);
+export default withRouter(formWrapper);

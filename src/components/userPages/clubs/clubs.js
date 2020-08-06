@@ -4,7 +4,6 @@ import { Add as AddIcon } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
 
 import ClubCard from './clubCard'
-import EventBox from './eventBox'
 import RequestClub from './requestClub'
 import Footer from '../footer'
 
@@ -13,7 +12,6 @@ import QuizImg from '../../../images/clubs/Quiz-profile.jpg';
 import DebateImg from '../../../images/clubs/debate.jpg';
 import DiscoverClubs from './discoverClubs';
 
-const clubs = [{title: 'Qfrad', img: QuizImg}, {title: 'Qfrad', img: QuizImg}, {title: 'Qfrad', img: QuizImg}, {title: 'Qfrad', img: QuizImg}, {title: 'Qfrad', img: QuizImg}]
 const myclubs = [
     {
         title: 'ECell',

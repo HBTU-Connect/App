@@ -1,43 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { connect } from 'react-redux'
 import { ArrowForwardIos as ArrowForwardIosIcon } from '@material-ui/icons'
 
 //components
 import Footer from './footer';
 import PageHTML from './pageHTML';
 import JoinUsForm from '../auth/joinUsForm';
-import {headerDisplay} from '../../actions/headerAction'
 
 
 
 
-class WelcomePage extends React.Component{
+const WelcomePage = () => {
 
-    componentDidMount(){
-        this.props.headerDisplay('hide')
+   useEffect(() => {
+        // add header hide action here
+
         setTimeout(() => {
         const msg = new SpeechSynthesisUtterance('Welcome to H B T U Connect');
         window.speechSynthesis.speak(msg)
         }, 1000
         )
-    }
+    }, [])
 
-    handleScroll = (e) => {
+    const handleScroll = (e) => {
         // console.log(e.target.scrollTop)
-        if(e.target.scrollTop > 665 && this.props.UI.displayHeader === 'hide' ){
-            console.log(e.target.scrollTop)
-            this.props.headerDisplay('show')
-        }
-        else if(e.target.scrollTop < 665 && this.props.UI.displayHeader === 'show'){
-            console.log(e.target.scrollTop)
-            this.props.headerDisplay('hide')
-        }
-    }
+        // if(e.target.scrollTop > 665 && this.props.UI.displayHeader === 'hide' ){
+        //     console.log(e.target.scrollTop)
+        //     this.props.headerDisplay('show')
+        // }
+        // else if(e.target.scrollTop < 665 && this.props.UI.displayHeader === 'show'){
+        //     console.log(e.target.scrollTop)
+        //     this.props.headerDisplay('hide')
+        // }
 
-    render(){    
+        // toggle header hide 
+    }
+  
         return(
-            <div className='welcome-page' onScroll={(e) => this.handleScroll(e)}>
+            <div className='welcome-page' onScroll={(e) => handleScroll(e)}>
                 <div className='welcome-page__wrapper'>
                     <div className='header-container'>
                         <div className='left-floated-div'>
@@ -65,16 +65,13 @@ class WelcomePage extends React.Component{
                 </div>
             </div>
         );
-    }
 }
 
-const mapStateToProps = (state) => {
-    return{
-        UI: state.UIData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         UI: state.UIData
+//     }
+// }
 
-export default connect(mapStateToProps,{
-    headerDisplay
-})(withRouter(WelcomePage));
+export default withRouter(WelcomePage);
 

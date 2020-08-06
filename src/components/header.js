@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
 import { Badge, Button, ClickAwayListener } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Chat as ChatIcon,
@@ -9,8 +8,6 @@ import { Chat as ChatIcon,
         SearchRounded as SearchIcon,
         Apps as AppsIcon
 } from '@material-ui/icons';
-import{ headerDisplay } from '../actions/headerAction'
-import { logoutAction } from '../actions'
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
@@ -73,19 +70,11 @@ const Header = (props) =>  {
     const handleLogOut = async () =>{
         setShowMenu(false)
         setLoading(true)
-        if(props.authData && props.authData.data && props.authData.data.access_token){
-            const accessToken = props.authData.data.access_token
-            const response = await props.logoutAction(accessToken)
-            if(response) {
-                setLoading(false)
-            }
-        }
-    }
 
-    // svgRender = (iconName, classname ) => {
-    //     const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
-    //     return <svg className={`${classname}__icon`} dangerouslySetInnerHTML={{__html: useTag }} />;
-    // }
+
+        // add action here
+        setLoading(false)
+    }
 
     const onAuthRender = () => {
         
@@ -207,14 +196,11 @@ const Header = (props) =>  {
     );
 }
 
-const mapStateToProps = (state) => {
-    return{
-        UI: state.UIData,
-        authData: state.authData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         UI: state.UIData,
+//         authData: state.authData
+//     }
+// }
 
-export default connect(mapStateToProps,{
-    headerDisplay,
-    logoutAction
-})(Header);
+export default Header;

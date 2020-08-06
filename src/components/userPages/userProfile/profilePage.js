@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { connect } from 'react-redux'
 import { Button, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Assignment as AssignmentIcon,
@@ -35,9 +34,6 @@ import SearchData from './searchData'
 import EditCard from './editCard'
 import {ChasingDotsSpinner} from '../../utils/loadingSpinner'
 import Footer from '../footer'
-
-//actions
-import { editProfileDetailsAction } from '../../../actions'
 
 
 //image
@@ -626,12 +622,10 @@ const sampleData = {
 
 }
 
-const mapStateToProps = (state) => {
-    return{
-        authData: state.authData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         authData: state.authData
+//     }
+// }
 
-export default connect(mapStateToProps, {
-    editProfileDetailsAction
-})(ProfilePage)
+export default ProfilePage

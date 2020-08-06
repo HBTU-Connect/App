@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Field, FieldArray, reduxForm, formValueSelector, clearFields, autofill, registerField } from 'redux-form'
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-// import {   } from '@material-ui/styles'
 import { green } from '@material-ui/core/colors';
 import { Button, IconButton, TextField, RadioGroup, Radio, FormControlLabel, FormControl, Checkbox, Switch } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
