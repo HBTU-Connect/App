@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { connect } from 'react-redux'
 import { Button, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Assignment as AssignmentIcon,
@@ -35,9 +34,6 @@ import SearchData from './searchData'
 import EditCard from './editCard'
 import {ChasingDotsSpinner} from '../../utils/loadingSpinner'
 import Footer from '../footer'
-
-//actions
-import { editProfileDetailsAction } from '../../../actions'
 
 
 //image
@@ -409,10 +405,11 @@ const ProfilePage = (props) => {
     }, [displayEditPortal])
 
     const handleScroll = (e) => {
-        // console.log('ok')
+        const body = document.getElementsByClassName('profile-page__content')[0]
         if(lastCardRef.current && leftContainerRef.current && e.target.scrollTop > (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop - 60) ){
-            // console.log(e.target.scrollTop, lastCardRef.current.offsetTop)
-            leftContainerRef.current.style.transform = `translateY(${e.target.scrollTop - (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop -60)}px)`
+            if(body.getBoundingClientRect().bottom > e.target.offsetHeight - 50){
+                leftContainerRef.current.style.transform = `translateY(${e.target.scrollTop - (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop -60)}px)`
+            }
         }
         else{
             leftContainerRef.current.style.transform = `translateY(${0}px)`
@@ -625,12 +622,10 @@ const sampleData = {
 
 }
 
-const mapStateToProps = (state) => {
-    return{
-        authData: state.authData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         authData: state.authData
+//     }
+// }
 
-export default connect(mapStateToProps, {
-    editProfileDetailsAction
-})(ProfilePage)
+export default ProfilePage

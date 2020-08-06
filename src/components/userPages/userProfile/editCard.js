@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { connect } from 'react-redux'
 import { IconButton, Button, TextField, FormControl, Select, MenuItem, Divider } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Close, Person, Edit, Public, AlternateEmail, Lock, People, School, CalendarToday, Assignment, AddCircleOutline, Room, Apartment, HomeWork, Instagram, Facebook, LinkedIn, Twitter, Language, GitHub, Cake, PhoneAndroid, Email, WhatsApp, YouTube } from '@material-ui/icons'
 import { ChasingDotsSpinner } from '../../utils/loadingSpinner'
-
-//actions
-import { editProfileDetailsAction } from '../../../actions'
-
 
 
 
@@ -51,9 +46,8 @@ const EditCard = ({data, editPortalRef, setDisplayEditPortal, page, editProfileD
     const handleDone = () => {
         console.log(newData)
         console.log(newPrivacy)
-        if(authData && authData.data){
-            editProfileDetailsAction(newData, authData.data.accessToken, authData.data.username )
-        }
+
+        // add action here
     }
 
     return(
@@ -502,12 +496,10 @@ const RenderEditContactDetails = ({userDetails, data, setData, privacy, setPriva
     )
 }
 
-const mapStateToProps = (state) => {
-    return{
-        authData: state.authData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         authData: state.authData
+//     }
+// }
 
-export default connect(mapStateToProps, {
-    editProfileDetailsAction
-})(EditCard)
+export default EditCard

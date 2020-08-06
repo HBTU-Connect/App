@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
 import { Badge, Button, ClickAwayListener } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Chat as ChatIcon,
@@ -9,8 +8,6 @@ import { Chat as ChatIcon,
         SearchRounded as SearchIcon,
         Apps as AppsIcon
 } from '@material-ui/icons';
-import{ headerDisplay } from '../actions/headerAction'
-import { logoutAction } from '../actions'
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
@@ -66,27 +63,18 @@ const Header = (props) =>  {
 
 
     useEffect(() => {
-        console.log(props.UI)
         if(props.UI)
         setHeaderClass(props.UI.displayHeader)
     }, [props.UI])
 
     const handleLogOut = async () =>{
-        console.log('clicked')
+        setShowMenu(false)
         setLoading(true)
-        if(props.authData && props.authData.data && props.authData.data.access_token){
-            const accessToken = props.authData.data.access_token
-            const response = await props.logoutAction(accessToken)
-            if(response) {
-                setLoading(false)
-            }
-        }
-    }
 
-    // svgRender = (iconName, classname ) => {
-    //     const useTag = `<use xlink:href="${icons}#icon-${iconName}" />`;
-    //     return <svg className={`${classname}__icon`} dangerouslySetInnerHTML={{__html: useTag }} />;
-    // }
+
+        // add action here
+        setLoading(false)
+    }
 
     const onAuthRender = () => {
         
@@ -133,24 +121,24 @@ const Header = (props) =>  {
                             </div>
                             <div className='nav-menu__profile__button'>
                                 <Link to='/user/yv_official' className='link'>
-                                <ColorButton variant='text'>View profile</ColorButton>
+                                <ColorButton onClick={() => setShowMenu(false)} variant='text'>View profile</ColorButton>
                                 </Link>
                             </div>
                         </div>
                         <ul>
-                            <li className='nav-menu__heading'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__heading'>
                                 Account
                             </li>
-                            <li className='nav-menu__item'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__item'>
                                 Settings & Privacy
                             </li>
-                            <li className='nav-menu__item'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__item'>
                                 Help & Support
                             </li>
-                            <li className='nav-menu__heading'> 
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__heading'> 
                                 Actions
                             </li>
-                            <li className='nav-menu__item'>
+                            <li onClick={() => setShowMenu(false)} className='nav-menu__item'>
                                 Give Feedback
                             </li>
                             <li onClick={handleLogOut} className='nav-menu__item log-out'>
@@ -159,7 +147,6 @@ const Header = (props) =>  {
                         </ul>
                     </div>
                     </ClickAwayListener>}
-                    {/* <Avatar src={userImage} alt='user Name' /> */}
                 </div>
                 </nav> 
 
@@ -209,14 +196,11 @@ const Header = (props) =>  {
     );
 }
 
-const mapStateToProps = (state) => {
-    return{
-        UI: state.UIData,
-        authData: state.authData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         UI: state.UIData,
+//         authData: state.authData
+//     }
+// }
 
-export default connect(mapStateToProps,{
-    headerDisplay,
-    logoutAction
-})(Header);
+export default Header;

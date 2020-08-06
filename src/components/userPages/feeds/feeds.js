@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux'
 
-//action
-import { headerDisplay } from '../../../actions/headerAction'
 
 import Post from './posts';
 import NotificationBox from './notificationBox';
@@ -10,7 +7,8 @@ import Footer from '../footer'
 
 const Feeds = (props) => {
     useEffect(() =>{
-        props.headerDisplay('show')
+
+        // add header show actions here
         const body = document.getElementsByClassName('body-container')[0]
         body.addEventListener('scroll', onScroll)
         // eslint-disable-next-line
@@ -55,12 +53,10 @@ const Feeds = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return{
-        UI: state.UIData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         UI: state.UIData
+//     }
+// }
 
-export default connect(mapStateToProps,{
-    headerDisplay
-})(Feeds);
+export default Feeds

@@ -277,8 +277,8 @@ const initialValues = {
 //     validate
 //   })(SignUpFormFirstPage);
 
-  const mapStateToProps = (state) => {
-        return { initialValues: state.userData.data}
-  }
+//   const mapStateToProps = (state) => {
+//         return { initialValues: state.userData.data}
+//   }
 
-  export default connect(mapStateToProps)(SignUpFormFirstPage);
+  export default SignUpFormFirstPage

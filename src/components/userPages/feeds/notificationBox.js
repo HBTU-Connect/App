@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Divider } from '@material-ui/core';
-import { ArrowForwardIos as ArrowForwardIosIcon,
-         ChevronRight as ChevronRightIcon 
+import { ChevronRight as ChevronRightIcon 
 } from '@material-ui/icons'
 
 //images

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
 import { useSnackbar } from 'notistack';
 import { Button, TextField, FormControl, InputAdornment, InputLabel, OutlinedInput, FormHelperText, Switch, IconButton, FormControlLabel } from '@material-ui/core'
 import { Visibility, VisibilityOff, Lock, Person} from '@material-ui/icons'
 import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-
-//action
-import { loginAction } from '../../actions'
 import { ChasingDotsSpinner } from '../utils/loadingSpinner'
 
 //images
@@ -170,14 +166,13 @@ const LoginForm  = (props) => {
     const handleSubmitClick = async () => {
         const errors = validate(formValues)
         setFormErrors(errors)
-        // console.log(formValues)
         if(Object.keys(errors).length === 0){
             setLoading(true)
             console.log(formValues)
-            const response = await props.loginAction(formValues)
-            if(response){
-                setLoading(false)
-            }
+
+            //add login action here
+            setLoading(false)
+            
         }
     }
     if(redirect){
@@ -315,12 +310,10 @@ const initialValues = {
     rememberMe: false
 }
 
-const mapStateToProps = (state) => {
-    return{
-        authData: state.authData
-    }
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         authData: state.authData
+//     }
+// }
 
-export default connect(mapStateToProps,{
-    loginAction
-})(LoginForm)
+export default LoginForm

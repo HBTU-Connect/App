@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { useSnackbar } from 'notistack';
 
 //components
@@ -8,13 +7,8 @@ import SignUpFormFirstPage from './signUpFormFirstPage';
 import SignUpFormSecondPage from './signUpFormSecondPage';
 import { ChasingDotsSpinner } from '../utils/loadingSpinner'
 
-//actions
-import { getData, signUpAction } from '../../actions';
-import{ headerDisplay } from '../../actions/headerAction'
-
 //images
 import signUpImage1 from "../../images/signup.png";
-// import signUpImage2 from "../../images/signup-img2.png";
 
 const SignUpForm = (props) => {
     const [ page, setPage ] = useState(1)
@@ -32,7 +26,8 @@ const SignUpForm = (props) => {
     // }
       
     useEffect(() => {
-        props.headerDisplay('hide')
+        // add header hide action here
+
         window.onbeforeunload = function() {
             onUnload();
             return "";
@@ -58,14 +53,11 @@ const SignUpForm = (props) => {
 
     const nextPage = (formValues) => {
         setFirstFormValues( {...firstFormValues, ...formValues})
-        // console.log(formValues)
-        // this.setState({ page: this.state.page + 1, width: '66%' });
         setPage(page +1)
         setWidth('66%')
     }
 
     const previousPage = () => {
-        // this.setState({ page: this.state.page - 1 });
         setPage(page-1)
     }
 
@@ -74,18 +66,16 @@ const SignUpForm = (props) => {
         setWidth('100%')
         setSecondFormValues({...secondFormValues ,...formValues})
         const values = {...firstFormValues, ...formValues}
-        const response = await props.signUpAction(values)
-        if(response){
-            setLoading(false)
-        }
-        console.log({...firstFormValues, ...formValues});
+        console.log(values)
+
+        // add action for sign up here
+        // send the values to the function as data
+        setLoading(false)
     }
 
-    // const { userData } = props;
     return(
         <div className='signup-page'>
             <img className='signup-icon' src={signUpImage1} alt='signUp1' />
-            {/* <img className='signup-icon' src={signUpImage2} alt='signUp2' /> */}
 
             <div className='form'>
                 <div className='left-floated'>
@@ -139,16 +129,12 @@ const SignUpForm = (props) => {
     );
 }
 
-const mapStateToProps = (store) => {
-    return {
-        userData: store.userData,
-        joinForm: store.form.join,
-        authData: store.authData
-    }
-}
+// const mapStateToProps = (store) => {
+//     return {
+//         userData: store.userData,
+//         joinForm: store.form.join,
+//         authData: store.authData
+//     }
+// }
 
-export default connect(mapStateToProps,{
-    getData,
-    headerDisplay,
-    signUpAction
-})(SignUpForm);
+export default SignUpForm
