@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+
+// redux-utilities
+import { registerUser } from '../../store/user'
+
 
 //components
 import SignUpFormFirstPage from './signUpFormFirstPage';
@@ -9,13 +14,14 @@ import { ChasingDotsSpinner } from '../utils/loadingSpinner'
 
 //images
 import signUpImage1 from "../../images/signup.png";
+import { registerUrl } from '../../store/config';
 
 const SignUpForm = (props) => {
-    const [ page, setPage ] = useState(1)
-    const [ width, setWidth ] = useState('33%')
-    const [ firstFormValues, setFirstFormValues ] = useState({})
-    const [ secondFormValues, setSecondFormValues ] = useState({})
-    const [ loading, setLoading ] = useState(false)
+    const [page, setPage] = useState(1)
+    const [width, setWidth] = useState('33%')
+    const [firstFormValues, setFirstFormValues] = useState({})
+    const [secondFormValues, setSecondFormValues] = useState({})
+    const [loading, setLoading] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
     // state = {
     //     page: 1,
@@ -24,56 +30,60 @@ const SignUpForm = (props) => {
     //     secondFormValues: {},
     //     loading: false
     // }
-      
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
         // add header hide action here
 
-        window.onbeforeunload = function() {
+
+        window.onbeforeunload = function () {
             onUnload();
             return "";
         };
         // eslint-disable-next-line
-    },[])
+    }, [])
 
-    useEffect(() =>{
-        if(!loading && props.authData && props.authData.type === 'signup' && props.authData.data){
-            enqueueSnackbar(props.authData.data.msg, {variant: 'success', autoHideDuration: 3000})
+    useEffect(() => {
+        if (!loading && props.authData && props.authData.type === 'signup' && props.authData.data) {
+            enqueueSnackbar(props.authData.data.msg, { variant: 'success', autoHideDuration: 3000 })
         }
-        if(!loading && props.authData && props.authData.type === 'error' && props.authData.data){
-            enqueueSnackbar(props.authData.data, {variant: 'error', autoHideDuration: 3000})
+        if (!loading && props.authData && props.authData.type === 'error' && props.authData.data) {
+            enqueueSnackbar(props.authData.data, { variant: 'error', autoHideDuration: 3000 })
 
         }
         // eslint-disable-next-line
     }, [loading])
 
-    const onUnload = (event) => { 
+    const onUnload = (event) => {
         alert('page Refreshed')
     };
 
 
     const nextPage = (formValues) => {
-        setFirstFormValues( {...firstFormValues, ...formValues})
-        setPage(page +1)
+        setFirstFormValues({ ...firstFormValues, ...formValues })
+        setPage(page + 1)
         setWidth('66%')
     }
 
     const previousPage = () => {
-        setPage(page-1)
+        setPage(page - 1)
     }
 
     const onSubmitForm = async (formValues) => {
         setLoading(true)
         setWidth('100%')
-        setSecondFormValues({...secondFormValues ,...formValues})
-        const values = {...firstFormValues, ...formValues}
+        setSecondFormValues({ ...secondFormValues, ...formValues })
+        const values = { ...firstFormValues, ...formValues }
         console.log(values)
 
         // add action for sign up here
         // send the values to the function as data
+        dispatch(registerUser(values))
         setLoading(false)
     }
 
-    return(
+    return (
         <div className='signup-page'>
             <img className='signup-icon' src={signUpImage1} alt='signUp1' />
 
@@ -84,7 +94,7 @@ const SignUpForm = (props) => {
                     </div>
                     <div className='divider'></div>
                     <div className='page-content'>
-                        <div className='page-content--heading'>Welcome {firstFormValues ? firstFormValues.firstName : null } </div>
+                        <div className='page-content--heading'>Welcome {firstFormValues ? firstFormValues.firstName : null} </div>
                         <div className='page-content--details'>
                             {page === 1 && <ul>
                                 <li> All the details are taken from Official University Records </li>
@@ -115,16 +125,16 @@ const SignUpForm = (props) => {
                     {loading && <div className='loader'>
                         <ChasingDotsSpinner />
                     </div>}
-                    { page === 1 && <SignUpFormFirstPage previousValues={firstFormValues} onSubmit={nextPage} />}
+                    {page === 1 && <SignUpFormFirstPage previousValues={firstFormValues} onSubmit={nextPage} />}
                     {page === 2 && (
                         <SignUpFormSecondPage
                             previousPage={previousPage}
                             onSubmit={onSubmitForm}
-                            initialValues = {secondFormValues}
+                            initialValues={secondFormValues}
                         />
                     )}
                 </div>
-            </div>    
+            </div>
         </div>
     );
 }

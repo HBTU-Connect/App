@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { Button, TextField, FormControl, InputAdornment, InputLabel, OutlinedInput, FormHelperText, Switch, IconButton, FormControlLabel } from '@material-ui/core'
 import { Visibility, VisibilityOff, Lock, Person} from '@material-ui/icons'
 import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { ChasingDotsSpinner } from '../utils/loadingSpinner'
+
+// redux-utilities
+import{ loginUser } from '../../store/user';
 
 //images
 import loginImage from '../../images/login1.png';
@@ -134,6 +138,8 @@ const LoginForm  = (props) => {
     //     typePassword: 'password'
     // }
 
+    const dispatch = useDispatch();
+
     useEffect(() =>{
         if(!loading && props.authData && props.authData.type === 'login' && props.authData.data){
             enqueueSnackbar(props.authData.data.msg, {variant: 'success', autoHideDuration: 3000})
@@ -170,7 +176,10 @@ const LoginForm  = (props) => {
             setLoading(true)
             console.log(formValues)
 
+
             //add login action here
+
+            dispatch(loginUser(formValues));
             setLoading(false)
             
         }
