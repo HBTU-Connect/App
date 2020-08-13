@@ -3,58 +3,57 @@ import * as actions from '../api'
 import { baseUrl } from '../config'
 
 // SNA [ store , next, action]
-const api = ({dispatch}) => next => async action => {
-    
-    if(action.type !== actions.apiCallBegan.type) return next(action);
+const api = ({ dispatch }) => next => async action => {
 
-    const {url, method, data, onStart, onSuccess, onError, token} = action.payload;
+    if (action.type !== actions.apiCallBegan.type) return next(action);
 
-    if(token){
+    const { url, method, data, onStart, onSuccess, onError, token, onRememberMe } = action.payload;
 
-        let config = (token) => ({
-            headers:{
-                Authorizaton: 'Bearer '+ token,
-            }
-        });
+    if (token) {
 
-        if(onStart)
-            dispatch({type: onStart});
+        let headers = {}
+
+        headers["Authorization"] = `Bearer ${token}`
+
+        if (onStart)
+            dispatch({ type: onStart });
 
         next(action)
 
-        try{
+        try {
             const response = await axios.request({
                 baseURL: baseUrl,
                 url,
                 method,
-                config,
+                headers
             })
 
             // general
             dispatch(actions.apiCallSuccess(response.data));
 
             // Specific
-            if(onSuccess)
-                dispatch({type: onSuccess, payload: response.data })
+            if (onSuccess)
+                dispatch({ type: onSuccess, payload: response.data })
 
-        } catch(error){
-            
+
+        } catch (error) {
+
             //General
             dispatch(actions.apiCallFailed(error.message));
-            
+
             //Specific
-            if(onError)
-                dispatch({ type:onError, payload: error.message });
+            if (onError)
+                dispatch({ type: onError, payload: error.message });
         }
 
-    }else{
+    } else {
 
-        if(onStart)
-            dispatch({type: onStart});
+        if (onStart)
+            dispatch({ type: onStart });
 
         next(action)
 
-        try{
+        try {
             const response = await axios.request({
                 baseURL: baseUrl,
                 url,
@@ -66,25 +65,28 @@ const api = ({dispatch}) => next => async action => {
             dispatch(actions.apiCallSuccess(response.data));
 
             // Specific
-            if(onSuccess)
-                dispatch({type: onSuccess, payload: response.data })
+            if (onSuccess)
+                dispatch({ type: onSuccess, payload: response.data })
 
-        } catch(error){
-            
+            if (data.rememberMe)
+                dispatch({ type: onRememberMe, payload: response.data.refresh_token })
+
+        } catch (error) {
+
             //General
             dispatch(actions.apiCallFailed(error.message));
-            
+
             //Specific
-            if(onError)
-                dispatch({ type:onError, payload: error.message });
+            if (onError)
+                dispatch({ type: onError, payload: error.message });
         }
 
-        
+
 
     }
 
-    
-} 
+
+}
 
 
 export default api;

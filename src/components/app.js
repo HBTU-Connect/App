@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack'
 
+// redux utils
+import { useDispatch, useSelector } from 'react-redux'
+import { loadUser, getUserInfo } from '../store/user'
 
 //components
 import Header from './header';
@@ -30,48 +33,61 @@ import ProfilePage from './userPages/userProfile/profilePage'
 
 
 const App = (props) => {
-    const HeaderWithRouter = withRouter(Header);
 
-    return(
-        <>
-            <SnackbarProvider maxSnack={3}>
-            <BrowserRouter>
-                <>
-                <HeaderWithRouter />
-                
-                    <Route path='/' exact component={WelcomePage} />
-                    <Route path='/login' exact component={LoginForm} />
-                    <Route path='/joinus' exact component={JoinUsPage} />
-                    <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={true} />
-                    
-                    <Route path='/notification' exact component={NotificationPage} />
-                    <Route path='/user/:username' exact component={ProfilePage} />
+  const dispatch = useDispatch();
+  // select user info from store
+  const user = useSelector(getUserInfo)
 
-                    <Route path='/feeds' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Feeds/></div></div>}/>
-                    <Route path='/clubs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Clubs/></div></div>}/>
-                    <Route path='/ask' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><AskHbtu/></div></div>}/>
-                    <Route path='/ask/:id' exact component={QuestionPage} />
+  //load's user when app first started
+  useEffect(() => {
+    dispatch(loadUser())
+  }, [])
 
-                    <Route path='/blogs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar/><Blog /></div></div>}/>
-                    <Route path='/blogs/:id/edit' exact component={WriteBlog} />
-                    <Route path='/blogs/new' exact component={WriteBlog} />
-                    <Route path='/blogs/:id' exact component={BlogPage} />
+  console.log("userLoaded", user.username);
 
-                    <Route path='/clubs/:clubName' >
-                    
-                        <ClubPage />
-                    </Route>
-                    <Route path='/event/quiz/:id' exact component={RenderQuiz} />
-                    <Route path='/event/form/:id' exact component={RenderForm} />
-                    <Route path='/event/createform' exact component={CreateQuiz} />
-                    <Route path='/event/textEditor' exact component={TextEditor} />
-                    {/* <Route path='/notification' exact render={props => <div><Feeds/><Notification/></div>} /> */}
-                    
-                </>
-            </BrowserRouter>
-            </SnackbarProvider>
-        </>
-    )
+
+  const HeaderWithRouter = withRouter(Header);
+
+  return (
+    <>
+      <SnackbarProvider maxSnack={3}>
+        <BrowserRouter>
+          <>
+            <HeaderWithRouter />
+
+            <Route path='/' exact component={WelcomePage} />
+            <Route path='/login' exact component={LoginForm} />
+            <Route path='/joinus' exact component={JoinUsPage} />
+            <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={(user) ? 'true' : 'false'} />
+
+            <Route path='/notification' exact component={NotificationPage} />
+            <Route path='/user/:username' exact component={ProfilePage} />
+
+            <Route path='/feeds' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar /><Feeds /></div></div>} />
+            <Route path='/clubs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar /><Clubs /></div></div>} />
+            <Route path='/ask' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar /><AskHbtu /></div></div>} />
+            <Route path='/ask/:id' exact component={QuestionPage} />
+
+            <Route path='/blogs' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar /><Blog /></div></div>} />
+            <Route path='/blogs/:id/edit' exact component={WriteBlog} />
+            <Route path='/blogs/new' exact component={WriteBlog} />
+            <Route path='/blogs/:id' exact component={BlogPage} />
+
+            <Route path='/clubs/:clubName' >
+
+              <ClubPage />
+            </Route>
+            <Route path='/event/quiz/:id' exact component={RenderQuiz} />
+            <Route path='/event/form/:id' exact component={RenderForm} />
+            <Route path='/event/createform' exact component={CreateQuiz} />
+            <Route path='/event/textEditor' exact component={TextEditor} />
+            {/* <Route path='/notification' exact render={props => <div><Feeds/><Notification/></div>} /> */}
+
+          </>
+        </BrowserRouter>
+      </SnackbarProvider>
+    </>
+  )
 }
 
 export default App
