@@ -45,7 +45,6 @@ const App = (props) => {
 
   console.log("userLoaded", user.username);
 
-
   const HeaderWithRouter = withRouter(Header);
 
   return (

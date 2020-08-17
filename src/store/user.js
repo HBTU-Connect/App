@@ -2,15 +2,50 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect'
 import { apiCallBegan } from './api';
 import { registerUrl, loginUrl, refreshTokenUrl, revokeAccessTokenUrl, revokeRefreshTokenUrl } from './config'
-import moment from 'moment'
 import { darkBaseTheme } from 'material-ui/styles';
+
+// helper during first visit
+// ttl => Time to Live
+const setWithExpiry = (key, value, ttl) => {
+    const now = new Date();
+
+    const item = {
+        value: value,
+        expiry: now.getTime() + ttl,
+    }
+
+    // console.log(item.expiry);
+    localStorage.setItem(key, JSON.stringify(item));
+
+}
+
+const getWithExpiry = (key) => {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) return null
+
+    const item = JSON.parse(itemStr)
+    const now = new Date();
+
+    // console.log(now.getTime() - item.expiry);
+
+    if (now.getTime() > item.expiry) {
+
+        localStorage.removeItem(key)
+
+        return null
+    }
+
+    return item.value
+
+
+}
 
 // creates Actioncreators and reducers.
 const slice = createSlice({
     name: 'user',
     initialState: {
         info: {
-            refresh_token: localStorage.getItem("refresh_token"),
+            refresh_token: getWithExpiry("refresh_token")
         },
         errors: {},
         loading: false,
@@ -40,7 +75,6 @@ const slice = createSlice({
         userLoggedIn: (user, action) => {
             user.loading = false;
             user.info = action.payload;
-            // localStorage.setItem("refresh_token", user.info.refresh_token);
             user.lastFetch = Date.now();
         },
         userLoggedOut: (user, action) => {
@@ -48,8 +82,7 @@ const slice = createSlice({
             user.info = {}
         },
         userRememberMe: (user, action) => {
-            localStorage.setItem("rememberMe", true)
-            localStorage.setItem("refresh_token", action.payload)
+            setWithExpiry("refresh_token", action.payload.token, action.payload.ttl)
         }
 
     }
@@ -60,30 +93,6 @@ export default slice.reducer;
 
 
 // helpers
-
-// helper for loading user when app visited 
-export const loadUser = () => (dispatch, getState) => {
-    if (!localStorage["rememberMe"]) return;
-
-    const { lastFetch } = getState().entities.user;
-    let { refresh_token } = getState().entities.user.info;
-
-    const diffInDays = moment().diff(moment(lastFetch), 'days');
-    if (diffInDays < 1) return;
-
-    if (!refresh_token) refresh_token = 'invalid'
-
-    return dispatch(
-        apiCallBegan({
-            url: refreshTokenUrl,
-            method: "post",
-            token: refresh_token,
-            onStart: userRequested.type,
-            onSuccess: userReceived.type,
-            onError: userRequestFailed.type
-        })
-    );
-}
 
 // helper for registration of user
 export const registerUser = user => (dispatch, getState) => {
@@ -147,6 +156,24 @@ export const logoutUser = () => (dispatch, getState) => {
     dispatch(revokeRefreshToken(refresh_token));
 
     return dispatch({ type: userLoggedOut.type });
+}
+
+// helper for loading user when app visited 
+export const loadUser = () => (dispatch, getState) => {
+    let { refresh_token } = getState().entities.user.info;
+
+    if (!refresh_token) return;
+
+    return dispatch(
+        apiCallBegan({
+            url: refreshTokenUrl,
+            method: "post",
+            token: refresh_token,
+            onStart: userRequested.type,
+            onSuccess: userReceived.type,
+            onError: userRequestFailed.type
+        })
+    );
 }
 
 // Selectors
