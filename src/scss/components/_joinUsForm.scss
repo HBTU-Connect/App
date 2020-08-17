@@ -61,59 +61,25 @@
             height: auto;
             text-align: center;
             margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
 
-            .input-field{
+            &-input-field{
+                margin: 1rem 0;
+                margin-bottom: 3rem;
                 width: 100%;
-                // height: 9rem;
                 height: max-content;
-                text-align: left;
-                margin: 0 auto;
                 display: flex;
-                flex-direction: column;
-                margin-bottom: 7rem;
+                // align-items: center;
+                // justify-content: center;
 
-                &--label{
-                    color: $color-font;
-                    text-align: left;
-                    font-size: 2rem;
-                    font-family: $font-family-primary;
-                    margin-bottom: 1rem;
-
-                    &.touched{
-                        color: $color-primary;
-                    }
-                }
-                
-                &--value{
+                .MuiFormControl-root{
                     width: 100%;
-                    // height: 3rem;
-                    height: auto !important;
-                    border: 0.1rem solid rgb(105, 105, 105);
-                    padding: 1rem 0.5rem;
-                    border-radius: 0.2rem;
-                    outline: none;
-                    font-size: 1.6rem;
-                    font-family: $font-family-primary;
-                    // padding-left: 0.5rem;
-                    color: $color-font;
-
-                    &.touched{
-                        border-color: $color-primary;
-                    }
-
-                    &.error{
-                        border-color: red;
-                    }
-
-                    &-error{
-                        color: red;
-                        font-size: 1.5rem;
-                        display: block;
-                        font-family: $font-family-primary;
-                    }
-                    
                 }
 
+                input{
+                    width: 100%;
+                }
             }
 
             .MuiButton-root{

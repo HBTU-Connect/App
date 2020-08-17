@@ -58,7 +58,7 @@ const App = (props) => {
             <Route path='/' exact component={WelcomePage} />
             <Route path='/login' exact component={LoginForm} />
             <Route path='/joinus' exact component={JoinUsPage} />
-            <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={(user) ? 'true' : 'false'} />
+            <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={false} />
 
             <Route path='/notification' exact component={NotificationPage} />
             <Route path='/user/:username' exact component={ProfilePage} />

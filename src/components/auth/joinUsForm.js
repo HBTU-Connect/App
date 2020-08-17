@@ -1,16 +1,96 @@
 import React, { useEffect, useState} from 'react';
-import { Field, reduxForm } from 'redux-form';
 import { Redirect, withRouter } from 'react-router-dom';
-import { Button } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
+import { Button, TextField } from '@material-ui/core'
+import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { ChasingDotsSpinner } from '../utils/loadingSpinner'
 import { useSnackbar } from 'notistack';
 
-//components
-import validate from '../utils/validate';
+const theme = createMuiTheme({
+overrides: {
+    // Style sheet name
+    MuiFormControlLabel:{
+        root:{
+            fontSize: '1.4rem'
+        },
+        label:{
+            lineHeight: '1.3',
+            fontFamily: 'unset'
+        }
+    },
+    MuiTextField:{
+        root:{
+        fontSize: '1.4rem'
+        }
+    },
+    MuiInputBase: {
+        input:{
+            fontSize: '1.4rem',
+            fontFamily: 'unset'
+        },
+        formControl:{
+            fontSize: '1,4rem',
+            fontFamily: 'unset'
+        }
 
-//actions
-// import { getData } from '../../actions';
+    },
+    MuiFormLabel: {
+    root:{
+        fontSize: '1.4rem',
+        fontFamily: 'unset'
+    }
+    },
+    MuiInputLabel: {
+        root:{
+            fontSize: '1.4rem',
+            fontFamily: 'unset'
+        },
+        outlined:{
+            fontSize: '1.4rem',
+        //   transform: 'translate(14px, 12px) scale(1)'
+        }
+    },
+    MuiOutlinedInput: {
+        root:{
+            fontSize: '1.4rem'
+        }
+    },
+    MuiFormHelperText: {
+        root: {
+            fontSize: '1rem',
+            fontFamily: 'unset',
+            lineHeight: '1.4',
+            position: 'absolute',
+            bottom: '-14px',
+            right: '0px'
+        },
+        contained:{
+            marginRight: '0px',
+            marginLeft: '4px'
+        }
+    },
+    MuiInputAdornment: {
+        positionStart:{
+        color: 'grey'
+        }
+    },
+},
+});
+
+const CssTextField = withStyles({
+    root: {
+        '& label.Mui-focused': {
+        color: 'rgb(0, 88, 136)',
+        },
+        '& .MuiInput-underline:after': {
+        borderBottomColor: 'rgb(0, 88, 136)',
+        },
+        '& .MuiOutlinedInput-root': {
+        '&.Mui-focused fieldset': {
+            borderColor: 'rgb(0, 88, 136)',
+        },
+        },
+    },
+})(TextField);
 
 
 const ColorButton = withStyles((theme) => ({
@@ -21,34 +101,26 @@ const ColorButton = withStyles((theme) => ({
         backgroundColor: 'rgb(0, 88, 140)',
       },
     },
-  }))(Button);
+}))(Button);
 
 const JoinUsForm  = (props) => {
     const [ loading, setLoading ] = useState(false)
-    const [ error, setError ] = useState(false)
+    const [ value, setValue ] = useState('')
+    const [ errors, setErrors ] = useState({})
     const { enqueueSnackbar } = useSnackbar();
     
-    const renderField = ({ input, label, type,input: { value }, meta: { valid, dirty, active, touched, error } }) => (
-        <div className='input-field'>
-            <label className={value || dirty || active ? 'input-field--label touched' : 'input-field--label'}>
-                {label}
-            </label>
-            <input 
-                className={ value || dirty || active ? (valid ? 'input-field--value touched' : 'input-field--value error') : 'input-field--value'}
-                {...input} 
-                type={type}
-            />
-            {touched && error && <span className='input-field--value-error'>{error}</span>}
-        </div>
-    );
-    
-    const onFormSubmit = async (formValues) => {
-        setLoading(true)
-        setError(true)
-        window.localStorage.setItem('rollNumber', formValues.rollNumber);
-        
-        //add action here to add roll no. to global store
-        setLoading(false)
+    const onFormSubmit = () => {
+        const errors = validate(value)
+        setErrors({...errors})
+        if(Object.keys(errors).length === 0){
+            setLoading(true)
+            console.log(value)
+
+
+            //add login action here
+            setLoading(false)
+            
+        }
     }
 
 
@@ -65,10 +137,22 @@ const JoinUsForm  = (props) => {
                     <span className='form-heading-primary'>Join Us</span>
                     <span className='form-heading-secondary'>And Connect with your Mates</span>
                 </div>
-                <form className='join-us' onSubmit={props.handleSubmit(onFormSubmit)}>
-                    <Field name='rollNumber' type='text' component={renderField} label='Roll Number' />
-                    {/* <Field name='dob' type='date' component={renderField} label='DOB' /> */}
-                    <ColorButton type='submit' >Join Us</ColorButton>
+                <form className='join-us' onSubmit={(e) => {e.preventDefault(); onFormSubmit()}}>
+                <ThemeProvider theme={theme}>
+                    <div className='join-us-input-field' >
+                        <CssTextField  
+                            name='rollNumber' 
+                            type='text' 
+                            variant='outlined' 
+                            label='Roll Number' 
+                            value={value} 
+                            onChange={(e) => {setValue(e.target.value); setErrors({})}}
+                            error={errors.rollNumber ? true : false} 
+                            helperText={errors.rollNumber}
+                        />
+                    </div>
+                    <ColorButton  type='submit' >Join Us</ColorButton>
+                </ThemeProvider>
                 </form>
                 {loading && <div className='loader'><ChasingDotsSpinner /> </div>}
             </div>
@@ -77,18 +161,15 @@ const JoinUsForm  = (props) => {
     )
 }
 
-const formWrapper = reduxForm({
-    form: 'join', // <------ same form name
-    destroyOnUnmount: false, // <------ preserve form data
-    forceUnregisterOnUnmount: true,
-    validate
-})(JoinUsForm);
+const validate = values => {
+    const errors = {}
+    
+    if( !values){
+      errors.rollNumber='Required'
+    }else if (isNaN(Number(values))) {
+        errors.rollNumber = 'Must be a number'
+    }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         userData: state.userData,
-//         initialValues: { rollNumber: window.localStorage.getItem('rollNumber')}
-//     }
-// }
-
-export default withRouter(formWrapper);
+    return errors
+}
+export default withRouter(JoinUsForm);

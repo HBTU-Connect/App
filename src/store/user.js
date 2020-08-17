@@ -157,6 +157,16 @@ export const getUserInfo = createSelector(
     user => user.info
 )
 
+export const getErrors = createSelector(
+    state => state.entities.user.errors,
+    errors => errors
+)
+
+export const getUIInfo = createSelector(
+    state => state.entities.user.loading,
+    loading => loading
+)
+
 
 
 
