@@ -140,20 +140,18 @@ const LoginForm  = (props) => {
     const errors = useSelector(getErrors)
 
     useEffect(() =>{
-        if(loading && user ){
-            console.log(user)
+        if(loading && !userLoading && user.username ){
             enqueueSnackbar(user.msg, {variant: 'success', autoHideDuration: 3000})
             setLoading(false)
             setRedirect(true)
         }
-        if(loading && errors){
-            console.log(errors, userLoading)
-            // enqueueSnackbar(errors, {variant: 'error', autoHideDuration: 3000})
+        if(loading && !userLoading && errors){
+            enqueueSnackbar(errors, {variant: 'error', autoHideDuration: 3000})
             setLoading(false)
 
         }
         // eslint-disable-next-line
-    }, [loading])
+    }, [userLoading, loading])
 
 
     const handleFieldChange = (e) => {

@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect'
 import { apiCallBegan } from './api';
 import { registerUrl, loginUrl, refreshTokenUrl, revokeAccessTokenUrl, revokeRefreshTokenUrl } from './config'
-import { darkBaseTheme } from 'material-ui/styles';
 
 // helper during first visit
 // ttl => Time to Live
@@ -23,7 +22,7 @@ const getWithExpiry = (key) => {
     const itemStr = localStorage.getItem(key);
     if (!itemStr) return null
 
-    const item = JSON.parse(itemStr)
+    const item = itemStr
     const now = new Date();
 
     // console.log(now.getTime() - item.expiry);
@@ -69,12 +68,14 @@ const slice = createSlice({
         userRegistered: (user, action) => {
             user.loading = false;
             user.info = action.payload;
+            user.errors = ""
             localStorage.setItem("refresh_token", user.info.refresh_token);
             user.lastFetch = Date.now();
         },
         userLoggedIn: (user, action) => {
             user.loading = false;
             user.info = action.payload;
+            user.errors = ""
             user.lastFetch = Date.now();
         },
         userLoggedOut: (user, action) => {

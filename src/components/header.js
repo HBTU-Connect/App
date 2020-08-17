@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, Link, Redirect } from 'react-router-dom';
 import { Badge, Button, ClickAwayListener } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,7 +12,7 @@ import {
 } from '@material-ui/icons';
 
 // redux-utils
-import { logoutUser } from '../store/user'
+import { logoutUser, getUIInfo } from '../store/user'
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
@@ -47,24 +47,23 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 
 const Header = (props) => {
-    // state = { addClassName : ''}
     const [headerClass, setHeaderClass] = useState('')
     const [showMenu, setShowMenu] = useState(false)
     const [loading, setLoading] = useState(false)
     const [redirect, setRedirect] = useState(false)
     const { enqueueSnackbar } = useSnackbar()
 
-    useEffect(() => {
-        if (!loading && props.authData && props.authData.type === 'logout' && props.authData.data) {
-            enqueueSnackbar(props.authData.data.msg, { variant: 'success', autoHideDuration: 3000 })
-            setRedirect(true)
-        }
-        if (!loading && props.authData && props.authData.type === 'error' && props.authData.data) {
-            enqueueSnackbar(props.authData.data, { variant: 'error', autoHideDuration: 3000 })
+    const userLoading = useSelector(getUIInfo)
 
-        }
-        // eslint-disable-next-line
-    }, [loading])
+    // useEffect(() => {
+    //     if (loading && !userLoading) {
+    //         console.log('logged out')
+    //         enqueueSnackbar("Successfully logged out", { variant: 'success', autoHideDuration: 3000 })
+    //         setLoading(false)
+    //         setRedirect(true)
+    //     }
+    //     // eslint-disable-next-line
+    // }, [loading, userLoading])
 
     const dispatch = useDispatch();
 
@@ -73,14 +72,16 @@ const Header = (props) => {
             setHeaderClass(props.UI.displayHeader)
     }, [props.UI])
 
-    const handleLogOut = async () => {
+    const handleLogOut = () => {
         setShowMenu(false)
-        setLoading(true)
+        // setLoading(true)
+        console.log('click')
 
+        
 
         // add action here
         dispatch(logoutUser());
-        setLoading(false)
+        // browserHistory.push('/')
     }
 
     const onAuthRender = () => {
