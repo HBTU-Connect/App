@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { Button, TextField, FormControl, InputAdornment, InputLabel, OutlinedInput, FormHelperText, Switch, IconButton, FormControlLabel } from '@material-ui/core'
@@ -8,7 +8,7 @@ import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/sty
 import { ChasingDotsSpinner } from '../utils/loadingSpinner'
 
 // redux-utilities
-import{ loginUser } from '../../store/user';
+import{ loginUser, getUIInfo, getUserInfo, getErrors } from '../../store/user';
 
 //images
 import loginImage from '../../images/login1.png';
@@ -134,23 +134,24 @@ const LoginForm  = (props) => {
     const [ redirect, setRedirect ] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
 
-    // state = {
-    //     typePassword: 'password'
-    // }
-
     const dispatch = useDispatch();
+    const userLoading = useSelector(getUIInfo)
+    const user = useSelector(getUserInfo)
+    const errors = useSelector(getErrors)
 
     useEffect(() =>{
-        if(!loading && props.authData && props.authData.type === 'login' && props.authData.data){
-            enqueueSnackbar(props.authData.data.msg, {variant: 'success', autoHideDuration: 3000})
+        if(loading && !userLoading && user.username ){
+            enqueueSnackbar(user.msg, {variant: 'success', autoHideDuration: 3000})
+            setLoading(false)
             setRedirect(true)
         }
-        if(!loading && props.authData && props.authData.type === 'error' && props.authData.data){
-            enqueueSnackbar(props.authData.data, {variant: 'error', autoHideDuration: 3000})
+        if(loading && !userLoading && errors){
+            enqueueSnackbar(errors, {variant: 'error', autoHideDuration: 3000})
+            setLoading(false)
 
         }
         // eslint-disable-next-line
-    }, [loading])
+    }, [userLoading, loading])
 
 
     const handleFieldChange = (e) => {
@@ -167,6 +168,7 @@ const LoginForm  = (props) => {
         }
         else
         setFormValues({...formValues, [name]: value })
+        
     }
 
     const handleSubmitClick = async () => {
@@ -174,14 +176,13 @@ const LoginForm  = (props) => {
         setFormErrors(errors)
         if(Object.keys(errors).length === 0){
             setLoading(true)
-            console.log(formValues)
+            // console.log(formValues)
 
 
             //add login action here
 
             dispatch(loginUser(formValues));
-            setLoading(false)
-            
+            // setLoading(false)
         }
     }
     if(redirect){
@@ -214,7 +215,7 @@ const LoginForm  = (props) => {
                 
             </div>
             <div className='login-form--container'>
-                {loading && <div className='loader'>
+                {userLoading && <div className='loader'>
                     <ChasingDotsSpinner />
                 </div>}
                 <div className='form-heading'>
