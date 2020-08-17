@@ -68,8 +68,15 @@ const api = ({ dispatch }) => next => async action => {
             if (onSuccess)
                 dispatch({ type: onSuccess, payload: response.data })
 
+            // 30 * 24 * 60 * 60 * 1000 => 60*1000s * 60m * 24(1day)*30(30days)
+            const thirty_days = 30 * 24 * 60 * 60 * 1000;
+            const one_day = 24 * 60 * 60 * 1000;
             if (data.rememberMe)
-                dispatch({ type: onRememberMe, payload: response.data.refresh_token })
+                dispatch({ type: onRememberMe, payload: { token: response.data.refresh_token, ttl: thirty_days } })
+            else
+                dispatch({ type: onRememberMe, payload: { token: response.data.refresh_token, ttl: one_day } })
+
+
 
         } catch (error) {
 
