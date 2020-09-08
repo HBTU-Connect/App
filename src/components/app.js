@@ -29,6 +29,7 @@ import TextEditor from './userPages/events/utils/textEditor'
 import { PrivateRoute } from './utils/protectedRoutes';
 
 import NotificationPage from './notification';
+import MessagingPage from './messaging';
 import ProfilePage from './userPages/userProfile/profilePage'
 
 
@@ -60,6 +61,7 @@ const App = (props) => {
             <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={false} />
 
             <Route path='/notification' exact component={NotificationPage} />
+            <Route path='/messaging' exact component={MessagingPage} />
             <Route path='/user/:username' exact component={ProfilePage} />
 
             <Route path='/feeds' exact render={props => <div className='body-container'><div className='body-container__wrapper'><Sidebar /><Feeds /></div></div>} />

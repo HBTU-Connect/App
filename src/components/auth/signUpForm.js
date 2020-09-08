@@ -23,13 +23,6 @@ const SignUpForm = (props) => {
     const [secondFormValues, setSecondFormValues] = useState({})
     const [loading, setLoading] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
-    // state = {
-    //     page: 1,
-    //     width: '33%',
-    //     firstFormValues: {},
-    //     secondFormValues: {},
-    //     loading: false
-    // }
 
     const dispatch = useDispatch();
 
