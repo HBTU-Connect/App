@@ -12,7 +12,7 @@ import {
 } from '@material-ui/icons';
 
 // redux-utils
-import { logoutUser, getUIInfo } from '../store/user'
+import { logoutUser, getUIInfo } from '../store/userSlice'
 import { getUI } from '../store/UI';
 
 // import icons from '../images/icons.svg';
@@ -83,6 +83,8 @@ const Header = (props) => {
     const onAuthRender = () => {
 
         // if(props.authData && props.authData && props.authData.isLoggedIn ){
+
+
         if (true) {
             return (
                 <>
