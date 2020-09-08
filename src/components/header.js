@@ -12,7 +12,7 @@ import {
 } from '@material-ui/icons';
 
 // redux-utils
-import { logoutUser, getUIInfo } from '../store/user'
+import { logoutUser, getUIInfo } from '../store/userSlice'
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
@@ -55,6 +55,7 @@ const Header = (props) => {
 
     const userLoading = useSelector(getUIInfo)
 
+
     // useEffect(() => {
     //     if (loading && !userLoading) {
     //         console.log('logged out')
@@ -77,7 +78,7 @@ const Header = (props) => {
         // setLoading(true)
         console.log('click')
 
-        
+
 
         // add action here
         dispatch(logoutUser());
@@ -87,6 +88,8 @@ const Header = (props) => {
     const onAuthRender = () => {
 
         // if(props.authData && props.authData && props.authData.isLoggedIn ){
+
+
         if (true) {
             return (
                 <>

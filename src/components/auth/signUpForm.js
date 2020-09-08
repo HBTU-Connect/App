@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 // redux-utilities
-import { registerUser } from '../../store/user'
+import { registerUser } from '../../store/userSlice'
 
 
 //components
@@ -32,6 +32,7 @@ const SignUpForm = (props) => {
     // }
 
     const dispatch = useDispatch();
+    const redirectTo = useSelector(state => state.user.redirectTo)
 
     useEffect(() => {
         // add header hide action here
@@ -75,16 +76,23 @@ const SignUpForm = (props) => {
         setWidth('100%')
         setSecondFormValues({ ...secondFormValues, ...formValues })
         const values = { ...firstFormValues, ...formValues }
-        console.log(values)
+        // console.log(values)
 
         // add action for sign up here
         // send the values to the function as data
         dispatch(registerUser(values))
+
+
         setLoading(false)
+    }
+
+    if (redirectTo) {
+        return <Redirect to={redirectTo} />
     }
 
     return (
         <div className='signup-page'>
+            if()
             <img className='signup-icon' src={signUpImage1} alt='signUp1' />
 
             <div className='form'>

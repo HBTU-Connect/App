@@ -4,7 +4,7 @@ import { SnackbarProvider } from 'notistack'
 
 // redux utils
 import { useDispatch, useSelector } from 'react-redux'
-import { loadUser, getUserInfo } from '../store/user'
+import { loadUser, getUserInfo } from '../store/userSlice'
 
 //components
 import Header from './header';
@@ -36,14 +36,14 @@ const App = (props) => {
 
   const dispatch = useDispatch();
   // select user info from store
-  const user = useSelector(getUserInfo)
+  const userName = useSelector(state => state.user.info.username)
 
   //load's user when app first started
   useEffect(() => {
     dispatch(loadUser())
   }, [])
 
-  console.log("userLoaded", user.username);
+  console.log("userLoaded", userName);
 
   const HeaderWithRouter = withRouter(Header);
 

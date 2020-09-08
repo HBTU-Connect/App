@@ -8,7 +8,7 @@ import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/sty
 import { ChasingDotsSpinner } from '../utils/loadingSpinner'
 
 // redux-utilities
-import{ loginUser, getUIInfo, getUserInfo, getErrors } from '../../store/user';
+import{ loginUser, getUIInfo, getUserInfo, getErrors } from '../../store/userSlice';
 
 //images
 import loginImage from '../../images/login1.png';
@@ -136,6 +136,7 @@ const LoginForm  = (props) => {
 
     const dispatch = useDispatch();
     const userLoading = useSelector(getUIInfo)
+    const redirectTo = useSelector(state => state.user.redirectTo)
     const user = useSelector(getUserInfo)
     const errors = useSelector(getErrors)
 
@@ -176,7 +177,7 @@ const LoginForm  = (props) => {
         setFormErrors(errors)
         if(Object.keys(errors).length === 0){
             setLoading(true)
-            // console.log(formValues)
+            console.log(formValues)
 
 
             //add login action here
@@ -189,6 +190,11 @@ const LoginForm  = (props) => {
         return(
             <Redirect to='/feeds' />
         )
+    }
+
+    
+    if (redirectTo) {
+        return <Redirect to={redirectTo} />
     }
 
     return(
