@@ -1,9 +1,13 @@
 import React, { useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core'
 import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { ChasingDotsSpinner } from '../utils/loadingSpinner'
 import { useSnackbar } from 'notistack';
+
+import { joinUsForm, getJoinUsFormInfo } from '../../store/utilsSlice'
+import { redirectToPage } from '../../store/UISlice'
 
 const theme = createMuiTheme({
 overrides: {
@@ -108,6 +112,10 @@ const JoinUsForm  = (props) => {
     const [ value, setValue ] = useState('')
     const [ errors, setErrors ] = useState({})
     const { enqueueSnackbar } = useSnackbar();
+
+    const dispatch = useDispatch()
+    const joinUsFormStoreInfo = useSelector(getJoinUsFormInfo)
+    const redirect = useSelector(state => state.UI.redirectToPage)
     
     const onFormSubmit = () => {
         const errors = validate(value)
@@ -116,17 +124,19 @@ const JoinUsForm  = (props) => {
             setLoading(true)
             console.log(value)
 
-
+            const data = { rollNo: value, hasFilledForm: true}
             //add login action here
+            dispatch(joinUsForm(data))
+            dispatch(redirectToPage('/signup'))
             setLoading(false)
             
         }
     }
 
 
-    // if( !loading){
-    //     return <Redirect to='/signup' />
-    // }
+    if(redirect){
+        return <Redirect to={`${redirect}`} />
+    }
 
     return(
         <>

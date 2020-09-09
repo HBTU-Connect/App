@@ -646,7 +646,7 @@ class CreateQuiz extends React.Component{
     }
 }
 
-CreateQuiz =  reduxForm({
+CreateQuiz = reduxForm({
     form: 'createForm'
   })(CreateQuiz)
 

@@ -1,0 +1,156 @@
+.messaging{
+    overflow: hidden;
+}
+
+.messaging-page{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+
+    &__left-container{
+        width: 35%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__right-container{
+        width: 65%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-list{
+
+        &__header{
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 1px 1px 3px rgb(236, 236, 236);
+            background-color: rgb(237,237,237);
+            border-right: 1px solid rgb(226, 226, 226);
+            padding-right: .8rem;
+
+            img{
+                width: 4rem; 
+                height: 4rem;
+                margin-right: auto;
+            }
+        }
+
+        &__search{
+            display: flex;
+            align-items: center;
+            background-color: rgb(243, 243, 243);
+            padding: 1rem 2rem;
+            justify-content: center;
+
+            &__input-container{
+                border-radius: 50px;
+                padding: .6rem 1rem;
+                padding-left: 2.5rem;
+                display: flex;
+                align-items: center;
+                background-color: white;
+                width: 97%;
+                color: rgb(182, 182, 182);
+
+                input{
+                    flex: 1 1 0;
+                    margin-left: 2rem;
+                    border: none;
+                    outline: none;
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    .chat-area{
+        // border-left: 1px solid rgb(187, 187, 187);
+
+        &__header{
+            background-color: rgb(237,237,237);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 1px 1px 3px rgb(236, 236, 236);
+            margin-right: .8rem;
+
+            img{
+                width: 4rem;
+                height: 4rem;
+                margin-right: 1.5rem;
+            }
+        }
+
+        &__chats{
+            flex: 1 1 0;
+            overflow-y: scroll;
+            background-color: rgb(245,236,227);
+
+            ul{
+                list-style: none;
+                padding: 2rem 0rem;
+
+                li{
+                    width: 100%;
+                    font-size: 1.4rem;
+                    display: flex;
+                    padding: .5rem 3rem;
+                    justify-content: flex-start;
+
+                    span{
+                        position: relative;
+                        padding: 1rem;
+                        max-width: 45%;
+                        overflow-wrap: break-word;
+                        background-color: rgb(163, 255, 163);
+                        border-radius: 6px;
+                        box-shadow: 1px 1px 3px rgb(212, 212, 212);
+
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: -9px;
+                            background-color: rgb(163, 255, 163);
+                            width: 1.6rem;
+                            height: 1.6rem;
+                            clip-path: polygon(100% 0, 0 0, 100% 100%);
+                        }
+                    }
+                }
+            }
+        }
+
+        &__input{
+            width: 100%;
+            height: max-content;
+            background-color: rgb(237,237,237);
+            box-shadow: 1px -1px 3px rgb(233, 233, 233);
+            padding: 1rem 2rem;
+
+            .chat-text-box{
+                width: 90%;
+                border: none;
+                outline: none;
+                border-radius: 20px;
+                background-color: rgb(255, 255, 255);
+                padding: 1rem 1.5rem;
+                line-height: 2rem;
+                font-size: 1.6rem;
+                margin-right: auto;
+                font-family: $font-family-primary;
+
+                &::placeholder{
+                    color: rgb(160, 160, 160);
+                }
+            }
+
+        }
+    }
+}

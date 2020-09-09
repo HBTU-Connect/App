@@ -5,6 +5,8 @@ import { useSnackbar } from 'notistack';
 
 // redux-utilities
 import { registerUser } from '../../store/userSlice'
+import { joinUsForm, getJoinUsFormInfo } from '../../store/utilsSlice'
+import { displayHeader, redirectToPage } from '../../store/UISlice'
 
 
 //components
@@ -21,24 +23,26 @@ const SignUpForm = (props) => {
     const [width, setWidth] = useState('33%')
     const [firstFormValues, setFirstFormValues] = useState({})
     const [secondFormValues, setSecondFormValues] = useState({})
+    const [rollNo, setRollNo ] = useState('')
     const [loading, setLoading] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
-    // state = {
-    //     page: 1,
-    //     width: '33%',
-    //     firstFormValues: {},
-    //     secondFormValues: {},
-    //     loading: false
-    // }
 
     const dispatch = useDispatch();
     const redirectTo = useSelector(state => state.user.redirectTo)
+    const rollNumber = useSelector(state => state.utils.joinUsForm.rollNo)
 
     useEffect(() => {
         // add header hide action here
+        dispatch(displayHeader('hide'));
 
+        //action to empty joinUsForm Util
+        if(rollNumber){
+            setRollNo(rollNumber)
+            dispatch(redirectToPage(''))
+        }
 
         window.onbeforeunload = function () {
+            
             onUnload();
             return "";
         };
@@ -75,8 +79,8 @@ const SignUpForm = (props) => {
         setLoading(true)
         setWidth('100%')
         setSecondFormValues({ ...secondFormValues, ...formValues })
-        const values = { ...firstFormValues, ...formValues }
-        // console.log(values)
+        const values = { ...firstFormValues, ...formValues, rollNumber: rollNo }
+        console.log(values)
 
         // add action for sign up here
         // send the values to the function as data
@@ -92,7 +96,6 @@ const SignUpForm = (props) => {
 
     return (
         <div className='signup-page'>
-            if()
             <img className='signup-icon' src={signUpImage1} alt='signUp1' />
 
             <div className='form'>

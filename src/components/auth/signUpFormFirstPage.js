@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux'
 import { Button, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select, FormLabel, Radio, RadioGroup, FormControlLabel, Checkbox } from '@material-ui/core'
 import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
@@ -120,8 +119,11 @@ const SignUpFormFirstPage = (props) => {
     const [formErrors, setFormErrors] = useState({})
     // const classes = useStyles();
 
+    const rollNumber = useSelector(state => state.utils.joinUsForm.rollNo)
+
     useEffect(() => {
-        setFormValues({ ...formValues, ...props.initialValues, ...props.previousValues })
+        const email = `${rollNumber}@hbtu.ac.in`
+        setFormValues({ ...formValues, ...props.initialValues, ...props.previousValues, email: email })
         // console.log(props.initialValues)
         // eslint-disable-next-line
     }, [])
@@ -165,7 +167,7 @@ const SignUpFormFirstPage = (props) => {
                     <NewTextField error={formErrors.lastName ? true : false} helperText={formErrors.lastName} margin='dense' label='Last Name' variant='outlined' type='text' name='lastName' value={formValues.lastName} onChange={(e) => { handleFieldChange(e) }} />
                 </div>
                 <div className='input-field__signup'>
-                    <NewTextField /*disabled={formValues.email ? true : false}*/ error={formErrors.email ? true : false} margin='dense' helperText={formErrors.email} label='Email' variant='outlined' type='email' name='email' value={formValues.email} onChange={(e) => { handleFieldChange(e) }} />
+                    <NewTextField disabled={formValues.email ? true : false} error={formErrors.email ? true : false} margin='dense' helperText={formErrors.email} label='Email' variant='outlined' type='email' name='email' value={formValues.email} onChange={(e) => { handleFieldChange(e) }} />
                 </div>
                 <div className='input-field__signup'>
                     <NewTextField error={formErrors.phone ? true : false} margin='dense' helperText={formErrors.phone} label='Phone' variant='outlined' name='phone' value={formValues.phone} onChange={(e) => { handleFieldChange(e) }} />

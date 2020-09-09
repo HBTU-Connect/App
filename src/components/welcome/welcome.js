@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { ArrowForwardIos as ArrowForwardIosIcon } from '@material-ui/icons'
 
@@ -7,13 +8,17 @@ import Footer from './footer';
 import PageHTML from './pageHTML';
 import JoinUsForm from '../auth/joinUsForm';
 
-
+//action
+import { displayHeader, getUI } from '../../store/UISlice';
 
 
 const WelcomePage = () => {
+    const dispatch = useDispatch()
+    const UI = useSelector(getUI)
 
    useEffect(() => {
         // add header hide action here
+        dispatch(displayHeader('hide'));
 
         setTimeout(() => {
         const msg = new SpeechSynthesisUtterance('Welcome to H B T U Connect');
@@ -24,14 +29,15 @@ const WelcomePage = () => {
 
     const handleScroll = (e) => {
         // console.log(e.target.scrollTop)
-        // if(e.target.scrollTop > 665 && this.props.UI.displayHeader === 'hide' ){
-        //     console.log(e.target.scrollTop)
-        //     this.props.headerDisplay('show')
-        // }
-        // else if(e.target.scrollTop < 665 && this.props.UI.displayHeader === 'show'){
-        //     console.log(e.target.scrollTop)
-        //     this.props.headerDisplay('hide')
-        // }
+        if(e.target.scrollTop > 665 && UI.header === 'hide' ){
+            console.log(e.target.scrollTop)
+            // this.props.headerDisplay('show')
+            dispatch(displayHeader('show'))
+        }
+        else if(e.target.scrollTop < 665 && UI.header === 'show'){
+            console.log(e.target.scrollTop)
+            dispatch(displayHeader('hide'))
+        }
 
         // toggle header hide 
     }

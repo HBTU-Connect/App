@@ -1,0 +1,65 @@
+.clubs-post-model{
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.116);
+
+    .post-model-nav{
+        // transform: translateX(-12px);
+        letter-spacing: .2px;
+        color: rgb(153, 153, 153);
+        .MuiIconButton-root{
+            padding: .7rem;
+        }
+        
+        &__like{
+            transition: all 0.2s ease;
+
+            &.active{
+                color: rgb(255, 1, 86);
+                .MuiIconButton-root{
+                    color: rgb(255, 1, 86);
+                }
+            }
+            
+        }
+        &__like:hover{
+            color: rgb(255, 1, 86);
+            cursor: pointer;
+            .MuiIconButton-root{
+                background-color: rgba(255, 1, 86, 0.171);
+                color: rgb(255, 1, 86);
+            }
+        }
+
+        &__comment:hover{
+            color: rgb(1, 255, 128);
+            cursor: pointer;
+            .MuiIconButton-root{
+                background-color: rgba(1, 255, 128, 0.123);
+                color: rgb(1, 255, 128);
+            }
+        }
+
+        &__send:hover{
+            color: rgb(1, 153, 255);
+            cursor: pointer;
+            .MuiIconButton-root{
+                background-color: rgba(1, 153, 255, 0.178);
+                color: rgb(1, 153, 255);
+            }
+        }
+        &__save.active{
+            .MuiIconButton-root{
+                color: rgb(1, 153, 255);
+            }
+        }
+
+        &__save:hover{
+            color: rgb(1, 153, 255);
+            cursor: pointer;
+            .MuiIconButton-root{
+                background-color: rgba(1, 153, 255, 0.178);
+                color: rgb(1, 153, 255);
+            }
+        }
+    }
+}

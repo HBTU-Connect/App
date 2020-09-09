@@ -55,6 +55,7 @@ const EditCard = ({ data, editPortalRef, setDisplayEditPortal, page, editProfile
         console.log(obj)
         // add action here
         dispatch(updateDetails(obj))
+        setDisplayEditPortal(false)
     }
 
     return (
@@ -111,7 +112,7 @@ const Icons = {
     gender: <Person fontSize='large' className='margin-right-1' />,
     branch: <School fontSize='large' className='margin-right-1' />,
     year: <CalendarToday fontSize='large' className='margin-right-1' />,
-    hometown: <Room fontSize='large' className='margin-right-1' />,
+    homeTown: <Room fontSize='large' className='margin-right-1' />,
     school: <Apartment fontSize='large' className='margin-right-1' />,
     hostel: <HomeWork fontSize='large' className='margin-right-1' />,
     instagram: <Instagram fontSize='large' className='margin-right-1' />,
@@ -217,11 +218,11 @@ const RenderEditBio = ({ userDetails, data, setData, privacy, setPrivacy }) => {
 }
 
 const RenderEditAbout = ({ userDetails, data, setData, privacy, setPrivacy }) => {
-    const [edit, setEdit] = useState({ hostel: false, birthday: false, hometown: false, school: false })
+    const [edit, setEdit] = useState({ hostel: false, birthday: false, homeTown: false, school: false })
     // const [ value, setValue ] = useState({})
     const [loading, setLoading] = useState(true)
 
-    const fields = ['hostel', 'birthday', 'hometown', 'school']
+    const fields = ['hostel', 'birthday', 'homeTown', 'school']
 
     useEffect(() => {
         // let defaultValue = {}
@@ -235,7 +236,7 @@ const RenderEditAbout = ({ userDetails, data, setData, privacy, setPrivacy }) =>
         const privacyData = {
             hostel: privacy.hostel || 'public',
             birthday: privacy.birthday || 'public',
-            hometown: privacy.hometown || 'public',
+            homeTown: privacy.homeTown || 'public',
             school: privacy.school || 'public'
         }
         setPrivacy({ ...privacy, ...privacyData })
@@ -503,11 +504,5 @@ const RenderEditContactDetails = ({ userDetails, data, setData, privacy, setPriv
         </>
     )
 }
-
-// const mapStateToProps = (state) => {
-//     return{
-//         authData: state.authData
-//     }
-// }
 
 export default EditCard

@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 
-
+//components
 import Post from './posts';
 import NotificationBox from './notificationBox';
 import Footer from '../footer'
 
+//actions
+import { displayHeader } from '../../../store/UISlice'
+
 const Feeds = (props) => {
+    const dispatch = useDispatch();
+
     useEffect(() =>{
 
         // add header show actions here
+        dispatch(displayHeader('show'));
+
+        //helper for body sidebar scroll
         const body = document.getElementsByClassName('body-container')[0]
         body.addEventListener('scroll', onScroll)
         // eslint-disable-next-line

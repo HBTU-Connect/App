@@ -13,6 +13,7 @@ import {
 
 // redux-utils
 import { logoutUser, getUIInfo } from '../store/userSlice'
+import { getUI } from '../store/UISlice';
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'
@@ -54,34 +55,28 @@ const Header = (props) => {
     const { enqueueSnackbar } = useSnackbar()
 
     const userLoading = useSelector(getUIInfo)
-
-
-    // useEffect(() => {
-    //     if (loading && !userLoading) {
-    //         console.log('logged out')
-    //         enqueueSnackbar("Successfully logged out", { variant: 'success', autoHideDuration: 3000 })
-    //         setLoading(false)
-    //         setRedirect(true)
-    //     }
-    //     // eslint-disable-next-line
-    // }, [loading, userLoading])
+    const UI = useSelector(getUI)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (props.UI)
-            setHeaderClass(props.UI.displayHeader)
-    }, [props.UI])
+        // console.log(UI.header)
+        setHeaderClass(UI.header)
+    }, [UI.header])
 
     const handleLogOut = () => {
         setShowMenu(false)
-        // setLoading(true)
-        console.log('click')
-
-
-
+        setLoading(true)
+    
         // add action here
-        dispatch(logoutUser());
+        setTimeout(() => {
+            setLoading(false)
+            setRedirect(true)
+            enqueueSnackbar("Successfully logged out", { variant: 'success', autoHideDuration: 3000 })
+            dispatch(logoutUser());
+            console.log('logged out')
+        }, 100)
+        
         // browserHistory.push('/')
     }
 
@@ -206,12 +201,5 @@ const Header = (props) => {
         </>
     );
 }
-
-// const mapStateToProps = (state) => {
-//     return{
-//         UI: state.UIData,
-//         authData: state.authData
-//     }
-// }
 
 export default Header;

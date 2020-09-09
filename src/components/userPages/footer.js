@@ -31,7 +31,7 @@ const Footer = (props) => {
                 <span className='copyright-title'>HBTU Connect</span>  
             </div>
             <div className='developer'>
-                Developed by Yashveer Talan
+                Developed by Team HBTU Connect
             </div>
         </div>
     )
