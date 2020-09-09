@@ -7,7 +7,7 @@ import NotificationBox from './notificationBox';
 import Footer from '../footer'
 
 //actions
-import { displayHeader } from '../../../store/UI'
+import { displayHeader } from '../../../store/UISlice'
 
 const Feeds = (props) => {
     const dispatch = useDispatch();

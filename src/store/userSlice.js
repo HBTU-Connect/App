@@ -196,6 +196,16 @@ export const getUserInfo = createSelector(
     user => user.info
 )
 
+export const getUserAbout = createSelector(
+    state => state.user,
+    user => user.about
+)
+
+export const getUserSettings = createSelector(
+    state => state.user,
+    user => user.settings
+)
+
 export const getErrors = createSelector(
     state => state.user.errors,
     errors => errors

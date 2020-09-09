@@ -1,14 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
+import { getUserInfo, getUserAbout, getUserSettings } from '../../store/userSlice'
+import { ChasingDotsSpinner } from '../utils/loadingSpinner';
 
 //images
 import avatarImage from '../../images/profile.jpg';
 
 const Sidebar = () => {
+    const [ loading, setLoading ] = useState(true)
+
+    const user = useSelector(getUserInfo)
+    const userAbout = useSelector(getUserAbout)
+    const userSettings = useSelector(getUserSettings)
+
     useEffect(() => {
-        const body = document.getElementsByClassName('body-container')[0]
-        body.addEventListener('scroll', onScroll)
-    }, [])
+        if(Object.keys(user).length !== 0){
+            setLoading(false)
+        }
+    }, [user])
+
+    useEffect(() => {
+        if(!loading){
+            const body = document.getElementsByClassName('body-container')[0]
+            body.addEventListener('scroll', onScroll)
+        }
+    }, [loading])
 
     const onScroll = () => {
         const el = document.getElementsByClassName('sidebar-container')[0]
@@ -25,8 +43,19 @@ const Sidebar = () => {
         }
     }
 
+    if(loading){
+        return(
+            <div className='body-container' style={{ overflow: 'hidden'}}>
+                <div className='loader'>
+                    <ChasingDotsSpinner />
+                </div>
+            </div>
+        )
+    }
+
     return(
         <div className='sidebar-container'>
+            {!loading && <>
             <div className='profile-section'>
                 {/* <div className='profile-section--cover' style={{ backgroundImage: `url(https://source.unsplash.com/4jd8B_t-qgI`}}> */}
                     <div className='profile-section--cover-profile-picture'>
@@ -34,11 +63,11 @@ const Sidebar = () => {
                     </div>
                 {/* </div> */}
                 <div className='profile-section--username'>
-                    <span className='profile-section--username-name'>Yashveer Talan</span>
-                    <span className='profile-section--username-username'>@yv-official</span>
+                    <span className='profile-section--username-name'>{user.firstName + " " + user.lastName}</span>
+                    <span className='profile-section--username-username'>@{user.username}</span>
                 </div>
                 <div className='profile-section--userdescription'>
-                    <span className='profile-section--userdescription-description'>Web & App Developer at Entrepreneurship Cell, HBTU Kanpur</span>
+                    <span className='profile-section--userdescription-description'>{userAbout.bio}</span>
                 </div>
                 <div className='profile-section--userdetails'>
                     {/* <div className='profile-section--userdetails-posts'>
@@ -63,6 +92,7 @@ const Sidebar = () => {
                     <NavLink to='/blogs' className='link' activeClassName='link selected'><li>Blogs</li></NavLink>
                 </ul>
             </div>
+            </>}
             
         </div>
     );

@@ -38,6 +38,7 @@ const App = (props) => {
   const dispatch = useDispatch();
   // select user info from store
   const userName = useSelector(state => state.user.info.username)
+  const hasFilledJoinUsForm = useSelector(state => state.utils.joinUsForm.hasFilledForm)
 
   //load's user when app first started
   useEffect(() => {
@@ -58,7 +59,7 @@ const App = (props) => {
             <Route path='/' exact component={WelcomePage} />
             <Route path='/login' exact component={LoginForm} />
             <Route path='/joinus' exact component={JoinUsPage} />
-            <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={false} />
+            <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={hasFilledJoinUsForm} />
 
             <Route path='/notification' exact component={NotificationPage} />
             <Route path='/messaging' exact component={MessagingPage} />

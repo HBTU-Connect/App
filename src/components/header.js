@@ -13,7 +13,7 @@ import {
 
 // redux-utils
 import { logoutUser, getUIInfo } from '../store/userSlice'
-import { getUI } from '../store/UI';
+import { getUI } from '../store/UISlice';
 
 // import icons from '../images/icons.svg';
 import userImage from '../images/profile.jpg'

@@ -9,7 +9,7 @@ import PageHTML from './pageHTML';
 import JoinUsForm from '../auth/joinUsForm';
 
 //action
-import { displayHeader, getUI } from '../../store/UI';
+import { displayHeader, getUI } from '../../store/UISlice';
 
 
 const WelcomePage = () => {

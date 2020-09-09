@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import { Button, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Assignment as AssignmentIcon,
@@ -34,6 +35,7 @@ import SearchData from './searchData'
 import EditCard from './editCard'
 import {ChasingDotsSpinner} from '../../utils/loadingSpinner'
 import Footer from '../footer'
+import { getUserInfo, getUserAbout, getUserSettings } from '../../../store/userSlice'
 
 
 //image
@@ -43,7 +45,7 @@ import ECellImg from '../../../images/clubs/ECell-profile.jpg'
 const aboutTileIcons = {
     branch: <School />,
     year: <CalendarTodayIcon />,
-    hometown: <Room />,
+    homeTown: <Room />,
     school: <Apartment />,
     hostel: <HomeWork />,
     instagram: <Instagram />,
@@ -87,7 +89,7 @@ const ColorPrimaryButton = withStyles((theme) => ({
 const renderAboutCard = (data, setDisplayEditPortal, setEditPage) => {
     const about = data.about
     const userFields = ['branch', 'year']
-    const aboutFields = ['hostel', 'birthday', 'hometown', 'school' ]
+    const aboutFields = ['hostel', 'birthday', 'homeTown', 'school' ]
     return(
         <div className='card-profile card-small'>
             <span className='card-small__header'>
@@ -118,7 +120,7 @@ const renderAboutCard = (data, setDisplayEditPortal, setEditPage) => {
                             <div key={index} className='card-small__content__tile'>
                                 {aboutTileIcons[field]}
                                 <span className='content-tile__title'>
-                                    {field === 'hometown' ? 'from' : field}
+                                    {field === 'homeTown' ? 'from' : field}
                                 </span>
                                 <span>
                                     {about[field]}
@@ -161,7 +163,7 @@ const renderContacts = (data, lastCardRef, setDisplayEditPortal, setEditPage) =>
                     }
                 })}
             {// eslint-disable-next-line
-            socialHandles.map((handle, index) => {
+            socialHandles && socialHandles.map((handle, index) => {
                     return(
                         <div key={index} className='card-small__content__tile'>
                             {aboutTileIcons[handle.title]}
@@ -362,10 +364,17 @@ const ProfilePage = (props) => {
     const lastCardRef = useRef(null)
     const leftContainerRef = useRef(null)
 
+    const user = useSelector(getUserInfo)
+    const userAbout = useSelector(getUserAbout)
+    const userSettings = useSelector(getUserSettings)
+
     useEffect(() => {
-        setUserDetails(sampleData)
-        setLoading(false)
-    }, [])
+        if(user.username){
+            const userData = {...user, about: userAbout, settings: userSettings}
+            setUserDetails(userData)
+            setLoading(false)
+        }
+    }, [user, userAbout, userSettings])
 
     const addInterestSection = (name) => {
         setAnchorEl(null)
@@ -483,8 +492,8 @@ const ProfilePage = (props) => {
                     </div>
                     <div className='profile-page__content__right'>
                         {renderActivity()}
-                        {renderConnectionCard(userDetails.connections)}
-                        {<RenderClubsCard clubs={userDetails.clubs} />}
+                        {userDetails.connections && renderConnectionCard(userDetails.connections)}
+                        {userDetails.clubs && <RenderClubsCard clubs={userDetails.clubs} />}
                         {interestSections.map((interestSection, index) => {
                             return(
                                 <InterestSection key={index} name={interestSection.name} data={interestSection.data} />
