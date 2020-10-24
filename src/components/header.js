@@ -8,7 +8,9 @@ import {
     Home as HomeIcon,
     Notifications as NotificationsIcon,
     SearchRounded as SearchIcon,
-    Apps as AppsIcon
+    Apps as AppsIcon,
+    People as PeopleIcon,
+    SupervisorAccount as SupervisorAccountIcon
 } from '@material-ui/icons';
 
 // redux-utils
@@ -94,6 +96,13 @@ const Header = (props) => {
                                 <StyledBadge color="secondary" variant='dot'>
                                     <HomeIcon fontSize={"large"} />
                                 </StyledBadge>
+                            </div>
+                        </NavLink>
+                        <NavLink to='/connections' className='link' activeClassName='active_tab'>
+                            <div className='user-nav__icon-box'>
+                                <ContentBadge color="secondary" style={{ fontSize: '1rem' }} badgeContent={7} max={99}>
+                                    <SupervisorAccountIcon fontSize={"large"} />
+                                </ContentBadge>
                             </div>
                         </NavLink>
 

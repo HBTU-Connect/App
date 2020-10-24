@@ -131,7 +131,6 @@ const LoginForm  = (props) => {
     const [ formErrors, setFormErrors ] = useState({})
     const [ showPassword, setShowPassword ] = useState(false)
     const [ loading, setLoading ] = useState(false)
-    const [ redirect, setRedirect ] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
 
     const dispatch = useDispatch();
@@ -144,7 +143,6 @@ const LoginForm  = (props) => {
         if(loading && !userLoading && user.username ){
             enqueueSnackbar(user.msg, {variant: 'success', autoHideDuration: 3000})
             setLoading(false)
-            setRedirect(true)
         }
         if(loading && !userLoading && errors){
             enqueueSnackbar(errors, {variant: 'error', autoHideDuration: 3000})
@@ -154,6 +152,9 @@ const LoginForm  = (props) => {
         // eslint-disable-next-line
     }, [userLoading, loading])
 
+    useEffect(() => {
+        console.log('true')
+    }, [])
 
     const handleFieldChange = (e) => {
         const name = e.target.name
@@ -186,15 +187,15 @@ const LoginForm  = (props) => {
             // setLoading(false)
         }
     }
-    if(redirect){
-        return(
-            <Redirect to='/feeds' />
-        )
-    }
+    // if(redirect){
+    //     return(
+    //         <Redirect to='/feeds' />
+    //     )
+    // }
 
     
-    if (redirectTo) {
-        return <Redirect to={redirectTo} />
+    if (redirectTo && redirectTo !== '/login') {
+        return <Redirect to={`${redirectTo}`} />
     }
 
     return(

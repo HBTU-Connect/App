@@ -101,28 +101,54 @@
                     font-size: 1.4rem;
                     display: flex;
                     padding: .5rem 3rem;
-                    justify-content: flex-start;
 
                     span{
                         position: relative;
                         padding: 1rem;
                         max-width: 45%;
                         overflow-wrap: break-word;
-                        background-color: rgb(163, 255, 163);
                         border-radius: 6px;
                         box-shadow: 1px 1px 3px rgb(212, 212, 212);
+                    }
 
-                        &::before{
-                            content: '';
-                            position: absolute;
-                            top: 0;
-                            left: -9px;
-                            background-color: rgb(163, 255, 163);
-                            width: 1.6rem;
-                            height: 1.6rem;
-                            clip-path: polygon(100% 0, 0 0, 100% 100%);
+                    &.mine{
+                        justify-content: flex-end;
+
+                        span{
+                            background-color: white;
+
+                            &::before{
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                right: -9px;
+                                background-color: white;
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                clip-path: polygon(100% 0, 0 0, 0 100%);
+                            }
                         }
                     }
+
+                    &.others{
+                        justify-content: flex-start;
+                        span{
+                            background-color: rgb(163, 255, 163);
+                            
+                            &::before{
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: -9px;
+                                background-color: rgb(163, 255, 163);
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                clip-path: polygon(100% 0, 0 0, 100% 100%);
+                            }
+                        }
+                    }
+
+                    
                 }
             }
         }
