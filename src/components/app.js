@@ -28,9 +28,11 @@ import TextEditor from './userPages/events/utils/textEditor'
 
 import { PrivateRoute } from './utils/protectedRoutes';
 
+import ConnectionsPage from './connections';
+import RenderInvitations from './connections/renderInvitations';
 import NotificationPage from './notification';
 import MessagingPage from './messaging';
-import ProfilePage from './userPages/userProfile/profilePage'
+import ProfilePage from './userPages/userProfile/profilePage';
 
 
 const App = (props) => {
@@ -61,6 +63,8 @@ const App = (props) => {
             <Route path='/joinus' exact component={JoinUsPage} />
             <PrivateRoute path='/signup' exact component={SignUpForm} isAuthenticated={hasFilledJoinUsForm} />
 
+            <Route path='/connections' exact component={ConnectionsPage} />
+            <Route path='/connections/requests' exact component={RenderInvitations} />
             <Route path='/notification' exact component={NotificationPage} />
             <Route path='/messaging' exact component={MessagingPage} />
             <Route path='/user/:username' exact component={ProfilePage} />

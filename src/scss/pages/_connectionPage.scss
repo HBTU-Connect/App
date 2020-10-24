@@ -1,0 +1,141 @@
+.connections-page{
+    max-width: 100rem;
+    width: 90%;
+    height: max-content;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 5rem;
+
+    &__left{
+        width: 70%;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    &__right{
+        margin-left: 3%;
+        width: 27%;
+        height: max-content;
+    }
+
+    &__requests{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgb(209, 209, 209);
+        box-shadow: 1px 1px 3px rgb(204, 204, 204);
+        background-color: white;
+        margin-bottom: 3rem;
+        
+        &__header{
+            font-size: 1.8rem;
+            // font-weight: 500;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid rgb(241, 241, 241);
+        }
+
+        &__content{
+
+        }
+
+        &__footer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: .5rem 1rem;
+
+            .div-button{
+                color: $color-primary;
+                display: flex;
+                align-items: center;
+                font-size: 1.6rem;
+                font-weight: 500;
+                cursor: pointer;
+                padding: .5rem 1rem;
+                border-radius: 3px;
+
+                &:hover{
+                    background-color: rgba($color-primary, 0.1);
+                }
+            }
+        }
+    }
+
+    &__suggestions{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgb(209, 209, 209);
+        box-shadow: 1px 1px 3px rgb(204, 204, 204);
+        background-color: white;
+        margin-bottom: 3rem;
+
+        &__header{
+            font-size: 1.8rem;
+            // font-weight: 500;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid rgb(241, 241, 241);
+        }
+
+        &__content{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 2rem;
+            height: max-content;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__invitation-card{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid rgb(241, 241, 241);
+
+        img{
+            width: 7rem;
+            height: 7rem;
+            margin-right: 1rem;
+        }
+
+        .MuiButton-root{
+            font-size: 1.4rem;
+            text-transform: capitalize;
+            margin-right: .5rem;
+            font-family: $font-family-primary;
+        }
+    }
+
+    &__sidebar{
+        background-color: white;
+        border: 1px solid rgb(209, 209, 209);
+        height: max-content;
+        width: 100%;
+
+        &__header{
+            font-size: 1.6rem;
+            border-bottom: 1px solid rgb(241, 241, 241);
+            padding: 1rem;
+        }
+
+        &__content{
+            display: flex;
+            flex-direction: column;
+
+            div{
+                padding: 1rem;
+                color: rgb(99, 99, 99);
+                font-size: 1.5rem;
+                cursor: pointer;
+                margin-bottom: .5rem;
+
+                &:hover{
+                    background-color: rgb(241, 241, 241);
+                }
+                // border-bottom: 1px solid rgb(241, 241, 241);
+            }
+        }
+    }
+}

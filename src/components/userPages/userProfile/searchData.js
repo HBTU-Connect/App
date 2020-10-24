@@ -143,13 +143,21 @@ const ImageCard = ({ item, setSectionData, setDisplayPortal }) => {
     })
 
     const countSpan = () => {
-        const height = imageRef.current.clientHeight
-        const spans = Math.ceil(height/10 +1)
-        setSpan(spans)
+            if(imageRef.current && imageRef.current.clientHeight){
+            const height = imageRef.current.clientHeight
+            const spans = Math.ceil(height/10 +1)
+            setSpan(spans)
+        }
+    }
+
+    const handleClick = () => {
+        let url = `${item.urls.full}?auto=compress&w=900&h=300&fit=crop`
+        setSectionData(url);
+         setDisplayPortal(false)
     }
 
     return(
-        <div key={item.id} onClick={() => {setSectionData(item.urls.regular); setDisplayPortal(false)}} style={{ gridRowEnd: `span ${span}`, cursor: 'pointer'}}>
+        <div key={item.id} onClick={() => handleClick()} style={{ gridRowEnd: `span ${span}`, cursor: 'pointer'}}>
             <img ref={imageRef} className='unsplash-image' src={item.urls.regular} alt='unsplash' /> 
         </div>
     )

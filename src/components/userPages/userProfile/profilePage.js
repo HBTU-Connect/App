@@ -358,15 +358,19 @@ const ProfilePage = (props) => {
     const [ displayPortal, setDisplayPortal ] = useState(false)
     const [ displayEditPortal, setDisplayEditPortal ] = useState(false)
     const [ editPage, setEditPage ] = useState(0)
-    const [ image, setImage] = useState('https://source.unsplash.com/1_CMoFsPfso')
+    const [ image, setImage] = useState('https://source.unsplash.com/1_CMoFsPfso?auto=compress&w=900&h=300&fit=crop')
+    const [ coverImageLoading, setCoverImageLoading ] = useState(false)
     const portalRef = useRef(null)
     const editPortalRef = useRef(null)
     const lastCardRef = useRef(null)
     const leftContainerRef = useRef(null)
+    const coverImageRef = useRef(null)
 
     const user = useSelector(getUserInfo)
     const userAbout = useSelector(getUserAbout)
     const userSettings = useSelector(getUserSettings)
+
+    
 
     useEffect(() => {
         if(user.username){
@@ -413,6 +417,14 @@ const ProfilePage = (props) => {
         }
     }, [displayEditPortal])
 
+    useEffect(() => {
+        if(image !== 'https://source.unsplash.com/1_CMoFsPfso?auto=compress&w=900&h=300&fit=crop'){
+            setCoverImageLoading(true)
+        }
+        if(coverImageRef.current)
+        coverImageRef.current.addEventListener('load', () => { setCoverImageLoading(false)})
+    }, [image])
+
     const handleScroll = (e) => {
         const body = document.getElementsByClassName('profile-page__content')[0]
         if(lastCardRef.current && leftContainerRef.current && e.target.scrollTop > (leftContainerRef.current.offsetTop + lastCardRef.current.offsetTop - 60) ){
@@ -444,7 +456,8 @@ const ProfilePage = (props) => {
             <div className='profile-page'>
                 <div className='profile-page__top-card'>
                     <div className='profile-page__cover-container'>
-                        <img className='profile-page__cover' src={image} alt={`https://unsplash.com/photos/1_CMoFsPfso`} />
+                        {coverImageLoading && <div className='loader'><ChasingDotsSpinner /></div>}
+                        <img className='profile-page__cover' ref={coverImageRef} src={image} alt={`https://unsplash.com/photos/1_CMoFsPfso`} />
                         <IconButton className='edit-button__cover' onClick={() => setDisplayPortal(true)}><Edit fontSize='large' /> </IconButton>
                     </div>
                     <div className='profile-page__profile-img-container'>
